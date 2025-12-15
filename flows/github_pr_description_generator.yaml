@@ -1,0 +1,206 @@
+description: Lists open PRs, lets user pick one, and generates a formatted PR description using LLM analysis.
+flow:
+  - from: START
+    to: get_repo_info
+  - from: get_repo_info
+    to: split_repo_full
+  - from: split_repo_full
+    to: list_prs
+  - from: list_prs
+    to: select_pr
+  - from: select_pr
+    to: resolve_pr_number
+  - from: resolve_pr_number
+    to: get_pr_details
+  - from: get_pr_details
+    to: describe_pr
+  - from: describe_pr
+    to: ask_update_github
+  - from: ask_update_github
+    edges:
+      - condition: 'lambda x: x["update_github"] == "yes"'
+        to: update_pr_on_github
+      - condition: 'lambda x: x["update_github"] == "no"'
+        to: ask_new_review
+  - from: update_pr_on_github
+    to: ask_new_review
+  - edges:
+      - condition: 'lambda x: x["do_again"] == "yes"'
+        to: get_repo_info
+      - condition: 'lambda x: x["do_again"] == "no"'
+        to: END
+    from: ask_new_review
+layout:
+  nodes:
+    START:
+      x: 50
+      'y': 12
+    get_repo_info:
+      x: 28
+      'y': 162
+    split_repo_full:
+      x: 20
+      'y': 312
+    list_prs:
+      x: 48
+      'y': 462
+    select_pr:
+      x: 44
+      'y': 612
+    resolve_pr_number:
+      x: 12
+      'y': 762
+    get_pr_details:
+      x: 24
+      'y': 912
+    describe_pr:
+      x: 36
+      'y': 1062
+    ask_update_github:
+      x: 36
+      'y': 1162
+    update_pr_on_github:
+      x: 200
+      'y': 1262
+    ask_new_review:
+      x: -326
+      'y': 1364
+    END:
+      x: 50
+      'y': 1464
+  waypoints:
+    - id: waypoint-1765754933979-hp05uhf1o
+      x: -497
+      'y': 930
+      source: ask_new_review
+      target: get_repo_info
+      immediateSource: ask_new_review
+      immediateTarget: get_repo_info
+      incomingSourceHandle: top-source
+      incomingTargetHandle: bottom-target
+      outgoingSourceHandle: top-source
+      outgoingTargetHandle: left
+model: gpt-4o
+name: pr_description_generator
+nodes:
+  - name: get_repo_info
+    output_model:
+      repo_full: str
+    prompt: |
+      # Welcome to PR Description Generator! 👋
+
+      Let's get started by selecting a GitHub repository.
+
+      **Please enter the repository** in the format: `owner/repo`
+
+      *Example:* `facebook/react` or `microsoft/vscode`
+    type: input
+  - name: split_repo_full
+    output_model:
+      owner: str
+      repo: str
+    prompt: |-
+      Given this repository specification: {repo_full}, return just the 'owner' and 'repo' parts separately in JSON:
+      {{"owner": ..., "repo": ...}}
+    system: You help extract repository information.
+    type: llm
+  - name: list_prs
+    output_model:
+      pr_list: list
+      pr_numbers: list
+    prompt: |
+      List all open pull requests for repository {owner}/{repo} and output a list of PR numbers and their titles.
+    system: |
+      Use the list_pull_requests tool to list all open pull requests for the given repository.
+      Summarize each PR as "#<number>: <title>" in a list.
+    tools: true
+    tools_selection:
+      - list_pull_requests
+    type: llm
+  - name: select_pr
+    options:
+      - pr_list
+    output_model:
+      pr_number: str
+    prompt: |-
+      📋 **Select a Pull Request**
+
+      Please choose the PR you'd like to document from the list above:
+    type: input
+  - name: resolve_pr_number
+    output_model:
+      pull_number: str
+    prompt: |
+      Given the selected PR string '{pr_number}', extract and output only the PR number as a string (no other text).
+    system: 'Your job is to map a PR summary like ''#32: Update docs'' back to its PR number as a string.'
+    type: llm
+  - name: get_pr_details
+    output_model:
+      pr_body: str
+      pr_files: list
+      pr_title: str
+    prompt: |
+      Fetch PR details (title, original body, changed files) for {owner}/{repo} and PR number {pull_number}.
+    system: |
+      Use the pull_request_read tool to fetch the PR's title, body, and list of changed files for the selected PR in the selected repo.
+    tools: true
+    tools_selection:
+      - pull_request_read
+    type: llm
+  - name: describe_pr
+    output_model:
+      pr_description: str
+    prompt: |
+      Write a concise, professional PR description in markdown with these sections:
+
+      ## Summary
+      (High-level summary of what this PR does)
+
+      ## Key Changes
+      (Bullet points listing the most important changes/files affected)
+
+      ## Motivation & Context
+      (Why these changes were made / what problem it solves)
+
+      Use the following information:
+      - Title: {pr_title}
+      - Original PR Body: {pr_body}
+      - Changed Files: {pr_files}
+
+      Keep the tone clear and neutral. If any information is missing, state that explicitly rather than making assumptions.
+    system: |
+      You are an expert GitHub documentation writer specializing in creating clear, professional pull request descriptions. Your goal is to help developers understand what changes were made and why, using only the information provided without inventing details.
+    type: llm
+    user_message:
+      - pr_description
+  - name: ask_update_github
+    options:
+      - 'yes'
+      - 'no'
+    output_model:
+      update_github: str
+    prompt: Would you like to update this PR description on GitHub? (yes/no)
+    type: input
+  - name: update_pr_on_github
+    output_model:
+      update_result: str
+    prompt: |
+      Update the pull request #{pull_number} in repository {owner}/{repo} with the new description:
+
+      {pr_description}
+    system: |
+      Use the update_pull_request tool to update the PR body with the generated description.
+    tools: true
+    tools_selection:
+      - update_pull_request
+    type: llm
+    user_message:
+      - ✅ PR description updated successfully on GitHub!
+  - name: ask_new_review
+    options:
+      - 'yes'
+      - 'no'
+    output_model:
+      do_again: str
+    prompt: Would you like to review another pull request? (yes/no)
+    type: input

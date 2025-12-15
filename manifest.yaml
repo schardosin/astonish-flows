@@ -1,0 +1,7 @@
+name: Official Astonish Flows
+author: schardosin
+description: Curated collection of powerful AI automation flows for everyday tasks
+flows:
+  github_pr_description_generator:
+    description: Lists open PRs, lets user pick one, and generates a formatted PR description using LLM analysis
+    tags: [github, pull-request, documentation, ai]
