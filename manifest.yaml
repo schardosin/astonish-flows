@@ -5,3 +5,22 @@ flows:
   github_pr_description_generator:
     description: Lists open PRs, lets user pick one, and generates a formatted PR description using LLM analysis
     tags: [github, pull-request, documentation, ai]
+
+
+mcps:
+  github-mcp-server:
+    description: GitHub MCP Server (Docker)
+    command: docker
+    args:
+      - run
+      - -i
+      - --rm
+      - -e
+      - GITHUB_PERSONAL_ACCESS_TOKEN
+      - -e
+      - GITHUB_HOST
+      - ghcr.io/github/github-mcp-server
+    env:
+      GITHUB_HOST: "https://github.com"
+      GITHUB_PERSONAL_ACCESS_TOKEN: ""
+    tags: [github, mcp, docker]
