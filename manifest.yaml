@@ -20,6 +20,7 @@ mcps:
       - "@contextstream/mcp-server"
     env:
       CONTEXTSTREAM_API_KEY: ""
+    transport: "stdio"
     tags: [ai-memory, semantic-search, code-intelligence, context-tracking, team-collaboration]
 
   semgrep:
@@ -32,6 +33,7 @@ mcps:
     command: "uvx"
     args:
       - "semgrep-mcp"
+    transport: "stdio"
     tags: [static-analysis, code-scanning, vulnerability-detection, security-rules, code-security]
 
   aws-proxy:
@@ -52,6 +54,7 @@ mcps:
       AWS_REGION: ""
       AWS_SECRET_ACCESS_KEY: ""
       AWS_SESSION_TOKEN: ""
+    transport: "stdio"
     tags: [aws, authentication, proxy, sigv4, ai-integration]
 
   code-mode:
@@ -66,6 +69,7 @@ mcps:
       - "@utcp/code-mode-mcp"
     env:
       UTCP_CONFIG_FILE: ""
+    transport: "stdio"
     tags: [code-execution, tool-integration, typescript, automation, ai-development]
 
   appium:
@@ -81,6 +85,7 @@ mcps:
     env:
       ANDROID_HOME: "/Users/xyz/Library/Android/sdk"
       CAPABILITIES_CONFIG: "/path/to/your/capabilities.json"
+    transport: "stdio"
     tags: [mobile-testing, automation, ios, android, appium]
 
   railway:
@@ -94,6 +99,7 @@ mcps:
     args:
       - "-y"
       - "@railway/mcp-server"
+    transport: "stdio"
     tags: [deployment, infrastructure, cloud-management, devops, cli-tools]
 
   azure:
@@ -109,6 +115,7 @@ mcps:
       - "@azure/mcp@latest"
       - "server"
       - "start"
+    transport: "stdio"
     tags: [azure, cloud-services, infrastructure-management, devops, cloud-automation]
 
   azure-devops:
@@ -122,6 +129,7 @@ mcps:
     args:
       - "-y"
       - "@azure-devops/mcp"
+    transport: "stdio"
     tags: [azure-devops, project-management, ci-cd, version-control, work-tracking]
 
   byterover-cipher:
@@ -136,6 +144,7 @@ mcps:
       - "-y"
       - "@modelcontextprotocol/server-filesystem"
       - "."
+    transport: "stdio"
     tags: [memory-management]
 
   graphlit:
@@ -164,6 +173,7 @@ mcps:
       NOTION_API_KEY: ""
       SLACK_BOT_TOKEN: ""
       TWITTER_TOKEN: ""
+    transport: "stdio"
     tags: [content-management, data-ingestion, document-processing, search-retrieval, multi-platform]
 
   knowledge-graph-memory:
@@ -177,6 +187,7 @@ mcps:
     args:
       - "-y"
       - "@modelcontextprotocol/server-memory"
+    transport: "stdio"
     tags: [knowledge-graph, persistent-memory, entity-management, graph-database, memory-storage]
 
   atlassian:
@@ -192,6 +203,7 @@ mcps:
     env:
       CONFLUENCE_API_TOKEN: ""
       JIRA_API_TOKEN: ""
+    transport: "stdio"
     tags: [atlassian, confluence, jira, project-management, documentation]
 
   substack-writer:
@@ -207,6 +219,7 @@ mcps:
       - "$(pwd)"
       - "run"
       - "writer_tool.py"
+    transport: "stdio"
     tags: [content-analysis, writing, semantic-search, blog-integration, embeddings]
 
   auth0:
@@ -222,6 +235,7 @@ mcps:
       - "init"
     env:
       DEBUG: "auth0-mcp"
+    transport: "stdio"
     tags: [authentication, authorization, identity-management, oauth, access-control]
 
   magic-ui:
@@ -237,6 +251,7 @@ mcps:
       - "@21st-dev/magic@latest"
     env:
       API_KEY: ""
+    transport: "stdio"
     tags: [ui-generation, component-library, ide-integration, typescript, react]
 
   synthetic-data:
@@ -253,6 +268,7 @@ mcps:
       AWS_PROFILE: ""
       AWS_REGION: ""
       FASTMCP_LOG_LEVEL: ""
+    transport: "stdio"
     tags: [data-generation, validation, pandas, synthetic-data, aws-integration]
 
   linear:
@@ -267,6 +283,7 @@ mcps:
       - "/path/to/linear-mcp/build/index.js"
     env:
       LINEAR_API_KEY: ""
+    transport: "stdio"
     tags: [project-management, issue-tracking, team-collaboration, linear-api, workflow]
 
   apify-actors:
@@ -281,6 +298,7 @@ mcps:
       - "@apify/actors-mcp-server"
     env:
       APIFY_TOKEN: ""
+    transport: "stdio"
     tags: [web-scraping, data-extraction, automation, actor-management, apify-platform]
 
   brave-search:
@@ -298,6 +316,7 @@ mcps:
       - "stdio"
     env:
       BRAVE_API_KEY: ""
+    transport: "stdio"
     tags: [search-engine, local-search, web-search, brave-api, content-discovery]
 
   iterm:
@@ -310,6 +329,7 @@ mcps:
     command: "node"
     args:
       - "path/to/build/index.js"
+    transport: "stdio"
     tags: [terminal, iterm, command-execution, repl, automation]
 
   aws-cdk-assistant:
@@ -324,6 +344,7 @@ mcps:
       - "awslabs.cdk-mcp-server@latest"
     env:
       FASTMCP_LOG_LEVEL: "ERROR"
+    transport: "stdio"
     tags: [aws-cdk, infrastructure-as-code, security-compliance, cloud-architecture, aws]
 
   lambda-bridge:
@@ -344,6 +365,7 @@ mcps:
       FUNCTION_PREFIX: ""
       FUNCTION_TAG_KEY: ""
       FUNCTION_TAG_VALUE: ""
+    transport: "stdio"
     tags: [aws-lambda, serverless, security, aws-integration, function-management]
 
   whatsapp:
@@ -359,6 +381,7 @@ mcps:
       - "{{PATH_TO_SRC}}/whatsapp-mcp/whatsapp-mcp-server"
       - "run"
       - "main.py"
+    transport: "stdio"
     tags: [messaging, chat-history, contacts, whatsapp, message-search]
 
   task-manager:
@@ -371,6 +394,7 @@ mcps:
     command: "node"
     args:
       - "path/to/mcp-taskmanager/dist/index.js"
+    transport: "stdio"
     tags: [task-management, queue-system, workflow, task-tracking, automation]
 
   aurora-postgres:
@@ -388,6 +412,7 @@ mcps:
       AWS_PROFILE: ""
       AWS_REGION: ""
       FASTMCP_LOG_LEVEL: "ERROR"
+    transport: "stdio"
     tags: [postgres, aurora, aws, sql, database-management]
 
   context7:
@@ -403,6 +428,7 @@ mcps:
       - "@upstash/context7-mcp"
     env:
       CONTEXT7_API_KEY: ""
+    transport: "stdio"
     tags: [documentation, code-examples, api-reference, library-docs, programming-help]
 
   cost-analysis:
@@ -418,6 +444,7 @@ mcps:
     env:
       AWS_PROFILE: ""
       FASTMCP_LOG_LEVEL: ""
+    transport: "stdio"
     tags: [aws-costs, cost-optimization, cloud-pricing, reporting, analytics]
 
   proxmox-manager:
@@ -441,6 +468,7 @@ mcps:
       PROXMOX_TOKEN_VALUE: ""
       PROXMOX_USER: ""
       PROXMOX_VERIFY_SSL: ""
+    transport: "stdio"
     tags: [proxmox, virtualization, vm-management, server-management, infrastructure]
 
   wolframalpha:
@@ -455,6 +483,7 @@ mcps:
       - "/path/to/wolframalpha-mcp-server/build/index.js"
     env:
       WOLFRAM_LLM_APP_ID: ""
+    transport: "stdio"
     tags: [mathematics, scientific-computing, knowledge-base, wolfram-api, computation]
 
   solana-agent-kit:
@@ -471,6 +500,7 @@ mcps:
       OPENAI_API_KEY: ""
       RPC_URL: ""
       SOLANA_PRIVATE_KEY: ""
+    transport: "stdio"
     tags: [blockchain, solana, cryptocurrency, web3, tokens]
 
   aurora-mysql:
@@ -497,6 +527,7 @@ mcps:
       AWS_PROFILE: ""
       AWS_REGION: ""
       FASTMCP_LOG_LEVEL: ""
+    transport: "stdio"
     tags: [aurora, mysql, aws, sql, data-api]
 
   markdownify:
@@ -511,6 +542,7 @@ mcps:
       - "/path/to/dist/index.js"
     env:
       UV_PATH: "/path/to/uv"
+    transport: "stdio"
     tags: [file-conversion, markdown, document-processing, content-transformation, format-conversion]
 
   git-tools:
@@ -523,6 +555,7 @@ mcps:
     command: "uvx"
     args:
       - "mcp-server-git"
+    transport: "stdio"
     tags: [git, version-control, repository-management, source-control, development]
 
   perplexity-research:
@@ -537,6 +570,7 @@ mcps:
       - "path/to/perplexity-mcp/build/index.js"
     env:
       PERPLEXITY_API_KEY: ""
+    transport: "stdio"
     tags: [research, documentation, api-discovery, code-analysis, perplexity]
 
   fetch:
@@ -551,6 +585,7 @@ mcps:
       - "mcp-fetch-server"
     env:
       DEFAULT_LIMIT: ""
+    transport: "stdio"
     tags: [web-fetching, html, json, markdown, content-extraction]
 
   airtable:
@@ -566,6 +601,7 @@ mcps:
       - "airtable-mcp-server"
     env:
       AIRTABLE_API_KEY: ""
+    transport: "stdio"
     tags: [airtable, database-management, records, schemas, crud]
 
   obsidian:
@@ -580,6 +616,7 @@ mcps:
       - "-y"
       - "mcp-obsidian"
       - "${input:vaultPath}"
+    transport: "stdio"
     tags: [markdown, knowledge-base, notes, search, obsidian]
 
   blender:
@@ -592,6 +629,7 @@ mcps:
     command: "uvx"
     args:
       - "blender-mcp"
+    transport: "stdio"
     tags: [3d-modeling, blender, asset-management, scene-creation, visualization]
 
   amazon-kendra-index:
@@ -609,6 +647,7 @@ mcps:
       AWS_REGION: ""
       FASTMCP_LOG_LEVEL: ""
       KENDRA_INDEX_ID: ""
+    transport: "stdio"
     tags: [rag, search, aws, knowledge-base, enterprise-search]
 
   ollama:
@@ -623,6 +662,7 @@ mcps:
       - "/path/to/ollama-server/build/index.js"
     env:
       OLLAMA_HOST: ""
+    transport: "stdio"
     tags: [llm, model-management, local-ai, chat-completion, ollama-api]
 
   cloudwatch-logs:
@@ -639,6 +679,7 @@ mcps:
       AWS_PROFILE: ""
       AWS_REGION: ""
       FASTMCP_LOG_LEVEL: ""
+    transport: "stdio"
     tags: [aws, log-analysis, cloud-monitoring, observability, analytics]
 
   mobile-next:
@@ -652,6 +693,7 @@ mcps:
     args:
       - "-y"
       - "@mobilenext/mobile-mcp@latest"
+    transport: "stdio"
     tags: [mobile-automation, ios-android, app-testing, device-control, accessibility]
 
   openapi-dynamic-tools:
@@ -673,6 +715,7 @@ mcps:
       LOG_LEVEL: ""
       UVICORN_GRACEFUL_SHUTDOWN: ""
       UVICORN_TIMEOUT_GRACEFUL_SHUTDOWN: ""
+    transport: "stdio"
     tags: [openapi, api-integration, dynamic-tools, aws, automation]
 
   esignatures:
@@ -687,6 +730,7 @@ mcps:
       - "mcp-server-esignatures"
     env:
       ESIGNATURES_SECRET_TOKEN: ""
+    transport: "stdio"
     tags: [digital-signatures, contracts, document-management, templates, collaboration]
 
   nova-canvas:
@@ -703,6 +747,7 @@ mcps:
       AWS_PROFILE: ""
       AWS_REGION: ""
       FASTMCP_LOG_LEVEL: ""
+    transport: "stdio"
     tags: [image-generation, ai-art, aws, text-to-image, color-palettes]
 
   browser-use:
@@ -720,6 +765,7 @@ mcps:
       MCP_LLM_GOOGLE_API_KEY: ""
       MCP_LLM_MODEL_NAME: "gemini-2.5-flash-preview-04-17"
       MCP_LLM_PROVIDER: "google"
+    transport: "stdio"
     tags: [browser-automation, web-interaction, visual-analysis, session-management, multi-llm]
 
   amazon-keyspaces:
@@ -736,6 +782,7 @@ mcps:
       AWS_PROFILE: ""
       AWS_REGION: ""
       FASTMCP_LOG_LEVEL: ""
+    transport: "stdio"
     tags: [cassandra, aws, database-management, query-analysis, schema-exploration]
 
   kagi-search:
@@ -751,6 +798,7 @@ mcps:
     env:
       KAGI_API_KEY: ""
       KAGI_SUMMARIZER_ENGINE: ""
+    transport: "stdio"
     tags: [web-search, information-retrieval, kagi-api, real-time-data, search-engine]
 
   mcp-toolbox-for-databases:
@@ -768,6 +816,7 @@ mcps:
       - "${TOOLBOX_TOOLS_FILE}"
     env:
       TOOLBOX_TOOLS_FILE: "/path/to/tools.yaml"
+    transport: "stdio"
     tags: [database, postgresql, mysql, cloud-sql, alloydb, spanner, google-cloud, enterprise]
 
   neptune-query:
@@ -783,6 +832,7 @@ mcps:
     env:
       FASTMCP_LOG_LEVEL: ""
       NEPTUNE_ENDPOINT: ""
+    transport: "stdio"
     tags: [graph-database, aws-neptune, cypher, gremlin, query-execution]
 
   webflow:
@@ -798,6 +848,7 @@ mcps:
       - "webflow-mcp-server@latest"
     env:
       WEBFLOW_TOKEN: ""
+    transport: "stdio"
     tags: [webflow, cms, web-development, content-management, site-builder]
 
   minimax-media-studio:
@@ -816,6 +867,7 @@ mcps:
       MINIMAX_API_KEY: ""
       MINIMAX_API_RESOURCE_MODE: ""
       MINIMAX_MCP_BASE_PATH: ""
+    transport: "stdio"
     tags: [text-to-speech, video-generation, image-generation, voice-cloning, media-creation]
 
   dall-e:
@@ -830,6 +882,7 @@ mcps:
       - "/path/to/dalle-mcp-server/build/index.js"
     env:
       OPENAI_API_KEY: ""
+    transport: "stdio"
     tags: [image-generation, dall-e, ai-art, image-editing, openai]
 
   core-server:
@@ -844,6 +897,7 @@ mcps:
       - "awslabs.core-mcp-server@latest"
     env:
       FASTMCP_LOG_LEVEL: ""
+    transport: "stdio"
     tags: [server-management, configuration, aws-integration, automation, orchestration]
 
   email-sender:
@@ -858,6 +912,7 @@ mcps:
       - "ABSOLUTE_PATH_TO_MCP_SEND_EMAIL_PROJECT/build/index.js"
     env:
       RESEND_API_KEY: ""
+    transport: "stdio"
     tags: [email, resend-api, messaging, automation, communication]
 
   tavily:
@@ -873,6 +928,7 @@ mcps:
       - "tavily-mcp@latest"
     env:
       TAVILY_API_KEY: ""
+    transport: "stdio"
     tags: [web-search, data-extraction, real-time-information, content-filtering, news-search]
 
   figma:
@@ -890,6 +946,7 @@ mcps:
     env:
       FIGMA_API_KEY: ""
       PORT: ""
+    transport: "stdio"
     tags: [figma, design, ui-development, code-generation, cursor-integration]
 
   serper-search:
@@ -904,6 +961,7 @@ mcps:
       - "/path/to/serper-search-server/build/index.js"
     env:
       SERPER_API_KEY: ""
+    transport: "stdio"
     tags: [google-search, serper-api, web-search, knowledge-graph, search-results]
 
   exa-search:
@@ -919,6 +977,7 @@ mcps:
       - "exa-mcp-server"
     env:
       EXA_API_KEY: ""
+    transport: "stdio"
     tags: [web-search, exa-api, real-time-data, content-discovery, information-retrieval]
 
   elasticache-memcached:
@@ -935,6 +994,7 @@ mcps:
       FASTMCP_LOG_LEVEL: ""
       MEMCACHED_HOST: ""
       MEMCACHED_PORT: ""
+    transport: "stdio"
     tags: [memcached, caching, aws, elasticache, key-value-store]
 
   code-documentation-generator:
@@ -949,6 +1009,7 @@ mcps:
       - "awslabs.code-doc-gen-mcp-server@latest"
     env:
       FASTMCP_LOG_LEVEL: "ERROR"
+    transport: "stdio"
     tags: [documentation, code-analysis, project-structure, automation, repomix]
 
   aws-serverless:
@@ -964,6 +1025,7 @@ mcps:
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
+    transport: "stdio"
     tags: [aws, serverless, lambda, deployment, infrastructure]
 
   elasticache:
@@ -980,6 +1042,7 @@ mcps:
       AWS_PROFILE: "default"
       AWS_REGION: "us-west-2"
       FASTMCP_LOG_LEVEL: "ERROR"
+    transport: "stdio"
     tags: [aws, caching, redis, memcached, cloud-infrastructure]
 
   openapi-proxy:
@@ -992,6 +1055,7 @@ mcps:
     command: "npx"
     args:
       - "@modelcontextprotocol/inspector"
+    transport: "stdio"
     tags: [openapi, api-integration, proxy, file-upload, documentation]
 
   web-research:
@@ -1004,6 +1068,7 @@ mcps:
     command: "node"
     args:
       - "path/to/mcp-webresearch/dist/index.js"
+    transport: "stdio"
     tags: [web-research, google-search, content-extraction, screenshots, session-tracking]
 
   base:
@@ -1026,6 +1091,7 @@ mcps:
       NEYNAR_API_KEY: ""
       OPENROUTER_API_KEY: ""
       SEED_PHRASE: ""
+    transport: "stdio"
     tags: [blockchain, coinbase, web3, smart-contracts, crypto-wallet]
 
   amazon-q-search:
@@ -1041,6 +1107,7 @@ mcps:
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
+    transport: "stdio"
     tags: [amazon-q, enterprise-search, oauth, cross-account, aws]
 
   unity-bridge:
@@ -1059,6 +1126,7 @@ mcps:
       - "http"
       - "--http-url"
       - "http://localhost:8080"
+    transport: "stdio"
     tags: [unity, game-development, asset-management, automation, editor-tools]
 
   bedrock-data-automation:
@@ -1077,6 +1145,7 @@ mcps:
       AWS_REGION: ""
       BASE_DIR: ""
       FASTMCP_LOG_LEVEL: ""
+    transport: "stdio"
     tags: [aws, data-analysis, content-processing, automation, document-analysis]
 
   documentdb:
@@ -1090,6 +1159,7 @@ mcps:
     args:
       - "-m"
       - "awslabs.documentdb_mcp_server.server"
+    transport: "stdio"
     tags: [aws, documentdb, mongodb, database-management, nosql]
 
   elevenlabs:
@@ -1104,6 +1174,7 @@ mcps:
       - "elevenlabs-mcp"
     env:
       ELEVENLABS_API_KEY: ""
+    transport: "stdio"
     tags: [text-to-speech, voice-cloning, audio-processing, transcription, voice-design]
 
   motherduck:
@@ -1119,6 +1190,7 @@ mcps:
       - "--db-path"
       - "/path/to/local.db"
       - "--read-only"
+    transport: "stdio"
     tags: [duckdb, motherduck, sql, database-management, query-execution]
 
   browserbase:
@@ -1135,6 +1207,7 @@ mcps:
       BROWSERBASE_API_KEY: ""
       BROWSERBASE_PROJECT_ID: ""
       GEMINI_API_KEY: ""
+    transport: "stdio"
     tags: [web-automation, puppeteer, screenshot-capture, data-extraction, javascript-execution]
 
   aws-diagrams:
@@ -1149,6 +1222,7 @@ mcps:
       - "awslabs.aws-diagram-mcp-server"
     env:
       FASTMCP_LOG_LEVEL: ""
+    transport: "stdio"
     tags: [diagrams, aws-architecture, visualization, documentation, python]
 
   discord:
@@ -1164,6 +1238,7 @@ mcps:
       - "mcp-discord"
     env:
       DISCORD_TOKEN: ""
+    transport: "stdio"
     tags: [discord, chat, server-management, webhooks, messaging]
 
   file-system:
@@ -1179,6 +1254,7 @@ mcps:
       - "@modelcontextprotocol/server-filesystem"
       - "/Users/username/Desktop"
       - "/path/to/other/allowed/dir"
+    transport: "stdio"
     tags: [filesystem, file-management, directory-operations, file-search, file-editing]
 
   google-calendar:
@@ -1191,6 +1267,7 @@ mcps:
     command: "node"
     args:
       - "build/index.js"
+    transport: "stdio"
     tags: [google-calendar, scheduling, event-management, calendar-automation, oauth]
 
   stagehand:
@@ -1206,6 +1283,7 @@ mcps:
     env:
       LOCAL_CDP_URL: ""
       OPENAI_API_KEY: ""
+    transport: "stdio"
     tags: [web-automation, browser-control, data-extraction, web-interaction, screenshots]
 
   software-planning:
@@ -1218,6 +1296,7 @@ mcps:
     command: "node"
     args:
       - "/path/to/software-planning-tool/build/index.js"
+    transport: "stdio"
     tags: [project-planning, task-management, software-development, todo-tracking, documentation]
 
   ableton-live:
@@ -1230,6 +1309,7 @@ mcps:
     command: "uvx"
     args:
       - "ableton-mcp"
+    transport: "stdio"
     tags: [music-production, midi, audio-editing, daw-control, ableton]
 
   step-functions:
@@ -1250,6 +1330,7 @@ mcps:
       STATE_MACHINE_PREFIX: ""
       STATE_MACHINE_TAG_KEY: ""
       STATE_MACHINE_TAG_VALUE: ""
+    transport: "stdio"
     tags: [aws, workflows, automation, state-machines, serverless]
 
   neon-database:
@@ -1266,6 +1347,7 @@ mcps:
       - "start"
     env:
       NEON_API_KEY: ""
+    transport: "stdio"
     tags: [postgresql, database-management, migrations, sql, neon-api]
 
   pixverse:
@@ -1280,6 +1362,7 @@ mcps:
       - "pixverse-mcp"
     env:
       PIXVERSE_API_KEY: ""
+    transport: "stdio"
     tags: [video-generation, text-to-video, ai-video, creative-tools, media-creation]
 
   posthog:
@@ -1294,6 +1377,7 @@ mcps:
       - "@posthog/wizard@latest"
       - "mcp"
       - "add"
+    transport: "stdio"
     tags: [analytics, feature-flags, error-tracking, user-behavior, posthog-api]
 
   chart-generator:
@@ -1307,6 +1391,7 @@ mcps:
     args:
       - "-y"
       - "@antv/mcp-server-chart"
+    transport: "stdio"
     tags: [data-visualization, charts, graphs, antv, image-generation]
 
   asana:
@@ -1321,6 +1406,7 @@ mcps:
       - "path/to/build/index.js"
     env:
       ASANA_ACCESS_TOKEN: ""
+    transport: "stdio"
     tags: [project-management, task-tracking, team-collaboration, workflow, asana-api]
 
   magnitude:
@@ -1338,6 +1424,7 @@ mcps:
       MAGNITUDE_MCP_STEALTH: ""
       MAGNITUDE_MCP_VIEWPORT_HEIGHT: ""
       MAGNITUDE_MCP_VIEWPORT_WIDTH: ""
+    transport: "stdio"
     tags: [testing, automation, quality-assurance, cli-integration, test-cases]
 
   web-eval-agent:
@@ -1356,6 +1443,7 @@ mcps:
       - "--with-deps"
     env:
       OPERATIVE_API_KEY: ""
+    transport: "stdio"
     tags: [web-testing, debugging, automation, browser-control, qa-automation]
 
   aws-documentation:
@@ -1371,6 +1459,7 @@ mcps:
     env:
       AWS_DOCUMENTATION_PARTITION: ""
       FASTMCP_LOG_LEVEL: ""
+    transport: "stdio"
     tags: [aws, documentation, search, recommendations, technical-docs]
 
   timestream-influxdb:
@@ -1387,6 +1476,7 @@ mcps:
       AWS_PROFILE: ""
       AWS_REGION: ""
       FASTMCP_LOG_LEVEL: ""
+    transport: "stdio"
     tags: [aws, timestream, influxdb, time-series, database-management]
 
   sns/sqs-manager:
@@ -1402,6 +1492,7 @@ mcps:
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
+    transport: "stdio"
     tags: [aws, messaging, queue-management, pub-sub, cloud-messaging]
 
   notion:
@@ -1417,6 +1508,7 @@ mcps:
       - "@notionhq/notion-mcp-server"
     env:
       NOTION_TOKEN: ""
+    transport: "stdio"
     tags: [notion, documentation, knowledge-base, collaboration, workspace]
 
   amazon-eks-manager:
@@ -1433,6 +1525,7 @@ mcps:
       - "--allow-sensitive-data-access"
     env:
       FASTMCP_LOG_LEVEL: ""
+    transport: "stdio"
     tags: [kubernetes, aws, containerization, cluster-management, devops]
 
   cost-explorer:
@@ -1449,6 +1542,7 @@ mcps:
       AWS_PROFILE: ""
       AWS_REGION: ""
       FASTMCP_LOG_LEVEL: ""
+    transport: "stdio"
     tags: [aws, cost-analysis, cloud-billing, expense-tracking, reporting]
 
   playwright:
@@ -1462,6 +1556,7 @@ mcps:
     args:
       - "-y"
       - "@executeautomation/playwright-mcp-server"
+    transport: "stdio"
     tags: [browser-automation, web-testing, screenshots, javascript, playwright]
 
   stripe:
@@ -1478,6 +1573,7 @@ mcps:
       - "--tools=all"
     env:
       YOUR_STRIPE_SECRET_KEY: ""
+    transport: "stdio"
     tags: [payments, billing, invoicing, stripe-api, financial-services]
 
   riza:
@@ -1492,6 +1588,7 @@ mcps:
       - "@riza-io/riza-mcp"
     env:
       RIZA_API_KEY: ""
+    transport: "stdio"
     tags: [code-execution, sandbox, code-interpreter, tool-management, security]
 
   qdrant:
@@ -1508,6 +1605,7 @@ mcps:
       COLLECTION_NAME: ""
       EMBEDDING_MODEL: "sentence-transformers/all-MiniLM-L6-v2"
       QDRANT_LOCAL_PATH: ""
+    transport: "stdio"
     tags: [vector-search, semantic-memory, embeddings, storage, retrieval]
 
   everart-forge:
@@ -1522,6 +1620,7 @@ mcps:
       - "/absolute/path/to/everart-forge-mcp/build/index.js"
     env:
       EVERART_API_KEY: ""
+    transport: "stdio"
     tags: [image-generation, vector-graphics, ai-models, file-conversion, content-creation]
 
   supabase:
@@ -1538,6 +1637,7 @@ mcps:
       - "supabase-mcp-server"
     env:
       QUERY_API_KEY: ""
+    transport: "stdio"
     tags: [postgresql, supabase, database-management, sql, schema-exploration]
 
   spotify:
@@ -1553,6 +1653,7 @@ mcps:
     env:
       SPOTIFY_CLIENT_ID: ""
       SPOTIFY_CLIENT_SECRET: ""
+    transport: "stdio"
     tags: [music, spotify-api, playlist-management, audiobooks, streaming]
 
   cloudformation:
@@ -1567,6 +1668,7 @@ mcps:
       - "awslabs.cfn-mcp-server@latest"
     env:
       AWS_PROFILE: ""
+    transport: "stdio"
     tags: [aws, infrastructure-as-code, cloud-control, resource-management, cloudformation]
 
   oxylabs-scraper:
@@ -1583,6 +1685,7 @@ mcps:
       OXYLABS_AI_STUDIO_API_KEY: ""
       OXYLABS_PASSWORD: ""
       OXYLABS_USERNAME: ""
+    transport: "stdio"
     tags: [web-scraping, content-extraction, javascript-rendering, html-parsing, data-collection]
 
   aws-terraform:
@@ -1597,6 +1700,7 @@ mcps:
       - "awslabs.terraform-mcp-server@latest"
     env:
       FASTMCP_LOG_LEVEL: ""
+    transport: "stdio"
     tags: [terraform, aws, infrastructure-as-code, security-compliance, checkov]
 
   firecrawl:
@@ -1612,6 +1716,7 @@ mcps:
       - "firecrawl-mcp"
     env:
       FIRECRAWL_API_KEY: ""
+    transport: "stdio"
     tags: [web-scraping, crawling, data-extraction, batch-processing, content-filtering]
 
   browser-tools:
@@ -1624,6 +1729,7 @@ mcps:
     command: "npx"
     args:
       - "@agentdeskai/browser-tools-mcp@latest"
+    transport: "stdio"
     tags: [chrome-extension, debugging, web-auditing, monitoring, automation]
 
   bedrock-knowledge-base:
@@ -1642,6 +1748,7 @@ mcps:
       BEDROCK_KB_RERANKING_ENABLED: ""
       FASTMCP_LOG_LEVEL: ""
       KB_INCLUSION_TAG_KEY: ""
+    transport: "stdio"
     tags: [aws-bedrock, knowledge-base, search, retrieval, document-management]
 
   needle-search:
@@ -1659,6 +1766,7 @@ mcps:
       - "needle-mcp"
     env:
       NEEDLE_API_KEY: ""
+    transport: "stdio"
     tags: [document-management, search, knowledge-base, needle-api, content-organization]
 
   watsonx-flows:
@@ -1674,6 +1782,7 @@ mcps:
     env:
       WXFLOWS_APIKEY: ""
       WXFLOWS_ENDPOINT: ""
+    transport: "stdio"
     tags: [watsonx, flows-engine, tool-integration, search-tools, ibm-cloud]
 
   genkit-integration:
@@ -1688,6 +1797,7 @@ mcps:
       - "-y"
       - "@modelcontextprotocol/server-filesystem"
       - "/path/to/current/directory"
+    transport: "stdio"
     tags: [mcp-integration, client-server, tools-prompts, plugin, genkit]
 
   finch-container-tools:
@@ -1704,6 +1814,7 @@ mcps:
       AWS_PROFILE: ""
       AWS_REGION: ""
       FASTMCP_LOG_LEVEL: ""
+    transport: "stdio"
     tags: [containers, docker, ecr, image-building, devops]
 
   amazon-mq:
@@ -1719,6 +1830,7 @@ mcps:
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
+    transport: "stdio"
     tags: [message-brokers, aws, rabbitmq, activemq, cloud-messaging]
 
   hyperbrowser:
@@ -1734,6 +1846,7 @@ mcps:
       - "hyperbrowser-mcp"
     env:
       HYPERBROWSER_API_KEY: ""
+    transport: "stdio"
     tags: [web-scraping, browser-automation, data-extraction, web-crawling, search]
 
   kubernetes:
@@ -1746,6 +1859,7 @@ mcps:
     command: "npx"
     args:
       - "mcp-server-kubernetes"
+    transport: "stdio"
     tags: [kubernetes, containers, cluster-management, kubectl, deployments]
 
   valkey:
@@ -1762,6 +1876,7 @@ mcps:
       FASTMCP_LOG_LEVEL: ""
       VALKEY_HOST: ""
       VALKEY_PORT: ""
+    transport: "stdio"
     tags: [cache, redis, aws, datastore, key-value]
 
   sequential-thinking:
@@ -1775,6 +1890,7 @@ mcps:
     args:
       - "-y"
       - "@modelcontextprotocol/server-sequential-thinking"
+    transport: "stdio"
     tags: [problem-solving, reasoning, analysis, structured-thinking, decision-making]
 
   react-development-guide:
@@ -1789,6 +1905,7 @@ mcps:
       - "awslabs.frontend-mcp-server@latest"
     env:
       FASTMCP_LOG_LEVEL: "ERROR"
+    transport: "stdio"
     tags: [react, aws-integration, web-development, documentation, frontend]
 
   dynamodb:
@@ -1809,6 +1926,7 @@ mcps:
       MYSQL_DATABASE: ""
       MYSQL_MAX_QUERY_RESULTS: ""
       MYSQL_SECRET_ARN: ""
+    transport: "stdio"
     tags: [aws, dynamodb, nosql, database-management, cloud-database]
 
   aurora-dsql:
@@ -1831,6 +1949,7 @@ mcps:
       - "default"
     env:
       FASTMCP_LOG_LEVEL: ""
+    transport: "stdio"
     tags: [aurora, postgresql, sql, aws, database-queries]
 
   shopify:
@@ -1846,6 +1965,7 @@ mcps:
     env:
       MYSHOPIFY_DOMAIN: ""
       SHOPIFY_ACCESS_TOKEN: ""
+    transport: "stdio"
     tags: [shopify, ecommerce, store-management, graphql, retail]
 
   alibaba-cloud-ops:
@@ -1861,6 +1981,7 @@ mcps:
     env:
       ALIBABA_CLOUD_ACCESS_KEY_ID: ""
       ALIBABA_CLOUD_ACCESS_KEY_SECRET: ""
+    transport: "stdio"
     tags: [alibaba-cloud, infrastructure-management, cloud-automation, monitoring, resource-management]
 
   amazon-location:
@@ -1877,6 +1998,7 @@ mcps:
       AWS_PROFILE: ""
       AWS_REGION: ""
       FASTMCP_LOG_LEVEL: ""
+    transport: "stdio"
     tags: [geocoding, route-planning, places-search, aws, location-services]
 
   git-repo-research:
@@ -1894,6 +2016,7 @@ mcps:
       AWS_REGION: ""
       FASTMCP_LOG_LEVEL: ""
       GITHUB_TOKEN: ""
+    transport: "stdio"
     tags: [semantic-search, git, repository-analysis, code-research, bedrock]
 
   time:
@@ -1906,6 +2029,7 @@ mcps:
     command: "uvx"
     args:
       - "mcp-server-time"
+    transport: "stdio"
     tags: [timezone, time-conversion, datetime, scheduling, automation]
 
   github-mcp-server:
@@ -1929,6 +2053,7 @@ mcps:
     env:
       GITHUB_HOST: "https://github.com"
       GITHUB_PERSONAL_ACCESS_TOKEN: "<your_github_token>"
+    transport: "stdio"
     tags: [github, repository-management, code-collaboration, git, source-control]
 
   prometheus-query:
@@ -1949,6 +2074,7 @@ mcps:
       AWS_PROFILE: ""
       AWS_REGION: ""
       FASTMCP_LOG_LEVEL: "ERROR"
+    transport: "stdio"
     tags: [prometheus, metrics, aws, monitoring, promql]
 
   sendgrid:
@@ -1963,6 +2089,7 @@ mcps:
       - "/path/to/sendgrid-mcp/build/index.js"
     env:
       SENDGRID_API_KEY: ""
+    transport: "stdio"
     tags: [email-marketing, contact-management, templates, bulk-email, sendgrid-api]
 
   aws-support:
@@ -1981,6 +2108,7 @@ mcps:
       - "./logs/mcp_support_server.log"
     env:
       AWS_PROFILE: ""
+    transport: "stdio"
     tags: [aws, support-cases, ticket-management, cloud-support, case-resolution]
 
   mcp-run-python:
@@ -1994,5 +2122,6 @@ mcps:
     args:
       - "mcp-run-python"
       - "stdio"
+    transport: "stdio"
     tags: [python, code-execution, sandbox, pyodide, deno]
 
