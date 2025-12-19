@@ -16,8 +16,8 @@ mcps:
     githubStars: 5
     command: "npx"
     args:
-      - "-y"
-      - "@contextstream/mcp-server"
+    - "-y"
+    - "@contextstream/mcp-server"
     env:
       CONTEXTSTREAM_API_KEY: ""
     transport: "stdio"
@@ -29,10 +29,10 @@ mcps:
     description: "Scans code for security vulnerabilities using Semgrep's semantic analysis engine, supporting multiple languages and over 5,000 security rules."
     author: "semgrep"
     githubUrl: "https://github.com/semgrep/semgrep/tree/develop/cli/src/semgrep/mcp/"
-    githubStars: 13643
+    githubStars: 13652
     command: "uvx"
     args:
-      - "semgrep-mcp"
+    - "semgrep-mcp"
     transport: "stdio"
     tags: [static-analysis, code-scanning, vulnerability-detection, security-rules, code-security]
 
@@ -42,13 +42,13 @@ mcps:
     description: "A proxy and library for connecting AI applications to MCP servers on AWS, handling SigV4 authentication and enabling integration with popular AI frameworks like LangChain and LlamaIndex."
     author: "aws"
     githubUrl: "https://github.com/aws/mcp-proxy-for-aws"
-    githubStars: 211
+    githubStars: 212
     command: "uv"
     args:
-      - "--directory"
-      - "/path/to/mcp_proxy_for_aws"
-      - "run"
-      - "server.py"
+    - "--directory"
+    - "/path/to/mcp_proxy_for_aws"
+    - "run"
+    - "server.py"
     env:
       AWS_ACCESS_KEY_ID: ""
       AWS_REGION: ""
@@ -63,10 +63,10 @@ mcps:
     description: "A TypeScript-based code execution library that enables AI agents to execute complex tool workflows through code instead of individual tool calls, offering improved efficiency and performance."
     author: "universal-tool-calling-protocol"
     githubUrl: "https://github.com/universal-tool-calling-protocol/code-mode"
-    githubStars: 1202
+    githubStars: 1204
     command: "npx"
     args:
-      - "@utcp/code-mode-mcp"
+    - "@utcp/code-mode-mcp"
     env:
       UTCP_CONFIG_FILE: ""
     transport: "stdio"
@@ -81,7 +81,7 @@ mcps:
     githubStars: 118
     command: "npx"
     args:
-      - "appium-mcp@latest"
+    - "appium-mcp@latest"
     env:
       ANDROID_HOME: "/Users/xyz/Library/Android/sdk"
       CAPABILITIES_CONFIG: "/path/to/your/capabilities.json"
@@ -97,8 +97,8 @@ mcps:
     githubStars: 95
     command: "npx"
     args:
-      - "-y"
-      - "@railway/mcp-server"
+    - "-y"
+    - "@railway/mcp-server"
     transport: "stdio"
     tags: [deployment, infrastructure, cloud-management, devops, cli-tools]
 
@@ -108,13 +108,13 @@ mcps:
     description: "A comprehensive server that provides access to 40+ Azure services, enabling AI agents to interact with Azure resources through natural language commands for cloud management, deployment, and monitoring."
     author: "microsoft"
     githubUrl: "https://github.com/microsoft/mcp/tree/main/servers/Azure.Mcp.Server"
-    githubStars: 2325
+    githubStars: 2330
     command: "npx"
     args:
-      - "-y"
-      - "@azure/mcp@latest"
-      - "server"
-      - "start"
+    - "-y"
+    - "@azure/mcp@latest"
+    - "server"
+    - "start"
     transport: "stdio"
     tags: [azure, cloud-services, infrastructure-management, devops, cloud-automation]
 
@@ -127,8 +127,8 @@ mcps:
     githubStars: 1098
     command: "npx"
     args:
-      - "-y"
-      - "@azure-devops/mcp"
+    - "-y"
+    - "@azure-devops/mcp"
     transport: "stdio"
     tags: [azure-devops, project-management, ci-cd, version-control, work-tracking]
 
@@ -138,12 +138,12 @@ mcps:
     description: "Byterover Cipher is an opensource memory layer specifically designed for coding agents. Compatible with Cursor, Windsurf, Claude Code, Cline, Claude Desktop, Gemini CLI, AWS's Kiro, VS Code, Roo Code, Trae, Amp Code and Warp through MCP."
     author: "campfirein"
     githubUrl: "https://github.com/campfirein/cipher"
-    githubStars: 3349
+    githubStars: 3350
     command: "npx"
     args:
-      - "-y"
-      - "@modelcontextprotocol/server-filesystem"
-      - "."
+    - "-y"
+    - "@modelcontextprotocol/server-filesystem"
+    - "."
     transport: "stdio"
     tags: [memory-management]
 
@@ -156,8 +156,8 @@ mcps:
     githubStars: 367
     command: "npx"
     args:
-      - "-y"
-      - "graphlit-mcp-server"
+    - "-y"
+    - "graphlit-mcp-server"
     env:
       DISCORD_BOT_TOKEN: ""
       GITHUB_PERSONAL_ACCESS_TOKEN: ""
@@ -182,11 +182,11 @@ mcps:
     description: "A persistent memory system using a local knowledge graph that enables AI assistants to remember information about users across conversations through entities, relations, and observations."
     author: "modelcontextprotocol"
     githubUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/memory"
-    githubStars: 74671
+    githubStars: 74712
     command: "npx"
     args:
-      - "-y"
-      - "@modelcontextprotocol/server-memory"
+    - "-y"
+    - "@modelcontextprotocol/server-memory"
     transport: "stdio"
     tags: [knowledge-graph, persistent-memory, entity-management, graph-database, memory-storage]
 
@@ -199,7 +199,7 @@ mcps:
     githubStars: 14
     command: "node"
     args:
-      - "path/to/build/index.js"
+    - "path/to/build/index.js"
     env:
       CONFLUENCE_API_TOKEN: ""
       JIRA_API_TOKEN: ""
@@ -215,10 +215,10 @@ mcps:
     githubStars: 25
     command: "uv"
     args:
-      - "--directory"
-      - "$(pwd)"
-      - "run"
-      - "writer_tool.py"
+    - "--directory"
+    - "$(pwd)"
+    - "run"
+    - "writer_tool.py"
     transport: "stdio"
     tags: [content-analysis, writing, semantic-search, blog-integration, embeddings]
 
@@ -231,8 +231,8 @@ mcps:
     githubStars: 83
     command: "npx"
     args:
-      - "@auth0/auth0-mcp-server"
-      - "init"
+    - "@auth0/auth0-mcp-server"
+    - "init"
     env:
       DEBUG: "auth0-mcp"
     transport: "stdio"
@@ -247,8 +247,8 @@ mcps:
     githubStars: 4025
     command: "npx"
     args:
-      - "-y"
-      - "@21st-dev/magic@latest"
+    - "-y"
+    - "@21st-dev/magic@latest"
     env:
       API_KEY: ""
     transport: "stdio"
@@ -260,10 +260,10 @@ mcps:
     description: "Generates, validates, and manages synthetic data with features for business-driven generation, safe pandas code execution, data validation, and integration with storage systems like S3."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/syntheticdata-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.syntheticdata-mcp-server"
+    - "awslabs.syntheticdata-mcp-server"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -280,7 +280,7 @@ mcps:
     githubStars: 120
     command: "node"
     args:
-      - "/path/to/linear-mcp/build/index.js"
+    - "/path/to/linear-mcp/build/index.js"
     env:
       LINEAR_API_KEY: ""
     transport: "stdio"
@@ -292,10 +292,10 @@ mcps:
     description: "Enables AI assistants to interact with Apify's web scraping and automation actors, providing access to tools for data extraction, web searching, social media analysis, and more."
     author: "apify"
     githubUrl: "https://github.com/apify/actors-mcp-server"
-    githubStars: 645
+    githubStars: 646
     command: "npx"
     args:
-      - "@apify/actors-mcp-server"
+    - "@apify/actors-mcp-server"
     env:
       APIFY_TOKEN: ""
     transport: "stdio"
@@ -307,13 +307,13 @@ mcps:
     description: "Integrates Brave Search API to provide comprehensive web and local search capabilities with smart filtering, pagination, and automatic fallbacks."
     author: "modelcontextprotocol"
     githubUrl: "https://github.com/brave/brave-search-mcp-server"
-    githubStars: 424
+    githubStars: 425
     command: "npx"
     args:
-      - "-y"
-      - "@brave/brave-search-mcp-server"
-      - "--transport"
-      - "stdio"
+    - "-y"
+    - "@brave/brave-search-mcp-server"
+    - "--transport"
+    - "stdio"
     env:
       BRAVE_API_KEY: ""
     transport: "stdio"
@@ -328,7 +328,7 @@ mcps:
     githubStars: 16
     command: "node"
     args:
-      - "path/to/build/index.js"
+    - "path/to/build/index.js"
     transport: "stdio"
     tags: [terminal, iterm, command-execution, repl, automation]
 
@@ -338,10 +338,10 @@ mcps:
     description: "Provides guidance on AWS CDK best practices, infrastructure patterns, and security compliance through CDK Nag integration and AWS Solutions Constructs."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/cdk-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.cdk-mcp-server@latest"
+    - "awslabs.cdk-mcp-server@latest"
     env:
       FASTMCP_LOG_LEVEL: "ERROR"
     transport: "stdio"
@@ -353,10 +353,10 @@ mcps:
     description: "Enables secure access to AWS Lambda functions as MCP tools, allowing AI models to interact with private resources, AWS services, and networks without direct access credentials."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/lambda-tool-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.lambda-tool-mcp-server@latest"
+    - "awslabs.lambda-tool-mcp-server@latest"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -374,13 +374,13 @@ mcps:
     description: "Enables searching personal WhatsApp messages, managing contacts, and sending messages to individuals or groups through WhatsApp Web's multidevice API with local message storage."
     author: "lharries"
     githubUrl: "https://github.com/lharries/whatsapp-mcp"
-    githubStars: 5142
+    githubStars: 5143
     command: "uv"
     args:
-      - "--directory"
-      - "{{PATH_TO_SRC}}/whatsapp-mcp/whatsapp-mcp-server"
-      - "run"
-      - "main.py"
+    - "--directory"
+    - "{{PATH_TO_SRC}}/whatsapp-mcp/whatsapp-mcp-server"
+    - "run"
+    - "main.py"
     transport: "stdio"
     tags: [messaging, chat-history, contacts, whatsapp, message-search]
 
@@ -393,7 +393,7 @@ mcps:
     githubStars: 30
     command: "node"
     args:
-      - "path/to/mcp-taskmanager/dist/index.js"
+    - "path/to/mcp-taskmanager/dist/index.js"
     transport: "stdio"
     tags: [task-management, queue-system, workflow, task-tracking, automation]
 
@@ -403,11 +403,11 @@ mcps:
     description: "Enables natural language interactions with Aurora Postgres databases through AWS RDS Data API, supporting SQL query generation and execution with configurable read/write permissions."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/postgres-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.postgres-mcp-server@latest"
-      - "--allow_write_query"
+    - "awslabs.postgres-mcp-server@latest"
+    - "--allow_write_query"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -421,11 +421,11 @@ mcps:
     description: "Provides up-to-date library documentation and code examples directly in LLM prompts, ensuring accurate and current programming assistance."
     author: "upstash"
     githubUrl: "https://github.com/upstash/context7-mcp"
-    githubStars: 39590
+    githubStars: 39640
     command: "npx"
     args:
-      - "-y"
-      - "@upstash/context7-mcp"
+    - "-y"
+    - "@upstash/context7-mcp"
     env:
       CONTEXT7_API_KEY: ""
     transport: "stdio"
@@ -437,10 +437,10 @@ mcps:
     description: "Analyzes AWS service costs and generates cost reports with natural language querying capabilities and visualization tools for cost optimization."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/cost-analysis-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.cost-analysis-mcp-server@latest"
+    - "awslabs.cost-analysis-mcp-server@latest"
     env:
       AWS_PROFILE: ""
       FASTMCP_LOG_LEVEL: ""
@@ -456,8 +456,8 @@ mcps:
     githubStars: 188
     command: "python"
     args:
-      - "-m"
-      - "proxmox_mcp.server"
+    - "-m"
+    - "proxmox_mcp.server"
     env:
       LOG_LEVEL: ""
       PROXMOX_HOST: ""
@@ -480,7 +480,7 @@ mcps:
     githubStars: 47
     command: "node"
     args:
-      - "/path/to/wolframalpha-mcp-server/build/index.js"
+    - "/path/to/wolframalpha-mcp-server/build/index.js"
     env:
       WOLFRAM_LLM_APP_ID: ""
     transport: "stdio"
@@ -495,7 +495,7 @@ mcps:
     githubStars: 138
     command: "npx"
     args:
-      - "solana-mcp"
+    - "solana-mcp"
     env:
       OPENAI_API_KEY: ""
       RPC_URL: ""
@@ -509,20 +509,20 @@ mcps:
     description: "Enables natural language to SQL query conversion and execution for Aurora MySQL databases through AWS RDS Data API, with configurable read-only mode and secure credential management."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/mysql-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.mysql-mcp-server@latest"
-      - "--resource_arn"
-      - "[your data]"
-      - "--secret_arn"
-      - "[your data]"
-      - "--database"
-      - "[your data]"
-      - "--region"
-      - "[your data]"
-      - "--readonly"
-      - "True"
+    - "awslabs.mysql-mcp-server@latest"
+    - "--resource_arn"
+    - "[your data]"
+    - "--secret_arn"
+    - "[your data]"
+    - "--database"
+    - "[your data]"
+    - "--region"
+    - "[your data]"
+    - "--readonly"
+    - "True"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -536,10 +536,10 @@ mcps:
     description: "Converts various file types and web content (PDFs, images, audio, Office documents, web pages) into standardized Markdown format for easy reading and sharing."
     author: "zcaceres"
     githubUrl: "https://github.com/zcaceres/markdownify-mcp"
-    githubStars: 2309
+    githubStars: 2312
     command: "node"
     args:
-      - "/path/to/dist/index.js"
+    - "/path/to/dist/index.js"
     env:
       UV_PATH: "/path/to/uv"
     transport: "stdio"
@@ -551,10 +551,10 @@ mcps:
     description: "Provides Git repository interaction and automation tools for reading, searching, and manipulating Git repositories through commands like status, diff, commit, branch management, and more."
     author: "modelcontextprotocol"
     githubUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/git"
-    githubStars: 74671
+    githubStars: 74712
     command: "uvx"
     args:
-      - "mcp-server-git"
+    - "mcp-server-git"
     transport: "stdio"
     tags: [git, version-control, repository-management, source-control, development]
 
@@ -567,7 +567,7 @@ mcps:
     githubStars: 37
     command: "node"
     args:
-      - "path/to/perplexity-mcp/build/index.js"
+    - "path/to/perplexity-mcp/build/index.js"
     env:
       PERPLEXITY_API_KEY: ""
     transport: "stdio"
@@ -582,7 +582,7 @@ mcps:
     githubStars: 658
     command: "npx"
     args:
-      - "mcp-fetch-server"
+    - "mcp-fetch-server"
     env:
       DEFAULT_LIMIT: ""
     transport: "stdio"
@@ -597,8 +597,8 @@ mcps:
     githubStars: 370
     command: "npx"
     args:
-      - "-y"
-      - "airtable-mcp-server"
+    - "-y"
+    - "airtable-mcp-server"
     env:
       AIRTABLE_API_KEY: ""
     transport: "stdio"
@@ -613,9 +613,9 @@ mcps:
     githubStars: 1240
     command: "npx"
     args:
-      - "-y"
-      - "mcp-obsidian"
-      - "${input:vaultPath}"
+    - "-y"
+    - "mcp-obsidian"
+    - "${input:vaultPath}"
     transport: "stdio"
     tags: [markdown, knowledge-base, notes, search, obsidian]
 
@@ -625,10 +625,10 @@ mcps:
     description: "Enables AI assistants to control Blender for 3D modeling, scene creation, and asset management through socket-based communication, with support for Poly Haven assets and Hyper3D Rodin models."
     author: "ahujasid"
     githubUrl: "https://github.com/ahujasid/blender-mcp"
-    githubStars: 14560
+    githubStars: 14565
     command: "uvx"
     args:
-      - "blender-mcp"
+    - "blender-mcp"
     transport: "stdio"
     tags: [3d-modeling, blender, asset-management, scene-creation, visualization]
 
@@ -638,10 +638,10 @@ mcps:
     description: "Enables RAG capabilities by integrating with Amazon Kendra indices, allowing AI assistants to query and retrieve context from enterprise documents and knowledge bases."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/amazon-kendra-index-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.amazon-kendra-index-mcp-server"
+    - "awslabs.amazon-kendra-index-mcp-server"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -659,7 +659,7 @@ mcps:
     githubStars: 74
     command: "node"
     args:
-      - "/path/to/ollama-server/build/index.js"
+    - "/path/to/ollama-server/build/index.js"
     env:
       OLLAMA_HOST: ""
     transport: "stdio"
@@ -671,10 +671,10 @@ mcps:
     description: "Enables analysis of AWS CloudWatch logs through log group discovery and Log Insights queries, supporting anomaly detection and pattern analysis across accounts."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/cloudwatch-logs-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.cloudwatch-logs-mcp-server@latest"
+    - "awslabs.cloudwatch-logs-mcp-server@latest"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -688,11 +688,11 @@ mcps:
     description: "Platform-agnostic mobile automation server for iOS and Android that enables AI assistants to interact with mobile apps through accessibility snapshots and coordinate-based interactions on simulators and physical devices."
     author: "mobile-next"
     githubUrl: "https://github.com/mobile-next/mobile-mcp"
-    githubStars: 2741
+    githubStars: 2747
     command: "npx"
     args:
-      - "-y"
-      - "@mobilenext/mobile-mcp@latest"
+    - "-y"
+    - "@mobilenext/mobile-mcp@latest"
     transport: "stdio"
     tags: [mobile-automation, ios-android, app-testing, device-control, accessibility]
 
@@ -702,10 +702,10 @@ mcps:
     description: "Creates MCP tools and resources dynamically from OpenAPI specifications, enabling LLMs to interact with APIs through intelligent route mapping and optimized prompts."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/openapi-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.openapi-mcp-server@latest"
+    - "awslabs.openapi-mcp-server@latest"
     env:
       API_BASE_URL: ""
       API_NAME: ""
@@ -727,7 +727,7 @@ mcps:
     githubStars: 31
     command: "uvx"
     args:
-      - "mcp-server-esignatures"
+    - "mcp-server-esignatures"
     env:
       ESIGNATURES_SECRET_TOKEN: ""
     transport: "stdio"
@@ -739,10 +739,10 @@ mcps:
     description: "Generates AI images using Amazon Nova Canvas, supporting text prompts and color palettes with customizable dimensions, quality options, and multi-image generation."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/nova-canvas-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.nova-canvas-mcp-server@latest"
+    - "awslabs.nova-canvas-mcp-server@latest"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -756,10 +756,10 @@ mcps:
     description: "AI-driven browser automation server enabling natural language control of web browsers with features like page navigation, form filling, visual understanding, and session persistence."
     author: "Saik0s"
     githubUrl: "https://github.com/Saik0s/mcp-browser-use"
-    githubStars: 852
+    githubStars: 853
     command: "uvx"
     args:
-      - "mcp-server-browser-use@latest"
+    - "mcp-server-browser-use@latest"
     env:
       MCP_BROWSER_HEADLESS: "true"
       MCP_LLM_GOOGLE_API_KEY: ""
@@ -774,10 +774,10 @@ mcps:
     description: "Enables natural language interaction with Amazon Keyspaces and Apache Cassandra databases, supporting schema exploration, query execution, and performance analysis."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/amazon-keyspaces-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.amazon-keyspaces-mcp-server@latest"
+    - "awslabs.amazon-keyspaces-mcp-server@latest"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -791,10 +791,10 @@ mcps:
     description: "Integrates Kagi's advanced search API to provide AI assistants with up-to-date web search capabilities and accurate information retrieval."
     author: "kagisearch"
     githubUrl: "https://github.com/kagisearch/kagimcp"
-    githubStars: 237
+    githubStars: 239
     command: "uvx"
     args:
-      - "kagimcp"
+    - "kagimcp"
     env:
       KAGI_API_KEY: ""
       KAGI_SUMMARIZER_ENGINE: ""
@@ -807,13 +807,13 @@ mcps:
     description: "MCP Toolbox for Databases is an open source MCP server for databases. It enables you to develop tools easier, faster, and more securely by handling the complexities such as connection pooling, authentication, and more."
     author: "googleapis"
     githubUrl: "https://github.com/googleapis/genai-toolbox"
-    githubStars: 11817
+    githubStars: 11852
     command: "npx"
     args:
-      - "-y"
-      - "@toolbox-sdk/server"
-      - "--tools-file"
-      - "${TOOLBOX_TOOLS_FILE}"
+    - "-y"
+    - "@toolbox-sdk/server"
+    - "--tools-file"
+    - "${TOOLBOX_TOOLS_FILE}"
     env:
       TOOLBOX_TOOLS_FILE: "/path/to/tools.yaml"
     transport: "stdio"
@@ -825,10 +825,10 @@ mcps:
     description: "Query Amazon Neptune databases and analytics using openCypher and Gremlin, with support for schema retrieval and status checking."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/amazon-neptune-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.amazon-neptune-mcp-server@latest"
+    - "awslabs.amazon-neptune-mcp-server@latest"
     env:
       FASTMCP_LOG_LEVEL: ""
       NEPTUNE_ENDPOINT: ""
@@ -841,11 +841,11 @@ mcps:
     description: "Enables AI agents to interact with Webflow's APIs for managing sites, pages, and CMS content through features like publishing, content updates, and collection management."
     author: "webflow"
     githubUrl: "https://github.com/webflow/mcp-server"
-    githubStars: 91
+    githubStars: 92
     command: "npx"
     args:
-      - "-y"
-      - "webflow-mcp-server@latest"
+    - "-y"
+    - "webflow-mcp-server@latest"
     env:
       WEBFLOW_TOKEN: ""
     transport: "stdio"
@@ -857,11 +857,11 @@ mcps:
     description: "Provides powerful media generation capabilities including text-to-speech, voice cloning, video generation, and image creation through MiniMax's API suite."
     author: "MiniMax-AI"
     githubUrl: "https://github.com/MiniMax-AI/MiniMax-MCP"
-    githubStars: 1120
+    githubStars: 1121
     command: "uvx"
     args:
-      - "minimax-mcp"
-      - "-y"
+    - "minimax-mcp"
+    - "-y"
     env:
       MINIMAX_API_HOST: ""
       MINIMAX_API_KEY: ""
@@ -879,7 +879,7 @@ mcps:
     githubStars: 10
     command: "node"
     args:
-      - "/path/to/dalle-mcp-server/build/index.js"
+    - "/path/to/dalle-mcp-server/build/index.js"
     env:
       OPENAI_API_KEY: ""
     transport: "stdio"
@@ -891,10 +891,10 @@ mcps:
     description: "Manages and coordinates MCP servers, providing automated installation, configuration management, and orchestration of AWS Labs servers with centralized logging and environment control."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/core-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.core-mcp-server@latest"
+    - "awslabs.core-mcp-server@latest"
     env:
       FASTMCP_LOG_LEVEL: ""
     transport: "stdio"
@@ -909,7 +909,7 @@ mcps:
     githubStars: 418
     command: "node"
     args:
-      - "ABSOLUTE_PATH_TO_MCP_SEND_EMAIL_PROJECT/build/index.js"
+    - "ABSOLUTE_PATH_TO_MCP_SEND_EMAIL_PROJECT/build/index.js"
     env:
       RESEND_API_KEY: ""
     transport: "stdio"
@@ -921,11 +921,11 @@ mcps:
     description: "Enables real-time web search and data extraction capabilities through Tavily's API, providing AI assistants with filtered search results and intelligent content extraction from web pages."
     author: "tavily-ai"
     githubUrl: "https://github.com/tavily-ai/tavily-mcp"
-    githubStars: 1010
+    githubStars: 1013
     command: "npx"
     args:
-      - "-y"
-      - "tavily-mcp@latest"
+    - "-y"
+    - "tavily-mcp@latest"
     env:
       TAVILY_API_KEY: ""
     transport: "stdio"
@@ -937,12 +937,12 @@ mcps:
     description: "Provides AI assistants with access to Figma design data, enabling accurate code generation from design files by fetching and simplifying Figma API responses for optimal context."
     author: "GLips"
     githubUrl: "https://github.com/GLips/Figma-Context-MCP"
-    githubStars: 12254
+    githubStars: 12265
     command: "npx"
     args:
-      - "-y"
-      - "figma-developer-mcp"
-      - "--stdio"
+    - "-y"
+    - "figma-developer-mcp"
+    - "--stdio"
     env:
       FIGMA_API_KEY: ""
       PORT: ""
@@ -958,7 +958,7 @@ mcps:
     githubStars: 45
     command: "node"
     args:
-      - "/path/to/serper-search-server/build/index.js"
+    - "/path/to/serper-search-server/build/index.js"
     env:
       SERPER_API_KEY: ""
     transport: "stdio"
@@ -970,11 +970,11 @@ mcps:
     description: "Enables AI assistants to perform real-time web searches using Exa's AI Search API, providing structured results with titles, URLs, and content snippets."
     author: "exa-labs"
     githubUrl: "https://github.com/exa-labs/exa-mcp-server"
-    githubStars: 3417
+    githubStars: 3421
     command: "npx"
     args:
-      - "-y"
-      - "exa-mcp-server"
+    - "-y"
+    - "exa-mcp-server"
     env:
       EXA_API_KEY: ""
     transport: "stdio"
@@ -986,10 +986,10 @@ mcps:
     description: "Enables secure interaction with Amazon ElastiCache Memcached, supporting full protocol operations, SSL/TLS encryption, connection pooling, and optional read-only mode."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/memcached-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.memcached-mcp-server@latest"
+    - "awslabs.memcached-mcp-server@latest"
     env:
       FASTMCP_LOG_LEVEL: ""
       MEMCACHED_HOST: ""
@@ -1003,10 +1003,10 @@ mcps:
     description: "Automatically analyzes repository structure and generates comprehensive documentation for code projects using repomix, supporting multiple document types and project analysis."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/code-doc-gen-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.code-doc-gen-mcp-server@latest"
+    - "awslabs.code-doc-gen-mcp-server@latest"
     env:
       FASTMCP_LOG_LEVEL: "ERROR"
     transport: "stdio"
@@ -1018,10 +1018,10 @@ mcps:
     description: "Provides AI-powered tools for building, deploying, and managing serverless applications on AWS, including SAM deployment, web application hosting, observability, and serverless architecture guidance."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/aws-serverless-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.aws-serverless-mcp-server@latest"
+    - "awslabs.aws-serverless-mcp-server@latest"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -1034,10 +1034,10 @@ mcps:
     description: "Manages AWS ElastiCache resources including serverless caches, replication groups, and cache clusters with comprehensive monitoring and cost analysis capabilities."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/elasticache-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.elasticache-mcp-server@latest"
+    - "awslabs.elasticache-mcp-server@latest"
     env:
       AWS_PROFILE: "default"
       AWS_REGION: "us-west-2"
@@ -1054,7 +1054,7 @@ mcps:
     githubStars: 862
     command: "npx"
     args:
-      - "@modelcontextprotocol/inspector"
+    - "@modelcontextprotocol/inspector"
     transport: "stdio"
     tags: [openapi, api-integration, proxy, file-upload, documentation]
 
@@ -1067,7 +1067,7 @@ mcps:
     githubStars: 26
     command: "node"
     args:
-      - "path/to/mcp-webresearch/dist/index.js"
+    - "path/to/mcp-webresearch/dist/index.js"
     transport: "stdio"
     tags: [web-research, google-search, content-extraction, screenshots, session-tracking]
 
@@ -1077,11 +1077,11 @@ mcps:
     description: "Enables blockchain interactions with Base and Coinbase APIs, providing tools for wallet management, fund transfers, smart contract deployment, and testnet operations."
     author: "base"
     githubUrl: "https://github.com/base/base-mcp"
-    githubStars: 331
+    githubStars: 332
     command: "npx"
     args:
-      - "-y"
-      - "base-mcp@latest"
+    - "-y"
+    - "base-mcp@latest"
     env:
       ALCHEMY_API_KEY: ""
       CHAIN_ID: ""
@@ -1100,10 +1100,10 @@ mcps:
     description: "Enables ISVs to search enterprise customer data through Amazon Q Business's SearchRelevantContent API with secure authentication and cross-account capabilities."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/amazon-qindex-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.amazon-qindex-mcp-server"
+    - "awslabs.amazon-qindex-mcp-server"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -1116,16 +1116,16 @@ mcps:
     description: "Enables bidirectional communication between Unity and LLMs, allowing programmatic control of Unity Editor features including asset management, scene control, and editor automation."
     author: "justinpbarnett"
     githubUrl: "https://github.com/justinpbarnett/unity-mcp"
-    githubStars: 4320
+    githubStars: 4332
     command: "uvx"
     args:
-      - "--from"
-      - "git+https://github.com/CoplayDev/unity-mcp@v8.1.0#subdirectory=Server"
-      - "mcp-for-unity"
-      - "--transport"
-      - "http"
-      - "--http-url"
-      - "http://localhost:8080"
+    - "--from"
+    - "git+https://github.com/CoplayDev/unity-mcp@v8.1.0#subdirectory=Server"
+    - "mcp-for-unity"
+    - "--transport"
+    - "http"
+    - "--http-url"
+    - "http://localhost:8080"
     transport: "stdio"
     tags: [unity, game-development, asset-management, automation, editor-tools]
 
@@ -1135,10 +1135,10 @@ mcps:
     description: "Enables analysis of documents, images, videos, and audio files using Amazon Bedrock Data Automation projects, with support for project management and S3 integration."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/aws-bedrock-data-automation-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.aws-bedrock-data-automation-mcp-server@latest"
+    - "awslabs.aws-bedrock-data-automation-mcp-server@latest"
     env:
       AWS_BUCKET_NAME: ""
       AWS_PROFILE: ""
@@ -1154,11 +1154,11 @@ mcps:
     description: "Enables AI assistants to interact with AWS DocumentDB databases, providing tools for querying, managing collections, and analyzing schemas with optional read-only security mode."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/documentdb-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "python"
     args:
-      - "-m"
-      - "awslabs.documentdb_mcp_server.server"
+    - "-m"
+    - "awslabs.documentdb_mcp_server.server"
     transport: "stdio"
     tags: [aws, documentdb, mongodb, database-management, nosql]
 
@@ -1168,10 +1168,10 @@ mcps:
     description: "Enables AI assistants to interact with ElevenLabs' Text-to-Speech and audio processing APIs, supporting voice cloning, speech generation, transcription, and audio manipulation."
     author: "elevenlabs"
     githubUrl: "https://github.com/elevenlabs/elevenlabs-mcp"
-    githubStars: 1097
+    githubStars: 1098
     command: "uvx"
     args:
-      - "elevenlabs-mcp"
+    - "elevenlabs-mcp"
     env:
       ELEVENLABS_API_KEY: ""
     transport: "stdio"
@@ -1183,13 +1183,13 @@ mcps:
     description: "Enables database operations with MotherDuck and local DuckDB, providing tools for connection initialization, schema reading, and query execution."
     author: "motherduckdb"
     githubUrl: "https://github.com/motherduckdb/mcp-server-motherduck"
-    githubStars: 376
+    githubStars: 378
     command: "uvx"
     args:
-      - "mcp-server-motherduck"
-      - "--db-path"
-      - "/path/to/local.db"
-      - "--read-only"
+    - "mcp-server-motherduck"
+    - "--db-path"
+    - "/path/to/local.db"
+    - "--read-only"
     transport: "stdio"
     tags: [duckdb, motherduck, sql, database-management, query-execution]
 
@@ -1199,10 +1199,10 @@ mcps:
     description: "Cloud browser automation server enabling LLMs to interact with web pages, take screenshots, extract data, and execute JavaScript using Browserbase and Puppeteer."
     author: "browserbase"
     githubUrl: "https://github.com/browserbase/mcp-server-browserbase"
-    githubStars: 2940
+    githubStars: 2943
     command: "npx"
     args:
-      - "@browserbasehq/mcp-server-browserbase"
+    - "@browserbasehq/mcp-server-browserbase"
     env:
       BROWSERBASE_API_KEY: ""
       BROWSERBASE_PROJECT_ID: ""
@@ -1216,10 +1216,10 @@ mcps:
     description: "Creates professional AWS architecture diagrams, sequence diagrams, flow charts, and class diagrams using Python code and the Diagrams package DSL."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/aws-diagram-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.aws-diagram-mcp-server"
+    - "awslabs.aws-diagram-mcp-server"
     env:
       FASTMCP_LOG_LEVEL: ""
     transport: "stdio"
@@ -1234,8 +1234,8 @@ mcps:
     githubStars: 9
     command: "python"
     args:
-      - "-m"
-      - "mcp-discord"
+    - "-m"
+    - "mcp-discord"
     env:
       DISCORD_TOKEN: ""
     transport: "stdio"
@@ -1247,13 +1247,13 @@ mcps:
     description: "Provides comprehensive filesystem operations including reading, writing, moving files, directory management, and advanced file editing with pattern matching and formatting capabilities."
     author: "modelcontextprotocol"
     githubUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem"
-    githubStars: 74671
+    githubStars: 74712
     command: "npx"
     args:
-      - "-y"
-      - "@modelcontextprotocol/server-filesystem"
-      - "/Users/username/Desktop"
-      - "/path/to/other/allowed/dir"
+    - "-y"
+    - "@modelcontextprotocol/server-filesystem"
+    - "/Users/username/Desktop"
+    - "/path/to/other/allowed/dir"
     transport: "stdio"
     tags: [filesystem, file-management, directory-operations, file-search, file-editing]
 
@@ -1266,7 +1266,7 @@ mcps:
     githubStars: 19
     command: "node"
     args:
-      - "build/index.js"
+    - "build/index.js"
     transport: "stdio"
     tags: [google-calendar, scheduling, event-management, calendar-automation, oauth]
 
@@ -1276,10 +1276,10 @@ mcps:
     description: "Provides AI-powered web automation capabilities using a real browser environment, enabling interaction with web pages, action performance, data extraction, and action observation."
     author: "browserbase"
     githubUrl: "https://github.com/browserbase/mcp-server-browserbase/tree/main/stagehand"
-    githubStars: 2940
+    githubStars: 2943
     command: "node"
     args:
-      - "path/to/mcp-server-browserbase/stagehand/dist/index.js"
+    - "path/to/mcp-server-browserbase/stagehand/dist/index.js"
     env:
       LOCAL_CDP_URL: ""
       OPENAI_API_KEY: ""
@@ -1295,7 +1295,7 @@ mcps:
     githubStars: 395
     command: "node"
     args:
-      - "/path/to/software-planning-tool/build/index.js"
+    - "/path/to/software-planning-tool/build/index.js"
     transport: "stdio"
     tags: [project-planning, task-management, software-development, todo-tracking, documentation]
 
@@ -1305,10 +1305,10 @@ mcps:
     description: "Controls Ableton Live through socket-based communication, enabling AI-assisted music production with features like track creation, MIDI manipulation, instrument selection, and session control."
     author: "ahujasid"
     githubUrl: "https://github.com/ahujasid/ableton-mcp"
-    githubStars: 2062
+    githubStars: 2063
     command: "uvx"
     args:
-      - "ableton-mcp"
+    - "ableton-mcp"
     transport: "stdio"
     tags: [music-production, midi, audio-editing, daw-control, ableton]
 
@@ -1318,10 +1318,10 @@ mcps:
     description: "Enables AI models to execute and manage AWS Step Functions state machines as tools, supporting both Standard and Express workflows with input validation via EventBridge Schema Registry."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/stepfunctions-tool-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.stepfunctions-tool-mcp-server@latest"
+    - "awslabs.stepfunctions-tool-mcp-server@latest"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -1342,9 +1342,9 @@ mcps:
     githubStars: 528
     command: "npx"
     args:
-      - "-y"
-      - "@neondatabase/mcp-server-neon"
-      - "start"
+    - "-y"
+    - "@neondatabase/mcp-server-neon"
+    - "start"
     env:
       NEON_API_KEY: ""
     transport: "stdio"
@@ -1359,7 +1359,7 @@ mcps:
     githubStars: 31
     command: "uvx"
     args:
-      - "pixverse-mcp"
+    - "pixverse-mcp"
     env:
       PIXVERSE_API_KEY: ""
     transport: "stdio"
@@ -1374,9 +1374,9 @@ mcps:
     githubStars: 140
     command: "npx"
     args:
-      - "@posthog/wizard@latest"
-      - "mcp"
-      - "add"
+    - "@posthog/wizard@latest"
+    - "mcp"
+    - "add"
     transport: "stdio"
     tags: [analytics, feature-flags, error-tracking, user-behavior, posthog-api]
 
@@ -1386,11 +1386,11 @@ mcps:
     description: "Creates various types of charts and visualizations using AntV, supporting 15+ chart types including line, bar, pie, radar, network graphs, and more with customizable deployment options."
     author: "antvis"
     githubUrl: "https://github.com/antvis/mcp-server-chart"
-    githubStars: 3336
+    githubStars: 3338
     command: "npx"
     args:
-      - "-y"
-      - "@antv/mcp-server-chart"
+    - "-y"
+    - "@antv/mcp-server-chart"
     transport: "stdio"
     tags: [data-visualization, charts, graphs, antv, image-generation]
 
@@ -1403,7 +1403,7 @@ mcps:
     githubStars: 5
     command: "node"
     args:
-      - "path/to/build/index.js"
+    - "path/to/build/index.js"
     env:
       ASANA_ACCESS_TOKEN: ""
     transport: "stdio"
@@ -1415,10 +1415,10 @@ mcps:
     description: "Users will leave if your app keeps breaking - Magnitude enables effortless end-to-end testing with visual AI agents that find bugs by navigating your app like real users."
     author: "magnitudedev"
     githubUrl: "https://github.com/magnitudedev/magnitude/tree/main/packages/magnitude-mcp"
-    githubStars: 3823
+    githubStars: 3824
     command: "npx"
     args:
-      - "magnitude-mcp"
+    - "magnitude-mcp"
     env:
       MAGNITUDE_MCP_PROFILE_DIR: ""
       MAGNITUDE_MCP_STEALTH: ""
@@ -1436,11 +1436,11 @@ mcps:
     githubStars: 1226
     command: "uvx"
     args:
-      - "--with"
-      - "playwright"
-      - "playwright"
-      - "install"
-      - "--with-deps"
+    - "--with"
+    - "playwright"
+    - "playwright"
+    - "install"
+    - "--with-deps"
     env:
       OPERATIVE_API_KEY: ""
     transport: "stdio"
@@ -1452,10 +1452,10 @@ mcps:
     description: "Access and search AWS documentation, fetch pages in markdown format, and get content recommendations for AWS documentation pages."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/aws-documentation-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.aws-documentation-mcp-server@latest"
+    - "awslabs.aws-documentation-mcp-server@latest"
     env:
       AWS_DOCUMENTATION_PARTITION: ""
       FASTMCP_LOG_LEVEL: ""
@@ -1468,10 +1468,10 @@ mcps:
     description: "Manages AWS Timestream for InfluxDB resources, enabling database cluster/instance management, parameter configuration, and data operations using InfluxDB APIs."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/timestream-for-influxdb-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.timestream-for-influxdb-mcp-server@latest"
+    - "awslabs.timestream-for-influxdb-mcp-server@latest"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -1485,10 +1485,10 @@ mcps:
     description: "Enables secure management of Amazon SNS topics and SQS queues, with resource tagging, access controls, and messaging capabilities for AWS messaging services."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/amazon-sns-sqs-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.amazon-sns-sqs-mcp-server@latest"
+    - "awslabs.amazon-sns-sqs-mcp-server@latest"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -1501,11 +1501,11 @@ mcps:
     description: "Enables AI assistants to interact with Notion workspaces through the official API, supporting page creation, comments, content retrieval, and search functionality."
     author: "makenotion"
     githubUrl: "https://github.com/makenotion/notion-mcp-server"
-    githubStars: 3598
+    githubStars: 3600
     command: "npx"
     args:
-      - "-y"
-      - "@notionhq/notion-mcp-server"
+    - "-y"
+    - "@notionhq/notion-mcp-server"
     env:
       NOTION_TOKEN: ""
     transport: "stdio"
@@ -1517,12 +1517,12 @@ mcps:
     description: "Manages Amazon EKS clusters and Kubernetes resources through natural language interactions, providing tools for cluster creation, application deployment, resource management, monitoring, and troubleshooting."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/eks-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.eks-mcp-server@latest"
-      - "--allow-write"
-      - "--allow-sensitive-data-access"
+    - "awslabs.eks-mcp-server@latest"
+    - "--allow-write"
+    - "--allow-sensitive-data-access"
     env:
       FASTMCP_LOG_LEVEL: ""
     transport: "stdio"
@@ -1534,10 +1534,10 @@ mcps:
     description: "Analyzes AWS costs and usage data through the Cost Explorer API, providing natural language querying of spending patterns, cost breakdowns, and usage trends across services and regions."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/cost-explorer-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.cost-explorer-mcp-server@latest"
+    - "awslabs.cost-explorer-mcp-server@latest"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -1554,8 +1554,8 @@ mcps:
     githubStars: 5070
     command: "npx"
     args:
-      - "-y"
-      - "@executeautomation/playwright-mcp-server"
+    - "-y"
+    - "@executeautomation/playwright-mcp-server"
     transport: "stdio"
     tags: [browser-automation, web-testing, screenshots, javascript, playwright]
 
@@ -1568,9 +1568,9 @@ mcps:
     githubStars: 1159
     command: "npx"
     args:
-      - "-y"
-      - "@stripe/mcp"
-      - "--tools=all"
+    - "-y"
+    - "@stripe/mcp"
+    - "--tools=all"
     env:
       YOUR_STRIPE_SECRET_KEY: ""
     transport: "stdio"
@@ -1585,7 +1585,7 @@ mcps:
     githubStars: 12
     command: "npx"
     args:
-      - "@riza-io/riza-mcp"
+    - "@riza-io/riza-mcp"
     env:
       RIZA_API_KEY: ""
     transport: "stdio"
@@ -1597,10 +1597,10 @@ mcps:
     description: "A semantic memory layer enabling storage and retrieval of vector-based memories using the Qdrant vector search engine, with support for both cloud and local deployments."
     author: "qdrant"
     githubUrl: "https://github.com/qdrant/mcp-server-qdrant"
-    githubStars: 1129
+    githubStars: 1131
     command: "uvx"
     args:
-      - "mcp-server-qdrant"
+    - "mcp-server-qdrant"
     env:
       COLLECTION_NAME: ""
       EMBEDDING_MODEL: "sentence-transformers/all-MiniLM-L6-v2"
@@ -1617,7 +1617,7 @@ mcps:
     githubStars: 10
     command: "node"
     args:
-      - "/absolute/path/to/everart-forge-mcp/build/index.js"
+    - "/absolute/path/to/everart-forge-mcp/build/index.js"
     env:
       EVERART_API_KEY: ""
     transport: "stdio"
@@ -1632,9 +1632,9 @@ mcps:
     githubStars: 815
     command: "uv"
     args:
-      - "pip"
-      - "install"
-      - "supabase-mcp-server"
+    - "pip"
+    - "install"
+    - "supabase-mcp-server"
     env:
       QUERY_API_KEY: ""
     transport: "stdio"
@@ -1649,7 +1649,7 @@ mcps:
     githubStars: 6
     command: "node"
     args:
-      - "path/to/mcp-spotify/dist/index.js"
+    - "path/to/mcp-spotify/dist/index.js"
     env:
       SPOTIFY_CLIENT_ID: ""
       SPOTIFY_CLIENT_SECRET: ""
@@ -1662,10 +1662,10 @@ mcps:
     description: "Enables natural language management of AWS resources through Cloud Control API and IaC Generator, supporting creation, modification, and templating of over 1,100 AWS services."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/cfn-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.cfn-mcp-server@latest"
+    - "awslabs.cfn-mcp-server@latest"
     env:
       AWS_PROFILE: ""
     transport: "stdio"
@@ -1680,7 +1680,7 @@ mcps:
     githubStars: 77
     command: "uvx"
     args:
-      - "oxylabs-mcp"
+    - "oxylabs-mcp"
     env:
       OXYLABS_AI_STUDIO_API_KEY: ""
       OXYLABS_PASSWORD: ""
@@ -1694,10 +1694,10 @@ mcps:
     description: "Provides Terraform best practices, security compliance scanning with Checkov, and AWS infrastructure management tools with focus on security and AWS Well-Architected guidance."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/terraform-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.terraform-mcp-server@latest"
+    - "awslabs.terraform-mcp-server@latest"
     env:
       FASTMCP_LOG_LEVEL: ""
     transport: "stdio"
@@ -1709,11 +1709,11 @@ mcps:
     description: "Advanced web scraping and crawling server with JavaScript rendering, batch processing, smart content filtering, and structured data extraction capabilities."
     author: "mendableai"
     githubUrl: "https://github.com/mendableai/firecrawl-mcp-server"
-    githubStars: 5091
+    githubStars: 5097
     command: "npx"
     args:
-      - "-y"
-      - "firecrawl-mcp"
+    - "-y"
+    - "firecrawl-mcp"
     env:
       FIRECRAWL_API_KEY: ""
     transport: "stdio"
@@ -1725,10 +1725,10 @@ mcps:
     description: "A browser monitoring and interaction toolkit that enables AI tools to capture screenshots, analyze console logs, track network activity, perform audits, and interact with DOM elements via Chrome extension."
     author: "AgentDeskAI"
     githubUrl: "https://github.com/AgentDeskAI/browser-tools-mcp"
-    githubStars: 6912
+    githubStars: 6913
     command: "npx"
     args:
-      - "@agentdeskai/browser-tools-mcp@latest"
+    - "@agentdeskai/browser-tools-mcp@latest"
     transport: "stdio"
     tags: [chrome-extension, debugging, web-auditing, monitoring, automation]
 
@@ -1738,10 +1738,10 @@ mcps:
     description: "Enables natural language querying of Amazon Bedrock Knowledge Bases with features for discovery, filtering, and result reranking."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/bedrock-kb-retrieval-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.bedrock-kb-retrieval-mcp-server@latest"
+    - "awslabs.bedrock-kb-retrieval-mcp-server@latest"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -1757,13 +1757,13 @@ mcps:
     description: "Enables document management and natural language search capabilities through the Needle platform, allowing users to organize, store, and retrieve documents using Claude's language model."
     author: "needle-ai"
     githubUrl: "https://github.com/needle-ai/needle-mcp"
-    githubStars: 86
+    githubStars: 87
     command: "uv"
     args:
-      - "--directory"
-      - "/path/to/needle-mcp"
-      - "run"
-      - "needle-mcp"
+    - "--directory"
+    - "/path/to/needle-mcp"
+    - "run"
+    - "needle-mcp"
     env:
       NEEDLE_API_KEY: ""
     transport: "stdio"
@@ -1778,7 +1778,7 @@ mcps:
     githubStars: 111
     command: "node"
     args:
-      - "/path/to/wxflows-server/build/index.js"
+    - "/path/to/wxflows-server/build/index.js"
     env:
       WXFLOWS_APIKEY: ""
       WXFLOWS_ENDPOINT: ""
@@ -1791,12 +1791,12 @@ mcps:
     description: "Enables bi-directional integration with Model Context Protocol, allowing applications to both consume MCP tools/prompts as a client and expose Genkit tools/prompts as an MCP server."
     author: "firebase"
     githubUrl: "https://github.com/firebase/genkit/tree/HEAD/js/plugins/mcp"
-    githubStars: 5227
+    githubStars: 5228
     command: "npx"
     args:
-      - "-y"
-      - "@modelcontextprotocol/server-filesystem"
-      - "/path/to/current/directory"
+    - "-y"
+    - "@modelcontextprotocol/server-filesystem"
+    - "/path/to/current/directory"
     transport: "stdio"
     tags: [mcp-integration, client-server, tools-prompts, plugin, genkit]
 
@@ -1806,10 +1806,10 @@ mcps:
     description: "Build and push container images through Finch CLI, with support for ECR repositories and automated VM management for macOS and Windows."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/finch-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.finch-mcp-server@latest"
+    - "awslabs.finch-mcp-server@latest"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -1823,10 +1823,10 @@ mcps:
     description: "Enables management of RabbitMQ and ActiveMQ message brokers through Amazon MQ, providing secure broker creation, configuration, and administration capabilities."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/amazon-mq-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.amazon-mq-mcp-server@latest"
+    - "awslabs.amazon-mq-mcp-server@latest"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -1842,8 +1842,8 @@ mcps:
     githubStars: 658
     command: "npx"
     args:
-      - "--yes"
-      - "hyperbrowser-mcp"
+    - "--yes"
+    - "hyperbrowser-mcp"
     env:
       HYPERBROWSER_API_KEY: ""
     transport: "stdio"
@@ -1855,10 +1855,10 @@ mcps:
     description: "Connects to and manages Kubernetes clusters, enabling pod, service, and deployment operations through kubectl integration."
     author: "Flux159"
     githubUrl: "https://github.com/Flux159/mcp-server-kubernetes"
-    githubStars: 1220
+    githubStars: 1221
     command: "npx"
     args:
-      - "mcp-server-kubernetes"
+    - "mcp-server-kubernetes"
     transport: "stdio"
     tags: [kubernetes, containers, cluster-management, kubectl, deployments]
 
@@ -1868,10 +1868,10 @@ mcps:
     description: "Interact with Amazon ElastiCache and MemoryDB Valkey datastores, supporting multiple data types like strings, lists, sets, hashes, streams, and JSON documents with advanced features like clustering and SSL/TLS security."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/valkey-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.valkey-mcp-server@latest"
+    - "awslabs.valkey-mcp-server@latest"
     env:
       FASTMCP_LOG_LEVEL: ""
       VALKEY_HOST: ""
@@ -1885,11 +1885,11 @@ mcps:
     description: "A structured problem-solving tool that enables step-by-step analysis, thought revision, and branching logic for complex reasoning tasks."
     author: "modelcontextprotocol"
     githubUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking"
-    githubStars: 74671
+    githubStars: 74712
     command: "npx"
     args:
-      - "-y"
-      - "@modelcontextprotocol/server-sequential-thinking"
+    - "-y"
+    - "@modelcontextprotocol/server-sequential-thinking"
     transport: "stdio"
     tags: [problem-solving, reasoning, analysis, structured-thinking, decision-making]
 
@@ -1899,10 +1899,10 @@ mcps:
     description: "Provides comprehensive documentation and tools for modern React application development with AWS integrations, including setup guides, authentication, routing, and troubleshooting."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/frontend-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.frontend-mcp-server@latest"
+    - "awslabs.frontend-mcp-server@latest"
     env:
       FASTMCP_LOG_LEVEL: "ERROR"
     transport: "stdio"
@@ -1914,10 +1914,10 @@ mcps:
     description: "Comprehensive suite of tools for managing AWS DynamoDB resources, including table operations, item management, querying, backups, TTL settings, and resource policies."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/dynamodb-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.dynamodb-mcp-server@latest"
+    - "awslabs.dynamodb-mcp-server@latest"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -1935,18 +1935,18 @@ mcps:
     description: "Enables natural language to SQL query conversion and execution against Aurora DSQL databases, with configurable read/write access and connection pooling."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/aurora-dsql-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.aurora-dsql-mcp-server@latest"
-      - "--cluster_endpoint"
-      - "[your dsql cluster endpoint]"
-      - "--region"
-      - "[your dsql cluster region, e.g. us-east-1]"
-      - "--database_user"
-      - "[your dsql username]"
-      - "--profile"
-      - "default"
+    - "awslabs.aurora-dsql-mcp-server@latest"
+    - "--cluster_endpoint"
+    - "[your dsql cluster endpoint]"
+    - "--region"
+    - "[your dsql cluster region, e.g. us-east-1]"
+    - "--database_user"
+    - "[your dsql username]"
+    - "--profile"
+    - "default"
     env:
       FASTMCP_LOG_LEVEL: ""
     transport: "stdio"
@@ -1961,7 +1961,7 @@ mcps:
     githubStars: 33
     command: "node"
     args:
-      - "path/to/shopify-mcp-server/dist/index.js"
+    - "path/to/shopify-mcp-server/dist/index.js"
     env:
       MYSHOPIFY_DOMAIN: ""
       SHOPIFY_ACCESS_TOKEN: ""
@@ -1977,7 +1977,7 @@ mcps:
     githubStars: 86
     command: "uvx"
     args:
-      - "alibaba-cloud-ops-mcp-server@latest"
+    - "alibaba-cloud-ops-mcp-server@latest"
     env:
       ALIBABA_CLOUD_ACCESS_KEY_ID: ""
       ALIBABA_CLOUD_ACCESS_KEY_SECRET: ""
@@ -1990,10 +1990,10 @@ mcps:
     description: "Provides location-based services including place search, geocoding, route calculation, and nearby points of interest using Amazon Location Service."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/aws-location-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.aws-location-mcp-server@latest"
+    - "awslabs.aws-location-mcp-server@latest"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -2007,10 +2007,10 @@ mcps:
     description: "Enables semantic search and exploration of Git repositories using FAISS and Amazon Bedrock, allowing natural language querying of code without local cloning."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/git-repo-research-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "awslabs.git-repo-research-mcp-server@latest"
+    - "awslabs.git-repo-research-mcp-server@latest"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -2025,10 +2025,10 @@ mcps:
     description: "Provides time and timezone conversion capabilities using IANA timezone names, with automatic system timezone detection and support for current time queries."
     author: "modelcontextprotocol"
     githubUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/time"
-    githubStars: 74672
+    githubStars: 74712
     command: "uvx"
     args:
-      - "mcp-server-time"
+    - "mcp-server-time"
     transport: "stdio"
     tags: [timezone, time-conversion, datetime, scheduling, automation]
 
@@ -2038,18 +2038,18 @@ mcps:
     description: "GitHub's official MCP Server. Connects AI tools directly to GitHub's platform for repository management, issues, pull requests, code operations, and workflow automation."
     author: "github"
     githubUrl: "https://github.com/github/github-mcp-server"
-    githubStars: 25272
+    githubStars: 25291
     requiresApiKey: true
     command: "docker"
     args:
-      - "run"
-      - "-i"
-      - "--rm"
-      - "-e"
-      - "GITHUB_PERSONAL_ACCESS_TOKEN"
-      - "-e"
-      - "GITHUB_HOST"
-      - "ghcr.io/github/github-mcp-server"
+    - "run"
+    - "-i"
+    - "--rm"
+    - "-e"
+    - "GITHUB_PERSONAL_ACCESS_TOKEN"
+    - "-e"
+    - "GITHUB_HOST"
+    - "ghcr.io/github/github-mcp-server"
     env:
       GITHUB_HOST: "https://github.com"
       GITHUB_PERSONAL_ACCESS_TOKEN: "<your_github_token>"
@@ -2062,14 +2062,14 @@ mcps:
     description: "Enables querying and monitoring with AWS Managed Prometheus, supporting PromQL queries, metric listing, and server information retrieval with AWS SigV4 authentication."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/prometheus-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uv"
     args:
-      - "tool"
-      - "run"
-      - "--from"
-      - "awslabs.prometheus-mcp-server@latest"
-      - "awslabs.prometheus-mcp-server.exe"
+    - "tool"
+    - "run"
+    - "--from"
+    - "awslabs.prometheus-mcp-server@latest"
+    - "awslabs.prometheus-mcp-server.exe"
     env:
       AWS_PROFILE: ""
       AWS_REGION: ""
@@ -2086,7 +2086,7 @@ mcps:
     githubStars: 21
     command: "node"
     args:
-      - "/path/to/sendgrid-mcp/build/index.js"
+    - "/path/to/sendgrid-mcp/build/index.js"
     env:
       SENDGRID_API_KEY: ""
     transport: "stdio"
@@ -2098,14 +2098,14 @@ mcps:
     description: "Enables programmatic management of AWS support cases, including creation, communication, and resolution, with automatic determination of issue types and severity levels."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/aws-support-mcp-server"
-    githubStars: 7690
+    githubStars: 7692
     command: "uvx"
     args:
-      - "-m"
-      - "awslabs.aws-support-mcp-server@latest"
-      - "--debug"
-      - "--log-file"
-      - "./logs/mcp_support_server.log"
+    - "-m"
+    - "awslabs.aws-support-mcp-server@latest"
+    - "--debug"
+    - "--log-file"
+    - "./logs/mcp_support_server.log"
     env:
       AWS_PROFILE: ""
     transport: "stdio"
@@ -2117,11 +2117,11 @@ mcps:
     description: "MCP server to run Python code in a secure sandbox. Code is executed using Pyodide in Deno, isolated from the rest of the operating system."
     author: "pydantic"
     githubUrl: "https://github.com/pydantic/mcp-run-python"
-    githubStars: 152
+    githubStars: 153
     command: "uvx"
     args:
-      - "mcp-run-python"
-      - "stdio"
+    - "mcp-run-python"
+    - "stdio"
     transport: "stdio"
     tags: [python, code-execution, sandbox, pyodide, deno]
 
