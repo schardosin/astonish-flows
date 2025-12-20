@@ -1,87 +1,5 @@
-description: Lists open PRs, lets user pick one, and generates a formatted PR description using LLM analysis.
-flow:
-  - from: START
-    to: get_repo_info
-  - from: get_repo_info
-    to: split_repo_full
-  - from: split_repo_full
-    to: list_prs
-  - from: list_prs
-    to: select_pr
-  - from: select_pr
-    to: resolve_pr_number
-  - from: resolve_pr_number
-    to: get_pr_details
-  - from: get_pr_details
-    to: describe_pr
-  - from: describe_pr
-    to: ask_update_github
-  - from: ask_update_github
-    edges:
-      - condition: 'lambda x: x["update_github"] == "yes"'
-        to: update_pr_on_github
-      - condition: 'lambda x: x["update_github"] == "no"'
-        to: ask_new_review
-  - from: update_pr_on_github
-    to: ask_new_review
-  - edges:
-      - condition: 'lambda x: x["do_again"] == "yes"'
-        to: get_repo_info
-      - condition: 'lambda x: x["do_again"] == "no"'
-        to: END
-    from: ask_new_review
-layout:
-  nodes:
-    START:
-      x: 50
-      'y': 12
-    get_repo_info:
-      x: 28
-      'y': 162
-    split_repo_full:
-      x: 20
-      'y': 312
-    list_prs:
-      x: 48
-      'y': 462
-    select_pr:
-      x: 44
-      'y': 612
-    resolve_pr_number:
-      x: 12
-      'y': 762
-    get_pr_details:
-      x: 24
-      'y': 912
-    describe_pr:
-      x: 36
-      'y': 1062
-    ask_update_github:
-      x: 36
-      'y': 1162
-    update_pr_on_github:
-      x: 200
-      'y': 1262
-    ask_new_review:
-      x: -326
-      'y': 1364
-    END:
-      x: 50
-      'y': 1464
-  waypoints:
-    - id: waypoint-1765754933979-hp05uhf1o
-      x: -497
-      'y': 930
-      source: ask_new_review
-      target: get_repo_info
-      immediateSource: ask_new_review
-      immediateTarget: get_repo_info
-      incomingSourceHandle: top-source
-      incomingTargetHandle: bottom-target
-      outgoingSourceHandle: top-source
-      outgoingTargetHandle: left
-model: gpt-4o
 name: pr_description_generator
+description: Lists open PRs, lets user pick one, and generates a formatted PR description using LLM analysis.
 nodes:
   - name: get_repo_info
     output_model:
@@ -99,10 +17,11 @@ nodes:
     output_model:
       owner: str
       repo: str
-    prompt: |-
+    prompt: |
       Given this repository specification: {repo_full}, return just the 'owner' and 'repo' parts separately in JSON:
       {{"owner": ..., "repo": ...}}
-    system: You help extract repository information.
+    system: |
+      You help extract repository information.
     type: llm
   - name: list_prs
     output_model:
@@ -204,3 +123,98 @@ nodes:
       do_again: str
     prompt: Would you like to review another pull request? (yes/no)
     type: input
+flow:
+  - from: START
+    to: get_repo_info
+  - from: get_repo_info
+    to: split_repo_full
+  - from: split_repo_full
+    to: list_prs
+  - from: list_prs
+    to: select_pr
+  - from: select_pr
+    to: resolve_pr_number
+  - from: resolve_pr_number
+    to: get_pr_details
+  - from: get_pr_details
+    to: describe_pr
+  - from: describe_pr
+    to: ask_update_github
+  - from: ask_update_github
+    edges:
+      - condition: 'lambda x: x["update_github"] == "yes"'
+        to: update_pr_on_github
+      - condition: 'lambda x: x["update_github"] == "no"'
+        to: ask_new_review
+  - from: update_pr_on_github
+    to: ask_new_review
+  - edges:
+      - condition: 'lambda x: x["do_again"] == "yes"'
+        to: get_repo_info
+      - condition: 'lambda x: x["do_again"] == "no"'
+        to: END
+    from: ask_new_review
+layout:
+  nodes:
+    START:
+      x: 23
+      'y': -16
+    get_repo_info:
+      x: 34
+      'y': 152
+    split_repo_full:
+      x: 20
+      'y': 312
+    list_prs:
+      x: 24
+      'y': 463
+    select_pr:
+      x: 40
+      'y': 614
+    resolve_pr_number:
+      x: 22
+      'y': 765
+    get_pr_details:
+      x: 24
+      'y': 912
+    describe_pr:
+      x: 23
+      'y': 1035
+    ask_update_github:
+      x: 36
+      'y': 1162
+    update_pr_on_github:
+      x: 198
+      'y': 1327
+    ask_new_review:
+      x: -20
+      'y': 1369
+    END:
+      x: -36
+      'y': 1513
+  edges:
+    ask_update_github->update_pr_on_github:
+      - x: 141
+        'y': 1273
+      - x: 270
+        'y': 1273
+    ask_update_github->ask_new_review:
+      - x: 111
+        'y': 1306
+      - x: 55
+        'y': 1306
+    update_pr_on_github->ask_new_review:
+      - x: 270
+        'y': 1417
+      - x: -221
+        'y': 1417
+    ask_new_review->get_repo_info:
+      - x: -251
+        'y': 1404
+      - x: -77
+        'y': 1404
+      - x: -78
+        'y': 188
+      - x: 109
+        'y': 188
+model: gpt-4o
