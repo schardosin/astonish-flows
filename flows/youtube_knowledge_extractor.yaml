@@ -1,0 +1,179 @@
+name: youtube_knowledge_extractor
+description: Fetches YouTube transcripts, extracts key knowledge, and allows follow-up Q&A
+nodes:
+  - name: ask_youtube_url
+    output_model:
+      youtube_url: str
+    prompt: |
+      👋 Welcome to the YouTube Knowledge Extractor!
+
+      This tool helps you turn any YouTube video into clear, structured notes and lets you ask follow-up questions about the video's content.
+
+      Please enter the YouTube video URL to get started:
+    type: input
+  - name: fetch_transcript
+    output_model:
+      transcript: str
+    prompt: 'Fetch the transcript for this YouTube video: {youtube_url}'
+    system: You are a helpful assistant that fetches YouTube transcripts.
+    tools: true
+    tools_selection:
+      - get_transcript
+    type: llm
+    user_message:
+      - Transcript fetched successfully! Now analyzing...
+  - name: extract_knowledge
+    output_model:
+      knowledge_summary: str
+    prompt: |
+      You will be given a video transcript. Extract the core knowledge and present it in a stable, user-friendly format.
+
+      Transcript:
+      {transcript}
+
+      Requirements:
+      - Base all content strictly on the transcript.
+      - If something is uncertain or opinion-based, note it under "Caveats & Assumptions".
+      - Use concise bullets (one sentence each); limit sub-bullets to one level if needed.
+      - Use clear, objective language suitable for a general audience.
+      - Deduplicate overlapping points and remove filler words/phrases.
+
+      Output Template (use these headers exactly, in this order; include every section and write "None" if a section has no content):
+      Title: <concise 5–8 word inferred title>
+      One-sentence Summary: <1 sentence capturing the essence>
+
+      Key Topics:
+      - <topic 1>
+      - <topic 2>
+      - <topic 3>
+
+      Main Points:
+      - <major point 1>
+      - <major point 2>
+      - <major point 3>
+
+      Important Facts & Data:
+      - <fact/data point 1>
+      - <fact/data point 2>
+      - <fact/data point 3>
+
+      Actionable Takeaways:
+      1) <takeaway 1>
+      2) <takeaway 2>
+      3) <takeaway 3>
+
+      Key Terms:
+      - <term> — <brief definition>
+      - <term> — <brief definition>
+
+      Caveats & Assumptions:
+      - <caveat 1>
+      - <caveat 2>
+
+      Suggested Follow-up Questions:
+      - <question 1>
+      - <question 2>
+      - <question 3>
+    system: |
+      You are a knowledge extraction and summarization expert. Transform raw YouTube transcripts into concise, structured notes that are friendly, objective, and actionable.
+      Strictly follow the required output template and order. Use only information from the transcript—do not add external facts or speculate. Be neutral and precise.
+      Style guidelines:
+      - Use plain text with section headers and bullet points; no tables or emojis.
+      - Prefer short sentences and scannable bullets; one idea per bullet.
+      - Remove filler, repetition, and tangents; group related ideas logically.
+      - Keep the overall summary focused and under ~500 words when possible.
+    type: llm
+    user_message:
+      - '📚 Knowledge Extraction:'
+      - knowledge_summary
+  - name: ask_followup
+    output_model:
+      followup_question: str
+    prompt: 'Ask a follow-up about the video (answers use only the transcript). Type ''quit'' to finish:'
+    type: input
+  - name: answer_followup
+    output_model:
+      followup_answer: str
+    prompt: |-
+      Task: Answer the user's question using only the transcript content below.
+
+      Style:
+      - Respond in a natural, conversational way using brief paragraphs (2–5 sentences).
+      - Avoid bullet points, headings, or lists unless absolutely necessary for clarity.
+      - Be concise and to the point.
+
+      Transcript:
+      {transcript}
+
+      User question:
+      {followup_question}
+    system: |-
+      You are an expert Q&A assistant working strictly and solely from the provided YouTube transcript.
+      Guidelines:
+      - Use only information from the transcript; do not use outside knowledge or speculate.
+      - If the requested information is not in the transcript, say so plainly and, if helpful, briefly point to closely related points the video does cover.
+      - If only part of the answer is supported, provide that part and clearly note the limitation.
+      - Use a friendly, conversational tone in natural paragraphs. Avoid bullet lists unless absolutely necessary for clarity. Be concise. No emojis.
+    type: llm
+    user_message:
+      - '🤖 Answer:'
+      - followup_answer
+flow:
+  - from: START
+    to: ask_youtube_url
+  - from: ask_youtube_url
+    to: fetch_transcript
+  - from: fetch_transcript
+    to: extract_knowledge
+  - from: extract_knowledge
+    to: ask_followup
+  - edges:
+      - condition: 'lambda x: x[''followup_question''].strip().lower() != ''quit'''
+        to: answer_followup
+      - condition: 'lambda x: x[''followup_question''].strip().lower() == ''quit'''
+        to: END
+    from: ask_followup
+  - from: answer_followup
+    to: ask_followup
+layout:
+  nodes:
+    START:
+      x: 20
+      'y': 29
+    ask_youtube_url:
+      x: 18
+      'y': 161
+    fetch_transcript:
+      x: 18
+      'y': 310
+    extract_knowledge:
+      x: 12
+      'y': 462
+    ask_followup:
+      x: 17
+      'y': 600
+    answer_followup:
+      x: -291
+      'y': 576
+    END:
+      x: 18
+      'y': 755
+  edges:
+    ask_followup->answer_followup:
+      - x: 100
+        'y': 708
+      - x: -332
+        'y': 708
+      - x: -332
+        'y': 540
+      - x: -201
+        'y': 540
+    answer_followup->ask_followup:
+      - x: -235
+        'y': 677
+      - x: -63
+        'y': 677
+      - x: -64
+        'y': 570
+      - x: 100
+        'y': 570
