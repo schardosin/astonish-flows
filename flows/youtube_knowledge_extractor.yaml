@@ -13,8 +13,10 @@ nodes:
     type: input
   - name: fetch_transcript
     output_model:
-      transcript: str
+      fetch_status: str
     prompt: 'Fetch the transcript for this YouTube video: {youtube_url}'
+    raw_tool_output:
+      transcript: any
     system: You are a helpful assistant that fetches YouTube transcripts.
     tools: true
     tools_selection:
