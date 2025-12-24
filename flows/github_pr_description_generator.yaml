@@ -154,35 +154,43 @@ flow:
       - condition: 'lambda x: x["do_again"] == "no"'
         to: END
     from: ask_new_review
+mcp_dependencies:
+  - server: github-mcp-server
+    tools:
+      - list_pull_requests
+      - pull_request_read
+      - update_pull_request
+    source: store
+    store_id: github.com/github/github-mcp-server
 layout:
   nodes:
     START:
-      x: 23
-      'y': -16
-    get_repo_info:
-      x: 34
-      'y': 152
-    split_repo_full:
       x: 20
-      'y': 312
+      'y': 7
+    get_repo_info:
+      x: 20
+      'y': 163
+    split_repo_full:
+      x: 21
+      'y': 318
     list_prs:
-      x: 24
-      'y': 463
+      x: 21
+      'y': 464
     select_pr:
-      x: 40
-      'y': 614
+      x: 18
+      'y': 615
     resolve_pr_number:
-      x: 22
-      'y': 765
+      x: 14
+      'y': 771
     get_pr_details:
-      x: 24
-      'y': 912
+      x: 21
+      'y': 903
     describe_pr:
       x: 23
       'y': 1035
     ask_update_github:
-      x: 36
-      'y': 1162
+      x: 23
+      'y': 1165
     update_pr_on_github:
       x: 198
       'y': 1327
@@ -190,8 +198,8 @@ layout:
       x: -20
       'y': 1369
     END:
-      x: -36
-      'y': 1513
+      x: -19
+      'y': 1517
   edges:
     ask_update_github->update_pr_on_github:
       - x: 141
@@ -217,4 +225,3 @@ layout:
         'y': 188
       - x: 109
         'y': 188
-model: gpt-4o
