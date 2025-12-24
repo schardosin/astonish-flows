@@ -137,17 +137,23 @@ flow:
     from: ask_followup
   - from: answer_followup
     to: ask_followup
+mcp_dependencies:
+  - server: youtube-transcript
+    tools:
+      - get_transcript
+    source: store
+    store_id: github.com/jkawamoto/mcp-youtube-transcript
 layout:
   nodes:
     START:
       x: 20
       'y': 29
     ask_youtube_url:
-      x: 18
-      'y': 161
+      x: 19
+      'y': 162
     fetch_transcript:
-      x: 18
-      'y': 310
+      x: 19
+      'y': 318
     extract_knowledge:
       x: 12
       'y': 462
