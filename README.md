@@ -7,6 +7,7 @@ Curated collection of AI automation flows for [Astonish](https://github.com/scha
 | Flow | Description |
 |------|-------------|
 | `github_pr_description_generator` | Lists open PRs, lets user pick one, and generates a formatted PR description using LLM analysis |
+| `translate_format_preserved_files` | Translates file content while preserving the original formatting and structure |
 | `youtube_knowledge_extractor` | Fetches YouTube transcripts, extracts key knowledge into structured notes, and enables follow-up Q&A about the video content |
 
 ## MCP Servers

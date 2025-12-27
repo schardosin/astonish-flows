@@ -1,0 +1,295 @@
+name: translate_format_preserved_files
+description: Translate files to different languages while preserving their exact format and structure
+nodes:
+  - name: get_file_path
+    output_model:
+      folder_path: str
+    prompt: 'Please provide the folder path containing the file(s) you want to translate:'
+    type: input
+  - name: get_translation_mode
+    options:
+      - single file
+      - all files in folder
+    output_model:
+      mode: str
+    prompt: Do you want to translate a single file or all files in the folder?
+    type: input
+  - name: get_target_language
+    output_model:
+      target_language: str
+    prompt: What language do you want to translate to? (e.g., Spanish, French, German, Chinese)
+    type: input
+  - name: get_language_code
+    output_model:
+      lang_code: str
+    prompt: Convert '{target_language}' to its ISO 639-1 two-letter code (e.g., 'es' for Spanish, 'fr' for French). Respond with ONLY the two-letter code, nothing else.
+    system: You are a language code expert. Convert language names to ISO 639-1 two-letter codes.
+    type: llm
+  - name: list_files_for_single
+    output_model:
+      available_files: list
+    prompt: 'List all files in the folder: {folder_path}. Return a JSON object with a field "available_files" containing an array of filenames. Example: {"available_files": ["file1.md", "file2.txt"]}'
+    system: You are a file system assistant. List all files in the given folder path.
+    tools: true
+    tools_selection:
+      - shell_command
+    type: llm
+  - name: select_file
+    options:
+      - available_files
+    output_model:
+      selected_file: str
+    prompt: 'Select the file you want to translate:'
+    type: input
+  - name: build_file_path
+    output_model:
+      file_path: str
+    prompt: Combine the folder path '{folder_path}' with the filename '{selected_file}' to create the full file path. Return ONLY the full path, nothing else.
+    system: You are a path builder. Combine folder path and filename.
+    type: llm
+  - name: translate_single_file
+    output_model:
+      translation_result: str
+    prompt: |
+      Translate the following file to {target_language}:
+
+      File path: {file_path}
+
+      1. Read the file content
+      2. Translate ONLY the human-readable content to {target_language}
+      3. Keep ALL formatting, tags, structure, and technical elements EXACTLY as they are
+      4. Write the translated content to a new file with the same name but append '_{lang_code}' before the extension
+
+      For example: 'document.md' becomes 'document_{lang_code}.md'
+    system: You are a professional translator. Your task is to translate file content while preserving the EXACT format and structure. For markdown files, keep all tags, headers, links, and formatting. For JSON/YAML, maintain the structure. For code files, translate only comments and strings. Preserve all technical elements, syntax, and formatting exactly as they appear.
+    tools: true
+    tools_selection:
+      - read_file
+      - write_file
+    type: llm
+    user_message:
+      - translation_result
+  - name: list_files_for_folder
+    output_model:
+      available_files: list
+    prompt: |
+      List all FILES (not directories or subdirectories) in the folder: {folder_path}
+
+      Use a shell command like: ls -p {folder_path} | grep -v /
+      Or: find {folder_path} -maxdepth 1 -type f -printf "%f\n"
+
+      Return a JSON object with a field "available_files" containing an array of filenames only.
+      Example: {"available_files": ["file1.md", "file2.txt"]}
+
+      Do NOT include directories, subdirectories, or folder names in the list.
+    system: You are a file system assistant. List only FILES (not directories) in the given folder path.
+    tools: true
+    tools_selection:
+      - shell_command
+    type: llm
+  - name: initialize_file_index
+    output_model:
+      current_file_index: int
+    prompt: Return the number 0 as the starting index.
+    system: You are a counter initializer.
+    type: llm
+  - name: get_current_filename
+    output_model:
+      current_filename: str
+    prompt: |
+      From this list of files: {available_files}
+      Get the filename at index: {current_file_index}
+      Return ONLY the filename, nothing else.
+    system: You are a list indexer. Extract the filename at the given index from the list.
+    type: llm
+  - name: build_current_file_path
+    output_model:
+      current_file_path: str
+    prompt: Combine the folder path '{folder_path}' with the filename '{current_filename}' to create the full file path. Return ONLY the full path, nothing else.
+    system: You are a path builder. Combine folder path and filename.
+    type: llm
+  - name: translate_current_file
+    output_model:
+      file_translation_result: str
+    prompt: |
+      Translate the following file to {target_language}:
+
+      File path: {current_file_path}
+
+      1. Read the file content
+      2. Translate ONLY the human-readable content to {target_language}
+      3. Keep ALL formatting, tags, structure, and technical elements EXACTLY as they are
+      4. Write the translated content to a new file with the same name but append '_{lang_code}' before the extension
+
+      For example: 'document.md' becomes 'document_{lang_code}.md'
+
+      After writing, confirm success with a brief message.
+    system: You are a professional translator. Your task is to translate file content while preserving the EXACT format and structure. For markdown files, keep all tags, headers, links, and formatting. For JSON/YAML, maintain the structure. For code files, translate only comments and strings. Preserve all technical elements, syntax, and formatting exactly as they appear.
+    tools: true
+    tools_selection:
+      - read_file
+      - write_file
+    type: llm
+    user_message:
+      - file_translation_result
+  - name: increment_file_index
+    output_model:
+      current_file_index: int
+    prompt: Add 1 to {current_file_index} and return ONLY the new number.
+    system: You are a counter. Add 1 to the given number.
+    type: llm
+  - name: check_more_files
+    output_model:
+      has_more_files: str
+    prompt: |
+      Current file index: {current_file_index}
+      Total files: {available_files}
+
+      Count how many files are in the list.
+      If current_file_index is less than the total count, return "yes".
+      Otherwise, return "no".
+
+      Return ONLY "yes" or "no", nothing else.
+    system: You are a comparison checker. Compare the current index with the total number of files.
+    type: llm
+  - name: folder_translation_complete
+    type: output
+    user_message:
+      - All files in the folder have been translated successfully!
+flow:
+  - from: START
+    to: get_file_path
+  - from: get_file_path
+    to: get_translation_mode
+  - from: get_translation_mode
+    to: get_target_language
+  - from: get_target_language
+    to: get_language_code
+  - edges:
+      - condition: 'lambda x: x[''mode''] == ''single file'''
+        to: list_files_for_single
+      - condition: 'lambda x: x["mode"] == "all files in folder"'
+        to: list_files_for_folder
+    from: get_language_code
+  - from: list_files_for_single
+    to: select_file
+  - from: select_file
+    to: build_file_path
+  - from: build_file_path
+    to: translate_single_file
+  - from: translate_single_file
+    to: END
+  - from: list_files_for_folder
+    to: initialize_file_index
+  - from: initialize_file_index
+    to: get_current_filename
+  - from: get_current_filename
+    to: build_current_file_path
+  - from: build_current_file_path
+    to: translate_current_file
+  - from: translate_current_file
+    to: increment_file_index
+  - from: increment_file_index
+    to: check_more_files
+  - edges:
+      - condition: 'lambda x: x[''has_more_files''] == ''yes'''
+        to: get_current_filename
+      - condition: 'lambda x: x[''has_more_files''] == ''no'''
+        to: folder_translation_complete
+    from: check_more_files
+  - from: folder_translation_complete
+    to: END
+layout:
+  nodes:
+    START:
+      x: 74
+      'y': 19
+    get_file_path:
+      x: 74
+      'y': 165
+    get_translation_mode:
+      x: 72
+      'y': 317
+    get_target_language:
+      x: 71
+      'y': 467
+    get_language_code:
+      x: 63
+      'y': 613
+    list_files_for_single:
+      x: 63
+      'y': 778
+    select_file:
+      x: 70
+      'y': 916
+    build_file_path:
+      x: 70
+      'y': 1063
+    translate_single_file:
+      x: 61
+      'y': 1213
+    list_files_for_folder:
+      x: 536
+      'y': 763
+    initialize_file_index:
+      x: 537
+      'y': 910
+    get_current_filename:
+      x: 529
+      'y': 1073
+    build_current_file_path:
+      x: 523
+      'y': 1212
+    translate_current_file:
+      x: 554
+      'y': 1388
+    increment_file_index:
+      x: 895
+      'y': 916
+    check_more_files:
+      x: 904
+      'y': 1071
+    folder_translation_complete:
+      x: 906
+      'y': 1247
+    END:
+      x: 69
+      'y': 1385
+  edges:
+    get_language_code->list_files_for_folder:
+      - x: 188
+        'y': 717
+      - x: 708
+        'y': 717
+    build_current_file_path->translate_current_file:
+      - x: 630
+        'y': 1312
+      - x: 656
+        'y': 1312
+      - x: 656
+        'y': 1354
+      - x: 631
+        'y': 1354
+    translate_current_file->increment_file_index:
+      - x: 656
+        'y': 1489
+      - x: 1167
+        'y': 1489
+      - x: 1167
+        'y': 888
+      - x: 995
+        'y': 888
+    check_more_files->get_current_filename:
+      - x: 995
+        'y': 1174
+      - x: 827
+        'y': 1174
+      - x: 826
+        'y': 1024
+      - x: 631
+        'y': 1024
+    folder_translation_complete->END:
+      - x: 360
+        'y': 1330
+      - x: 189
+        'y': 1330

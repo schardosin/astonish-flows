@@ -5,6 +5,9 @@ flows:
   github_pr_description_generator:
     description: Lists open PRs, lets user pick one, and generates a formatted PR description using LLM analysis
     tags: [github, pull-request, documentation, ai]
+  translate_format_preserved_files:
+    description: Translates file content while preserving the original formatting and structure
+    tags: [translation, file-processing, format-preservation, ai]
   youtube_knowledge_extractor:
     description: Fetches YouTube transcripts, extracts key knowledge into structured notes, and enables follow-up Q&A about the video content
     tags: [youtube, transcript, knowledge-extraction, qa, education]
