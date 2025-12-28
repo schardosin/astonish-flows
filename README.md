@@ -146,6 +146,7 @@ This repository curates MCP servers listed in [manifest.yaml](manifest.yaml). Be
 | AWS Support | https://github.com/awslabs/mcp/tree/main/src/aws-support-mcp-server |
 | MCP Run Python | https://github.com/pydantic/mcp-run-python |
 | YouTube Transcript | https://github.com/jkawamoto/mcp-youtube-transcript |
+| YouTube Download | https://github.com/kevinwatt/yt-dlp-mcp |
 
 ## Usage
 
