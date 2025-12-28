@@ -11,6 +11,9 @@ flows:
   youtube_knowledge_extractor:
     description: Fetches YouTube transcripts, extracts key knowledge into structured notes, and enables follow-up Q&A about the video content
     tags: [youtube, transcript, knowledge-extraction, qa, education]
+  youtube_video_downloader:
+    description: Download YouTube videos using yt-dlp with dependency checks and quality selection
+    tags: [youtube, video-download, yt-dlp, media, automation]
 
 mcps:
   contextstream:

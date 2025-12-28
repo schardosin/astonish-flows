@@ -1,0 +1,214 @@
+name: youtube_video_downloader
+description: Download YouTube videos using yt-dlp with dependency checks
+nodes:
+  - name: info_dependencies
+    type: output
+    user_message:
+      - 🔍 YouTube Downloader
+      - 'This flow requires external tools: yt-dlp and ffmpeg.'
+      - Checking if dependencies are installed...
+  - name: check_ytdlp
+    type: tool
+    tools_selection:
+      - shell_command
+    args:
+      command: yt-dlp --version
+    output_model:
+      ytdlp_check: str
+    continue_on_error: true
+    tools_auto_approval: true
+  - name: check_ffmpeg
+    type: tool
+    tools_selection:
+      - shell_command
+    args:
+      command: ffmpeg -version
+    output_model:
+      ffmpeg_check: str
+    continue_on_error: true
+    tools_auto_approval: true
+  - name: analyze_dependencies
+    type: llm
+    system: |
+      You are a system dependency analyzer. You receive the output from dependency check commands.
+
+      IMPORTANT:
+      - If a command output contains version information, that dependency is INSTALLED
+      - If a command output contains "command not found" or "not recognized" or similar error, that dependency is MISSING
+      - For each MISSING dependency, show: "❌ [dependency name] is required. Install it with: brew install [dependency name]"
+      - For each INSTALLED dependency, show: "✓ [dependency name] is installed"
+      - Set all_installed to "yes" ONLY if both dependencies are installed
+      - Set all_installed to "no" if ANY dependency is missing
+    prompt: |
+      Analyze the following dependency check results:
+
+      yt-dlp check result:
+      {ytdlp_check}
+
+      ffmpeg check result:
+      {ffmpeg_check}
+
+      Determine if each dependency is installed and provide the appropriate message and brew install command for any missing dependencies.
+    output_model:
+      dependencies_status: str
+      all_installed: str
+    user_message:
+      - dependencies_status
+  - name: ask_install
+    type: input
+    prompt: 'Please install the missing dependencies and then type ''yes'' to continue, or ''no'' to exit:'
+    output_model:
+      proceed: str
+    options:
+      - 'yes'
+      - 'no'
+  - name: get_url
+    type: input
+    prompt: 'Please enter the YouTube video URL:'
+    output_model:
+      video_url: str
+  - name: choose_quality
+    type: input
+    prompt: 'Select video quality:'
+    output_model:
+      quality: str
+    options:
+      - 480p
+      - 720p
+      - 1080p
+      - best
+  - name: download_video
+    type: llm
+    system: You are a helpful video download assistant. Use the ytdlp_download_video tool to download videos.
+    prompt: Download the video from {video_url} in {quality} quality.
+    tools: true
+    tools_selection:
+      - ytdlp_download_video
+    output_model:
+      download_result: str
+    user_message:
+      - download_result
+  - name: ask_continue
+    type: input
+    prompt: Would you like to download another video?
+    output_model:
+      continue_choice: str
+    options:
+      - 'yes'
+      - 'no'
+flow:
+  - from: START
+    to: info_dependencies
+  - from: info_dependencies
+    to: check_ytdlp
+  - from: check_ytdlp
+    to: check_ffmpeg
+  - from: check_ffmpeg
+    to: analyze_dependencies
+  - from: analyze_dependencies
+    edges:
+      - to: get_url
+        condition: 'lambda x: x[''all_installed''] == ''yes'''
+      - to: ask_install
+        condition: 'lambda x: x[''all_installed''] == ''no'''
+  - from: ask_install
+    edges:
+      - to: check_ytdlp
+        condition: 'lambda x: x[''proceed''] == ''yes'''
+      - to: END
+        condition: 'lambda x: x[''proceed''] == ''no'''
+  - from: get_url
+    to: choose_quality
+  - from: choose_quality
+    to: download_video
+  - from: download_video
+    to: ask_continue
+  - from: ask_continue
+    edges:
+      - to: get_url
+        condition: 'lambda x: x[''continue_choice''] == ''yes'''
+      - to: END
+        condition: 'lambda x: x[''continue_choice''] == ''no'''
+mcp_dependencies:
+  - server: youtube-download
+    tools:
+      - ytdlp_download_video
+    source: store
+    store_id: github.com/kevinwatt/yt-dlp-mcp
+layout:
+  nodes:
+    START:
+      x: -103
+      'y': 1
+    info_dependencies:
+      x: -103
+      'y': 135
+    check_ytdlp:
+      x: -104
+      'y': 275
+    check_ffmpeg:
+      x: -104
+      'y': 419
+    analyze_dependencies:
+      x: -119
+      'y': 561
+    ask_install:
+      x: -479
+      'y': 554
+    get_url:
+      x: -103
+      'y': 718
+    choose_quality:
+      x: -103
+      'y': 859
+    download_video:
+      x: -104
+      'y': 990
+    ask_continue:
+      x: -104
+      'y': 1112
+    END:
+      x: -227
+      'y': 1269
+  edges:
+    analyze_dependencies->ask_install:
+      - x: -12
+        'y': 693
+      - x: -552
+        'y': 693
+      - x: -550
+        'y': 524
+      - x: -389
+        'y': 524
+    ask_install->check_ytdlp:
+      - x: -389
+        'y': 644
+      - x: -214
+        'y': 644
+      - x: -219
+        'y': 237
+      - x: -14
+        'y': 237
+    ask_install->END:
+      - x: -389
+        'y': 667
+      - x: -247
+        'y': 667
+      - x: -247
+        'y': 1091
+      - x: -139
+        'y': 1091
+    ask_continue->get_url:
+      - x: -14
+        'y': 1212
+      - x: 183
+        'y': 1212
+      - x: 183
+        'y': 693
+      - x: -13
+        'y': 693
+    ask_continue->END:
+      - x: -14
+        'y': 1195
+      - x: -139
+        'y': 1195
