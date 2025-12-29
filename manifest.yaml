@@ -8,6 +8,12 @@ flows:
   translate_format_preserved_files:
     description: Translates file content while preserving the original formatting and structure
     tags: [translation, file-processing, format-preservation, ai]
+  vector_db_content_generator:
+    description: Processes files with flexible directory traversal and file type selection, storing content in ChromaDB vector database for semantic search
+    tags: [vector-database, chroma, content-processing, file-indexing, embeddings]
+  vector_db_content_search:
+    description: Search and query ChromaDB vector database collections with AI-powered answers using semantic similarity
+    tags: [vector-database, chroma, semantic-search, qa, knowledge-retrieval]
   youtube_knowledge_extractor:
     description: Fetches YouTube transcripts, extracts key knowledge into structured notes, and enables follow-up Q&A about the video content
     tags: [youtube, transcript, knowledge-extraction, qa, education]

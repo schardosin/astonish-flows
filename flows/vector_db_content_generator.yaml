@@ -1,0 +1,544 @@
+name: vector_db_content_generator
+description: Vector Database Content Generator - processes files with flexible directory traversal and file type selection
+nodes:
+  - name: get_directory
+    output_model:
+      directory_path: str
+    prompt: 'Please enter the directory path containing files:'
+    type: input
+  - name: ask_subdirectories
+    options:
+      - 'yes'
+      - 'no'
+    output_model:
+      include_subdirectories: str
+    prompt: Do you want to search through all subdirectories? (yes/no)
+    type: input
+  - name: get_file_types
+    output_model:
+      file_types_description: str
+    prompt: |
+      What types of files should be processed?
+
+      Examples: "markdown", "text files", "python files", "all text files"
+
+      ⚠️ Important: Only text-based files are supported (e.g., .txt, .md, .py, .js, .yaml, etc.)
+      Images, PDFs, Word documents, and other binary files cannot be processed.
+    type: input
+  - name: scan_directory
+    output_model:
+      found_extensions: str
+    prompt: |
+      Use the file_tree tool to scan this directory: {directory_path}
+
+      User wants: {file_types_description}
+
+      1. Get the file tree structure
+      2. Extract all unique file extensions from the file names
+      3. Match the user's description to the extensions found
+      4. Return the matching extensions as a comma-separated list (e.g., ".md,.txt,.rst")
+    system: |
+      You are a file system assistant. Your task is to:
+      1. Use file_tree tool to scan the directory structure
+      2. Extract unique file extensions from all files found
+      3. Match the user's file type description to actual file extensions
+      4. Return a list of matching file extensions found
+
+      For example:
+      - "markdown" or "markdown files" → .md, .markdown
+      - "text files" → .txt
+      - "python files" → .py
+      - "all text files" → .md, .txt, .rst, .log, etc.
+    tools: true
+    tools_selection:
+      - file_tree
+    type: llm
+  - name: ask_file_type_confirmation
+    options:
+      - 'yes'
+      - 'no'
+    output_model:
+      confirm_file_types: str
+    prompt: 'These file types will be processed: {found_extensions}. Is this correct? (yes/no)'
+    type: input
+  - name: get_refinement_request
+    output_model:
+      refinement_request: str
+    prompt: What changes would you like to make to the file type list? (e.g., "remove .log files", "add .py files", "only keep .md files")
+    type: input
+  - name: refine_file_types
+    output_model:
+      found_extensions: str
+    prompt: |
+      Current file extensions: {found_extensions}
+      User's refinement request: {refinement_request}
+
+      Apply the user's changes and return the updated list of extensions.
+      Make sure the extensions are in the same format (e.g., ".md,.txt,.py")
+    system: |
+      You are a file type filter assistant. Based on the user's refinement request, modify the list of file extensions.
+
+      Common operations:
+      - "remove X" → remove that extension from the list
+      - "add X" → add that extension to the list (if it exists in the directory)
+      - "only keep X" → keep only that extension
+      - "exclude X" → remove that extension
+
+      CRITICAL: Only text-based files are supported. Automatically ignore and exclude any binary or compiled file types:
+      - Images: .jpg, .jpeg, .png, .gif, .bmp, .svg, .webp, .ico, .tiff
+      - Documents: .pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .odt
+      - Archives: .zip, .tar, .gz, .rar, .7z, .bz2
+      - Executables: .exe, .dll, .so, .dylib, .bin
+      - Media: .mp3, .mp4, .avi, .mov, .wav, .flac
+      - Databases: .db, .sqlite, .mdb
+      - Any other binary formats
+
+      If the user's request includes unsupported file types, silently exclude them from the final list without mentioning the error.
+
+      Return only the valid text-based extensions as a comma-separated list.
+    type: llm
+    user_message:
+      - 'Updated file types:'
+      - found_extensions
+  - name: find_files
+    output_model:
+      matching_files: list
+    prompt: |
+      Use the find_files tool to locate all files matching these extensions in: {directory_path}
+      Extensions to match: {found_extensions}
+
+      Steps:
+      1. Split the extensions string by comma (e.g., ".md,.txt,.py" → [".md", ".txt", ".py"])
+      2. For each extension, create a glob pattern (e.g., "*.md", "*.txt", "*.py")
+      3. Call find_files for each pattern
+      4. Combine all results into a single list of file paths
+      5. Return the complete list of matching files
+
+      Note: The find_files tool searches recursively by default, which matches the user's subdirectory preference from earlier.
+    system: |
+      You are a file system assistant. Use the find_files tool to locate all files matching the requested extensions.
+
+      IMPORTANT: 
+      - find_files uses glob patterns, so convert extensions to patterns (e.g., ".md" → "*.md")
+      - Call find_files multiple times if there are multiple extensions
+      - Combine all results into one list
+      - Return the complete list of file paths as your output
+    tools: true
+    tools_selection:
+      - find_files
+    type: llm
+    user_message:
+      - 'Found files list saved to state variable: matching_files'
+  - name: count_files
+    output_model:
+      total_files: int
+    prompt: |
+      Count the number of files in this list: {matching_files}
+      Return just the number as an integer.
+    system: You are a counting assistant. Count the items in the provided list and return the count.
+    type: llm
+  - name: ask_start_processing
+    options:
+      - 'yes'
+      - 'no'
+    output_model:
+      start_processing: str
+    prompt: '{total_files} files will be processed. Do you want to start? (yes/no)'
+    type: input
+  - name: get_collection_name
+    output_model:
+      collection_name: str
+    prompt: 'Enter the ChromaDB collection name to use:'
+    type: input
+  - name: check_collection_exists
+    output_model:
+      collection_exists: str
+    prompt: |
+      Check if the collection "{collection_name}" exists in ChromaDB. 
+      Use the chroma_list_collections tool to get all collections.
+
+      If "{collection_name}" is in the list, respond with exactly: yes
+      If "{collection_name}" is NOT in the list, respond with exactly: no
+
+      Do not add any other text to your response.
+    system: You are a vector database assistant. Check if a ChromaDB collection exists and return ONLY "yes" or "no".
+    tools: true
+    tools_auto_approval: true
+    tools_selection:
+      - chroma_list_collections
+    type: llm
+  - name: ask_override
+    options:
+      - 'yes'
+      - 'no'
+    output_model:
+      override_choice: str
+    prompt: Collection "{collection_name}" already exists. Do you want to delete it and create a new one? (yes/no)
+    type: input
+  - name: delete_existing_collection
+    output_model:
+      delete_status: str
+    prompt: Delete the ChromaDB collection named "{collection_name}".
+    system: You are a vector database assistant. Delete the specified ChromaDB collection.
+    tools: true
+    tools_selection:
+      - chroma_delete_collection
+    type: llm
+    user_message:
+      - 'Collection deleted:'
+      - delete_status
+  - name: create_collection
+    output_model:
+      collection_status: str
+    prompt: Create a ChromaDB collection named "{collection_name}" using the "default" embedding function.
+    system: You are a vector database assistant. Create a ChromaDB collection for storing file content.
+    tools: true
+    tools_selection:
+      - chroma_create_collection
+    type: llm
+    user_message:
+      - 'Collection created:'
+      - collection_status
+  - name: clear_collection
+    output_model:
+      clear_status: str
+    prompt: |
+      Clear all documents from the ChromaDB collection "{collection_name}".
+      1. Use chroma_get_documents to get all document IDs
+      2. Use chroma_delete_documents to delete all IDs
+      3. Confirm the collection is now empty
+    system: |
+      You are a vector database assistant. 
+      Get all document IDs from the collection and delete them to start fresh.
+    tools: true
+    tools_auto_approval: true
+    tools_selection:
+      - chroma_get_documents
+      - chroma_delete_documents
+    type: llm
+    user_message:
+      - 'Collection cleared:'
+      - clear_status
+  - name: init_counter
+    type: update_state
+    updates:
+      file_index: '0'
+      total_chunks: '0'
+  - name: get_current_file
+    output_model:
+      current_file: str
+    prompt: |
+      From this list of files: {matching_files}
+      Get the file at index: {file_index}
+      Return just the filename.
+    system: You are a list indexing assistant. Extract the file at the given index from the list.
+    type: llm
+  - name: process_single_file
+    output_model:
+      chunks_added: int
+      file_result: str
+    prompt: |
+      Process this single file and store it in ChromaDB:
+      File: {current_file}
+      Collection: {collection_name}
+
+      Steps:
+      1. Read the file content
+      2. Split it into semantic chunks (500-1000 chars each)
+      3. Generate chunk IDs for each chunk (e.g., filename_chunk_1, filename_chunk_2, etc.)
+      4. Use chroma_get_documents to check which chunk IDs already exist in the collection
+      5. Filter out chunks that already exist
+      6. Only add the new chunks that don't exist yet using chroma_add_documents
+      7. Report how many chunks were created from this file (both new and skipped)
+    system: |
+      You are a vector database assistant. Your task is to:
+      1. Read the file using read_file tool
+      2. Split content into semantic chunks (aim for 500-1000 chars per chunk)
+      3. Check if chunks already exist in the collection using chroma_get_documents
+      4. Only add chunks that don't already exist using chroma_add_documents
+
+      Create chunk IDs like: filename_chunk_1, filename_chunk_2, etc.
+      Add metadata with: {"source": "filename", "chunk_index": N}
+
+      This ensures files can be reprocessed without creating duplicates.
+    tools: true
+    tools_auto_approval: true
+    tools_selection:
+      - read_file
+      - chroma_get_documents
+      - chroma_add_documents
+    type: llm
+    user_message:
+      - 'Processed file:'
+      - current_file
+      - file_result
+  - action: increment
+    name: increment_counter
+    output_model:
+      file_index: int
+    source_variable: file_index
+    type: update_state
+    value: 1
+  - action: increment
+    name: update_total_chunks
+    output_model:
+      total_chunks: int
+    source_variable: chunks_added
+    type: update_state
+  - name: check_more_files
+    output_model:
+      has_more: str
+    prompt: |
+      Current file index: {file_index}
+      Total files: {total_files}
+
+      Are there more files to process? Answer with exactly "yes" or "no".
+    system: You are a comparison assistant. Compare the current index with the total number of files and return ONLY "yes" or "no".
+    type: llm
+  - name: show_completion
+    type: output
+    user_message:
+      - ✅ All files have been processed and stored in ChromaDB!
+      - 'Collection name:'
+      - collection_name
+      - 'Total chunks stored:'
+      - total_chunks
+  - name: show_cancelled
+    type: output
+    user_message:
+      - Operation cancelled. No files were processed.
+flow:
+  - from: START
+    to: get_directory
+  - from: get_directory
+    to: ask_subdirectories
+  - from: ask_subdirectories
+    to: get_file_types
+  - from: get_file_types
+    to: scan_directory
+  - from: scan_directory
+    to: ask_file_type_confirmation
+  - edges:
+      - condition: 'lambda x: x[''confirm_file_types''] == ''yes'''
+        to: find_files
+      - condition: 'lambda x: x[''confirm_file_types''] == ''no'''
+        to: get_refinement_request
+    from: ask_file_type_confirmation
+  - from: get_refinement_request
+    to: refine_file_types
+  - from: refine_file_types
+    to: ask_file_type_confirmation
+  - from: find_files
+    to: count_files
+  - from: count_files
+    to: ask_start_processing
+  - edges:
+      - condition: 'lambda x: x[''start_processing''] == ''yes'''
+        to: get_collection_name
+      - condition: 'lambda x: x[''start_processing''] == ''no'''
+        to: show_cancelled
+    from: ask_start_processing
+  - from: get_collection_name
+    to: check_collection_exists
+  - edges:
+      - condition: 'lambda x: x[''collection_exists''].strip().lower() == ''yes'''
+        to: ask_override
+      - condition: 'lambda x: x[''collection_exists''].strip().lower() == ''no'''
+        to: create_collection
+    from: check_collection_exists
+  - edges:
+      - condition: 'lambda x: x[''override_choice''] == ''yes'''
+        to: delete_existing_collection
+      - condition: 'lambda x: x[''override_choice''] == ''no'''
+        to: show_cancelled
+    from: ask_override
+  - from: delete_existing_collection
+    to: create_collection
+  - from: create_collection
+    to: clear_collection
+  - from: clear_collection
+    to: init_counter
+  - from: init_counter
+    to: get_current_file
+  - from: get_current_file
+    to: process_single_file
+  - from: process_single_file
+    to: increment_counter
+  - from: increment_counter
+    to: update_total_chunks
+  - from: update_total_chunks
+    to: check_more_files
+  - edges:
+      - condition: 'lambda x: x[''has_more''] == ''yes'''
+        to: get_current_file
+      - condition: 'lambda x: x[''has_more''] == ''no'''
+        to: show_completion
+    from: check_more_files
+  - from: show_completion
+    to: END
+  - from: show_cancelled
+    to: END
+mcp_dependencies:
+  - server: chroma
+    source: store
+    store_id: github.com/chroma-core/chroma-mcp
+    tools:
+      - chroma_list_collections
+      - chroma_delete_collection
+      - chroma_create_collection
+      - chroma_add_documents
+      - chroma_get_documents
+      - chroma_delete_documents
+layout:
+  nodes:
+    START:
+      x: 273
+      'y': 28
+    get_directory:
+      x: 273
+      'y': 169
+    ask_subdirectories:
+      x: 273
+      'y': 304
+    get_file_types:
+      x: 272
+      'y': 436
+    scan_directory:
+      x: 271
+      'y': 553
+    ask_file_type_confirmation:
+      x: 270
+      'y': 709
+    get_refinement_request:
+      x: 74
+      'y': 894
+    refine_file_types:
+      x: 74
+      'y': 1063
+    find_files:
+      x: 412
+      'y': 897
+    count_files:
+      x: 412
+      'y': 1052
+    ask_start_processing:
+      x: 410
+      'y': 1211
+    get_collection_name:
+      x: 761
+      'y': 1085
+    check_collection_exists:
+      x: 742
+      'y': 1221
+    ask_override:
+      x: 609
+      'y': 1363
+    delete_existing_collection:
+      x: 591
+      'y': 1500
+    create_collection:
+      x: 820
+      'y': 1652
+    clear_collection:
+      x: 820
+      'y': 1784
+    init_counter:
+      x: 820
+      'y': 1914
+    get_current_file:
+      x: 819
+      'y': 2075
+    process_single_file:
+      x: 813
+      'y': 2213
+    increment_counter:
+      x: 506
+      'y': 1623
+    update_total_chunks:
+      x: 500
+      'y': 1759
+    check_more_files:
+      x: 508
+      'y': 1907
+    show_completion:
+      x: 509
+      'y': 2066
+    show_cancelled:
+      x: 240
+      'y': 1490
+    END:
+      x: 241
+      'y': 2190
+  edges:
+    ask_file_type_confirmation->find_files:
+      - x: 390
+        'y': 833
+      - x: 472
+        'y': 833
+    ask_file_type_confirmation->get_refinement_request:
+      - x: 330
+        'y': 833
+      - x: 194
+        'y': 833
+    refine_file_types->ask_file_type_confirmation:
+      - x: 164
+        'y': 1166
+      - x: -12
+        'y': 1166
+      - x: -12
+        'y': 669
+      - x: 360
+        'y': 669
+    ask_start_processing->get_collection_name:
+      - x: 500
+        'y': 1315
+      - x: 689
+        'y': 1314
+      - x: 689
+        'y': 1046
+      - x: 835
+        'y': 1046
+    ask_start_processing->show_cancelled:
+      - x: 470
+        'y': 1361
+      - x: 359
+        'y': 1361
+    check_collection_exists->ask_override:
+      - x: 820
+        'y': 1323
+      - x: 729
+        'y': 1323
+    check_collection_exists->create_collection:
+      - x: 850
+        'y': 1372
+      - x: 910
+        'y': 1372
+    ask_override->show_cancelled:
+      - x: 669
+        'y': 1459
+      - x: 360
+        'y': 1459
+    delete_existing_collection->create_collection:
+      - x: 701
+        'y': 1603
+      - x: 851
+        'y': 1603
+    process_single_file->increment_counter:
+      - x: 909
+        'y': 2259
+      - x: 455
+        'y': 2259
+      - x: 455
+        'y': 1596
+      - x: 600
+        'y': 1596
+    check_more_files->get_current_file:
+      - x: 629
+        'y': 2025
+      - x: 879
+        'y': 2025
+    show_completion->END:
+      - x: 599
+        'y': 2161
+      - x: 331
+        'y': 2160

@@ -1,0 +1,203 @@
+name: chroma_qa_agent_stateloop
+description: Vector Database Content Search - List collections via tool/state loop (no LLM), then answer using Chroma QA
+nodes:
+  - name: welcome
+    type: output
+    user_message:
+      - |
+        # Welcome to Chroma Vector Database Q&A! 🔍
+
+        This agent helps you search and query your Chroma vector database collections.
+
+        ## What This Tool Does:
+        - **Lists** all available collections in your Chroma database
+        - **Lets you select** which collection to search
+        - **Answers questions** using vector similarity search
+        - **Supports follow-up questions** for deeper exploration
+
+        ## How It Works:
+        1. I'll fetch all your collections
+        2. You'll choose which one to search
+        3. Ask any question about the content
+        4. Get AI-powered answers based on the stored documents
+
+        Let's get started! 🚀
+  - name: init_vars
+    type: update_state
+    updates:
+      collections: '[]'
+      offset: '0'
+      status: searching
+    output_model:
+      collections: list
+      offset: int
+      status: str
+    silent: true
+  - name: fetch_collection
+    type: tool
+    tools_selection:
+      - chroma_list_collections
+    tools_auto_approval: true
+    args:
+      limit: 1
+      offset: '{offset}'
+    continue_on_error: true
+    output_model:
+      coll_raw: any
+    silent: true
+  - name: check_and_append
+    type: update_state
+    action: append
+    source_variable: coll_raw
+    output_model:
+      collections: list
+    silent: true
+  - name: increment_offset
+    type: update_state
+    action: increment
+    value: 1
+    output_model:
+      offset: int
+    silent: true
+  - name: select_collection
+    type: input
+    prompt: Which collection would you like to search? (Select from the list below.)
+    output_model:
+      selected_collection: str
+    options:
+      - collections
+  - name: get_question
+    type: input
+    prompt: What would you like to know? (I'll search the '{selected_collection}' collection)
+    output_model:
+      user_question: str
+  - name: search_and_answer
+    type: llm
+    system: |
+      You are a helpful assistant with access to a Chroma vector database.
+
+      The user has already selected a collection to search: {selected_collection}
+
+      When answering questions:
+      1. Use chroma_query_documents to search the specified collection
+      2. Use the user's question as the query text
+      3. Synthesize a clear, comprehensive answer based on the retrieved documents
+      4. Format your answer in markdown with appropriate headers, bullet points, and emphasis
+      5. If no relevant information is found, let the user know
+
+      Do NOT list collections or ask which collection to use - that's already been decided.
+
+      Always format your response in markdown for better readability.
+    prompt: 'Search the ''{selected_collection}'' collection for: {user_question}'
+    tools: true
+    tools_selection:
+      - chroma_query_documents
+    output_model:
+      answer: str
+    user_message:
+      - answer
+    silent: false
+  - name: get_question_followup
+    type: input
+    prompt: 'Ask another question (or type ''quit'' to exit):'
+    output_model:
+      user_question: str
+flow:
+  - from: START
+    to: welcome
+  - from: welcome
+    to: init_vars
+  - from: init_vars
+    to: fetch_collection
+  - from: fetch_collection
+    edges:
+      - to: select_collection
+        condition: 'lambda x: x["coll_raw"] == "__NO_COLLECTIONS_FOUND__"'
+      - to: check_and_append
+        condition: 'lambda x: x["coll_raw"] != ["__NO_COLLECTIONS_FOUND__"]'
+  - from: check_and_append
+    to: increment_offset
+  - from: increment_offset
+    to: fetch_collection
+  - from: select_collection
+    to: get_question
+  - from: get_question
+    to: search_and_answer
+  - from: search_and_answer
+    to: get_question_followup
+  - from: get_question_followup
+    edges:
+      - to: search_and_answer
+        condition: 'lambda x: x["user_question"].lower().strip() != "quit"'
+      - to: END
+        condition: 'lambda x: x["user_question"].lower().strip() == "quit"'
+mcp_dependencies:
+  - server: chroma
+    source: store
+    store_id: github.com/chroma-core/chroma-mcp
+    tools:
+      - chroma_list_collections
+      - chroma_query_documents
+layout:
+  nodes:
+    START:
+      x: 105
+      'y': 37
+    welcome:
+      x: 105
+      'y': 155
+    init_vars:
+      x: 104
+      'y': 269
+    fetch_collection:
+      x: 103
+      'y': 435
+    check_and_append:
+      x: 96
+      'y': 600
+    increment_offset:
+      x: 102
+      'y': 728
+    select_collection:
+      x: 412
+      'y': 562
+    get_question:
+      x: 413
+      'y': 685
+    search_and_answer:
+      x: 405
+      'y': 830
+    get_question_followup:
+      x: 412
+      'y': 970
+    END:
+      x: 412
+      'y': 1116
+  edges:
+    fetch_collection->select_collection:
+      - x: 217
+        'y': 532
+      - x: 499
+        'y': 532
+    increment_offset->fetch_collection:
+      - x: 186
+        'y': 850
+      - x: 7
+        'y': 850
+      - x: 7
+        'y': 409
+      - x: 155
+        'y': 409
+      - x: 154
+        'y': 481
+      - x: 187
+        'y': 481
+    get_question_followup->search_and_answer:
+      - x: 496
+        'y': 1082
+      - x: 336
+        'y': 1082
+      - x: 335
+        'y': 822
+      - x: 496
+        'y': 822
