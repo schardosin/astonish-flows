@@ -38,7 +38,7 @@ mcps:
     description: "Scans code for security vulnerabilities using Semgrep's semantic analysis engine, supporting multiple languages and over 5,000 security rules."
     author: "semgrep"
     githubUrl: "https://github.com/semgrep/semgrep/tree/develop/cli/src/semgrep/mcp/"
-    githubStars: 13713
+    githubStars: 13723
     command: "uvx"
     args:
     - "semgrep-mcp"
@@ -72,7 +72,7 @@ mcps:
     description: "A TypeScript-based code execution library that enables AI agents to execute complex tool workflows through code instead of individual tool calls, offering improved efficiency and performance."
     author: "universal-tool-calling-protocol"
     githubUrl: "https://github.com/universal-tool-calling-protocol/code-mode"
-    githubStars: 1227
+    githubStars: 1228
     command: "npx"
     args:
     - "@utcp/code-mode-mcp"
@@ -103,7 +103,7 @@ mcps:
     description: "Manages Railway cloud infrastructure through CLI integration, providing tools for project deployment, service management, environment configuration, and monitoring of Railway resources."
     author: "railwayapp"
     githubUrl: "https://github.com/railwayapp/railway-mcp-server"
-    githubStars: 96
+    githubStars: 97
     command: "npx"
     args:
     - "-y"
@@ -117,7 +117,7 @@ mcps:
     description: "A comprehensive server that provides access to 40+ Azure services, enabling AI agents to interact with Azure resources through natural language commands for cloud management, deployment, and monitoring."
     author: "microsoft"
     githubUrl: "https://github.com/microsoft/mcp/tree/main/servers/Azure.Mcp.Server"
-    githubStars: 2355
+    githubStars: 2358
     command: "npx"
     args:
     - "-y"
@@ -133,7 +133,7 @@ mcps:
     description: "Enables interaction with Azure DevOps services through MCP, providing tools for managing projects, work items, repositories, wikis, pipelines, and test plans."
     author: "microsoft"
     githubUrl: "https://github.com/microsoft/azure-devops-mcp"
-    githubStars: 1110
+    githubStars: 1113
     command: "npx"
     args:
     - "-y"
@@ -147,7 +147,7 @@ mcps:
     description: "Byterover Cipher is an opensource memory layer specifically designed for coding agents. Compatible with Cursor, Windsurf, Claude Code, Cline, Claude Desktop, Gemini CLI, AWS's Kiro, VS Code, Roo Code, Trae, Amp Code and Warp through MCP."
     author: "campfirein"
     githubUrl: "https://github.com/campfirein/cipher"
-    githubStars: 3379
+    githubStars: 3380
     command: "npx"
     args:
     - "-y"
@@ -162,7 +162,7 @@ mcps:
     description: "Create a personalized knowledge base from tools like Linear, GitHub, Jira, and Discord, and empower AI Agents to retrieve associated content with built-in reranking for enhanced relevance."
     author: "graphlit"
     githubUrl: "https://github.com/graphlit/graphlit-mcp-server"
-    githubStars: 367
+    githubStars: 368
     command: "npx"
     args:
     - "-y"
@@ -191,7 +191,7 @@ mcps:
     description: "A persistent memory system using a local knowledge graph that enables AI assistants to remember information about users across conversations through entities, relations, and observations."
     author: "modelcontextprotocol"
     githubUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/memory"
-    githubStars: 75101
+    githubStars: 75148
     command: "npx"
     args:
     - "-y"
@@ -253,7 +253,7 @@ mcps:
     description: "Create modern UI components instantly through natural language descriptions, with IDE integrations and access to a vast library of pre-built, customizable components."
     author: "21st-dev"
     githubUrl: "https://github.com/21st-dev/magic-mcp"
-    githubStars: 4045
+    githubStars: 4050
     command: "npx"
     args:
     - "-y"
@@ -269,7 +269,7 @@ mcps:
     description: "Generates, validates, and manages synthetic data with features for business-driven generation, safe pandas code execution, data validation, and integration with storage systems like S3."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/syntheticdata-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.syntheticdata-mcp-server"
@@ -301,7 +301,7 @@ mcps:
     description: "Enables AI assistants to interact with Apify's web scraping and automation actors, providing access to tools for data extraction, web searching, social media analysis, and more."
     author: "apify"
     githubUrl: "https://github.com/apify/actors-mcp-server"
-    githubStars: 659
+    githubStars: 660
     command: "npx"
     args:
     - "@apify/actors-mcp-server"
@@ -316,7 +316,7 @@ mcps:
     description: "Integrates Brave Search API to provide comprehensive web and local search capabilities with smart filtering, pagination, and automatic fallbacks."
     author: "modelcontextprotocol"
     githubUrl: "https://github.com/brave/brave-search-mcp-server"
-    githubStars: 439
+    githubStars: 442
     command: "npx"
     args:
     - "-y"
@@ -347,7 +347,7 @@ mcps:
     description: "Provides guidance on AWS CDK best practices, infrastructure patterns, and security compliance through CDK Nag integration and AWS Solutions Constructs."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/cdk-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.cdk-mcp-server@latest"
@@ -362,7 +362,7 @@ mcps:
     description: "Enables secure access to AWS Lambda functions as MCP tools, allowing AI models to interact with private resources, AWS services, and networks without direct access credentials."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/lambda-tool-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.lambda-tool-mcp-server@latest"
@@ -383,7 +383,7 @@ mcps:
     description: "Enables searching personal WhatsApp messages, managing contacts, and sending messages to individuals or groups through WhatsApp Web's multidevice API with local message storage."
     author: "lharries"
     githubUrl: "https://github.com/lharries/whatsapp-mcp"
-    githubStars: 5168
+    githubStars: 5171
     command: "uv"
     args:
     - "--directory"
@@ -399,7 +399,7 @@ mcps:
     description: "A queue-based task management system that enables planning, execution, and tracking of tasks with support for task lists, execution plans, and completion feedback."
     author: "pashpashpash"
     githubUrl: "https://github.com/pashpashpash/mcp-taskmanager"
-    githubStars: 31
+    githubStars: 32
     command: "node"
     args:
     - "path/to/mcp-taskmanager/dist/index.js"
@@ -412,7 +412,7 @@ mcps:
     description: "Enables natural language interactions with Aurora Postgres databases through AWS RDS Data API, supporting SQL query generation and execution with configurable read/write permissions."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/postgres-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.postgres-mcp-server@latest"
@@ -430,7 +430,7 @@ mcps:
     description: "Provides up-to-date library documentation and code examples directly in LLM prompts, ensuring accurate and current programming assistance."
     author: "upstash"
     githubUrl: "https://github.com/upstash/context7-mcp"
-    githubStars: 40231
+    githubStars: 40305
     command: "npx"
     args:
     - "-y"
@@ -446,7 +446,7 @@ mcps:
     description: "Analyzes AWS service costs and generates cost reports with natural language querying capabilities and visualization tools for cost optimization."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/cost-analysis-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.cost-analysis-mcp-server@latest"
@@ -462,7 +462,7 @@ mcps:
     description: "A server for managing Proxmox hypervisors, providing tools to control nodes, VMs, containers, storage, and execute console commands in virtual machines."
     author: "canvrno"
     githubUrl: "https://github.com/canvrno/ProxmoxMCP"
-    githubStars: 193
+    githubStars: 195
     command: "python"
     args:
     - "-m"
@@ -518,7 +518,7 @@ mcps:
     description: "Enables natural language to SQL query conversion and execution for Aurora MySQL databases through AWS RDS Data API, with configurable read-only mode and secure credential management."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/mysql-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.mysql-mcp-server@latest"
@@ -560,7 +560,7 @@ mcps:
     description: "Provides Git repository interaction and automation tools for reading, searching, and manipulating Git repositories through commands like status, diff, commit, branch management, and more."
     author: "modelcontextprotocol"
     githubUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/git"
-    githubStars: 75101
+    githubStars: 75148
     command: "uvx"
     args:
     - "mcp-server-git"
@@ -588,7 +588,7 @@ mcps:
     description: "Provides functionality to fetch web content in various formats, including HTML, JSON, plain text, and Markdown, with support for custom headers and content transformation."
     author: "zcaceres"
     githubUrl: "https://github.com/zcaceres/fetch-mcp"
-    githubStars: 659
+    githubStars: 660
     command: "npx"
     args:
     - "mcp-fetch-server"
@@ -603,7 +603,7 @@ mcps:
     description: "Provides read and write access to Airtable databases, enabling schema inspection, record management, and table operations through comprehensive API integration."
     author: "domdomegg"
     githubUrl: "https://github.com/domdomegg/airtable-mcp-server"
-    githubStars: 375
+    githubStars: 376
     command: "npx"
     args:
     - "-y"
@@ -634,7 +634,7 @@ mcps:
     description: "Enables AI assistants to control Blender for 3D modeling, scene creation, and asset management through socket-based communication, with support for Poly Haven assets and Hyper3D Rodin models."
     author: "ahujasid"
     githubUrl: "https://github.com/ahujasid/blender-mcp"
-    githubStars: 14655
+    githubStars: 14666
     command: "uvx"
     args:
     - "blender-mcp"
@@ -647,7 +647,7 @@ mcps:
     description: "Enables RAG capabilities by integrating with Amazon Kendra indices, allowing AI assistants to query and retrieve context from enterprise documents and knowledge bases."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/amazon-kendra-index-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.amazon-kendra-index-mcp-server"
@@ -680,7 +680,7 @@ mcps:
     description: "Enables analysis of AWS CloudWatch logs through log group discovery and Log Insights queries, supporting anomaly detection and pattern analysis across accounts."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/cloudwatch-logs-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.cloudwatch-logs-mcp-server@latest"
@@ -697,7 +697,7 @@ mcps:
     description: "Platform-agnostic mobile automation server for iOS and Android that enables AI assistants to interact with mobile apps through accessibility snapshots and coordinate-based interactions on simulators and physical devices."
     author: "mobile-next"
     githubUrl: "https://github.com/mobile-next/mobile-mcp"
-    githubStars: 2794
+    githubStars: 2797
     command: "npx"
     args:
     - "-y"
@@ -711,7 +711,7 @@ mcps:
     description: "Creates MCP tools and resources dynamically from OpenAPI specifications, enabling LLMs to interact with APIs through intelligent route mapping and optimized prompts."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/openapi-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.openapi-mcp-server@latest"
@@ -748,7 +748,7 @@ mcps:
     description: "Generates AI images using Amazon Nova Canvas, supporting text prompts and color palettes with customizable dimensions, quality options, and multi-image generation."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/nova-canvas-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.nova-canvas-mcp-server@latest"
@@ -783,7 +783,7 @@ mcps:
     description: "Enables natural language interaction with Amazon Keyspaces and Apache Cassandra databases, supporting schema exploration, query execution, and performance analysis."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/amazon-keyspaces-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.amazon-keyspaces-mcp-server@latest"
@@ -800,7 +800,7 @@ mcps:
     description: "Integrates Kagi's advanced search API to provide AI assistants with up-to-date web search capabilities and accurate information retrieval."
     author: "kagisearch"
     githubUrl: "https://github.com/kagisearch/kagimcp"
-    githubStars: 244
+    githubStars: 245
     command: "uvx"
     args:
     - "kagimcp"
@@ -816,7 +816,7 @@ mcps:
     description: "MCP Toolbox for Databases is an open source MCP server for databases. It enables you to develop tools easier, faster, and more securely by handling the complexities such as connection pooling, authentication, and more."
     author: "googleapis"
     githubUrl: "https://github.com/googleapis/genai-toolbox"
-    githubStars: 11969
+    githubStars: 11971
     command: "npx"
     args:
     - "-y"
@@ -834,7 +834,7 @@ mcps:
     description: "Query Amazon Neptune databases and analytics using openCypher and Gremlin, with support for schema retrieval and status checking."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/amazon-neptune-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.amazon-neptune-mcp-server@latest"
@@ -900,7 +900,7 @@ mcps:
     description: "Manages and coordinates MCP servers, providing automated installation, configuration management, and orchestration of AWS Labs servers with centralized logging and environment control."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/core-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.core-mcp-server@latest"
@@ -915,7 +915,7 @@ mcps:
     description: "Sends emails directly through Resend's API, enabling AI assistants to compose and send emails without manual copying and pasting."
     author: "ykhli"
     githubUrl: "https://github.com/ykhli/mcp-send-email"
-    githubStars: 420
+    githubStars: 421
     command: "node"
     args:
     - "ABSOLUTE_PATH_TO_MCP_SEND_EMAIL_PROJECT/build/index.js"
@@ -930,7 +930,7 @@ mcps:
     description: "Enables real-time web search and data extraction capabilities through Tavily's API, providing AI assistants with filtered search results and intelligent content extraction from web pages."
     author: "tavily-ai"
     githubUrl: "https://github.com/tavily-ai/tavily-mcp"
-    githubStars: 1025
+    githubStars: 1026
     command: "npx"
     args:
     - "-y"
@@ -946,7 +946,7 @@ mcps:
     description: "Provides AI assistants with access to Figma design data, enabling accurate code generation from design files by fetching and simplifying Figma API responses for optimal context."
     author: "GLips"
     githubUrl: "https://github.com/GLips/Figma-Context-MCP"
-    githubStars: 12337
+    githubStars: 12342
     command: "npx"
     args:
     - "-y"
@@ -979,7 +979,7 @@ mcps:
     description: "Enables AI assistants to perform real-time web searches using Exa's AI Search API, providing structured results with titles, URLs, and content snippets."
     author: "exa-labs"
     githubUrl: "https://github.com/exa-labs/exa-mcp-server"
-    githubStars: 3453
+    githubStars: 3458
     command: "npx"
     args:
     - "-y"
@@ -995,7 +995,7 @@ mcps:
     description: "Enables secure interaction with Amazon ElastiCache Memcached, supporting full protocol operations, SSL/TLS encryption, connection pooling, and optional read-only mode."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/memcached-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.memcached-mcp-server@latest"
@@ -1012,7 +1012,7 @@ mcps:
     description: "Automatically analyzes repository structure and generates comprehensive documentation for code projects using repomix, supporting multiple document types and project analysis."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/code-doc-gen-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.code-doc-gen-mcp-server@latest"
@@ -1027,7 +1027,7 @@ mcps:
     description: "Provides AI-powered tools for building, deploying, and managing serverless applications on AWS, including SAM deployment, web application hosting, observability, and serverless architecture guidance."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/aws-serverless-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.aws-serverless-mcp-server@latest"
@@ -1043,7 +1043,7 @@ mcps:
     description: "Manages AWS ElastiCache resources including serverless caches, replication groups, and cache clusters with comprehensive monitoring and cost analysis capabilities."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/elasticache-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.elasticache-mcp-server@latest"
@@ -1109,7 +1109,7 @@ mcps:
     description: "Enables ISVs to search enterprise customer data through Amazon Q Business's SearchRelevantContent API with secure authentication and cross-account capabilities."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/amazon-qindex-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.amazon-qindex-mcp-server"
@@ -1125,7 +1125,7 @@ mcps:
     description: "Enables bidirectional communication between Unity and LLMs, allowing programmatic control of Unity Editor features including asset management, scene control, and editor automation."
     author: "justinpbarnett"
     githubUrl: "https://github.com/justinpbarnett/unity-mcp"
-    githubStars: 4443
+    githubStars: 4454
     command: "uvx"
     args:
     - "--from"
@@ -1144,7 +1144,7 @@ mcps:
     description: "Enables analysis of documents, images, videos, and audio files using Amazon Bedrock Data Automation projects, with support for project management and S3 integration."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/aws-bedrock-data-automation-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.aws-bedrock-data-automation-mcp-server@latest"
@@ -1163,7 +1163,7 @@ mcps:
     description: "Enables AI assistants to interact with AWS DocumentDB databases, providing tools for querying, managing collections, and analyzing schemas with optional read-only security mode."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/documentdb-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "python"
     args:
     - "-m"
@@ -1177,7 +1177,7 @@ mcps:
     description: "Enables AI assistants to interact with ElevenLabs' Text-to-Speech and audio processing APIs, supporting voice cloning, speech generation, transcription, and audio manipulation."
     author: "elevenlabs"
     githubUrl: "https://github.com/elevenlabs/elevenlabs-mcp"
-    githubStars: 1115
+    githubStars: 1118
     command: "uvx"
     args:
     - "elevenlabs-mcp"
@@ -1208,7 +1208,7 @@ mcps:
     description: "Cloud browser automation server enabling LLMs to interact with web pages, take screenshots, extract data, and execute JavaScript using Browserbase and Puppeteer."
     author: "browserbase"
     githubUrl: "https://github.com/browserbase/mcp-server-browserbase"
-    githubStars: 2977
+    githubStars: 2982
     command: "npx"
     args:
     - "@browserbasehq/mcp-server-browserbase"
@@ -1225,7 +1225,7 @@ mcps:
     description: "Creates professional AWS architecture diagrams, sequence diagrams, flow charts, and class diagrams using Python code and the Diagrams package DSL."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/aws-diagram-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.aws-diagram-mcp-server"
@@ -1256,7 +1256,7 @@ mcps:
     description: "Provides comprehensive filesystem operations including reading, writing, moving files, directory management, and advanced file editing with pattern matching and formatting capabilities."
     author: "modelcontextprotocol"
     githubUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem"
-    githubStars: 75101
+    githubStars: 75148
     command: "npx"
     args:
     - "-y"
@@ -1285,7 +1285,7 @@ mcps:
     description: "Provides AI-powered web automation capabilities using a real browser environment, enabling interaction with web pages, action performance, data extraction, and action observation."
     author: "browserbase"
     githubUrl: "https://github.com/browserbase/mcp-server-browserbase/tree/main/stagehand"
-    githubStars: 2977
+    githubStars: 2982
     command: "node"
     args:
     - "path/to/mcp-server-browserbase/stagehand/dist/index.js"
@@ -1314,7 +1314,7 @@ mcps:
     description: "Controls Ableton Live through socket-based communication, enabling AI-assisted music production with features like track creation, MIDI manipulation, instrument selection, and session control."
     author: "ahujasid"
     githubUrl: "https://github.com/ahujasid/ableton-mcp"
-    githubStars: 2076
+    githubStars: 2078
     command: "uvx"
     args:
     - "ableton-mcp"
@@ -1327,7 +1327,7 @@ mcps:
     description: "Enables AI models to execute and manage AWS Step Functions state machines as tools, supporting both Standard and Express workflows with input validation via EventBridge Schema Registry."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/stepfunctions-tool-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.stepfunctions-tool-mcp-server@latest"
@@ -1395,7 +1395,7 @@ mcps:
     description: "Creates various types of charts and visualizations using AntV, supporting 15+ chart types including line, bar, pie, radar, network graphs, and more with customizable deployment options."
     author: "antvis"
     githubUrl: "https://github.com/antvis/mcp-server-chart"
-    githubStars: 3376
+    githubStars: 3378
     command: "npx"
     args:
     - "-y"
@@ -1409,7 +1409,7 @@ mcps:
     description: "AI-native open-source vector database for building AI applications with embeddings, enabling semantic search, document storage, and retrieval with support for persistent and in-memory storage modes."
     author: "chroma-core"
     githubUrl: "https://github.com/chroma-core/chroma-mcp"
-    githubStars: 0
+    githubStars: 451
     command: "uvx"
     args:
     - "chroma-mcp"
@@ -1440,7 +1440,7 @@ mcps:
     description: "Users will leave if your app keeps breaking - Magnitude enables effortless end-to-end testing with visual AI agents that find bugs by navigating your app like real users."
     author: "magnitudedev"
     githubUrl: "https://github.com/magnitudedev/magnitude/tree/main/packages/magnitude-mcp"
-    githubStars: 3837
+    githubStars: 3844
     command: "npx"
     args:
     - "magnitude-mcp"
@@ -1477,7 +1477,7 @@ mcps:
     description: "Access and search AWS documentation, fetch pages in markdown format, and get content recommendations for AWS documentation pages."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/aws-documentation-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.aws-documentation-mcp-server@latest"
@@ -1493,7 +1493,7 @@ mcps:
     description: "Manages AWS Timestream for InfluxDB resources, enabling database cluster/instance management, parameter configuration, and data operations using InfluxDB APIs."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/timestream-for-influxdb-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.timestream-for-influxdb-mcp-server@latest"
@@ -1510,7 +1510,7 @@ mcps:
     description: "Enables secure management of Amazon SNS topics and SQS queues, with resource tagging, access controls, and messaging capabilities for AWS messaging services."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/amazon-sns-sqs-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.amazon-sns-sqs-mcp-server@latest"
@@ -1526,7 +1526,7 @@ mcps:
     description: "Enables AI assistants to interact with Notion workspaces through the official API, supporting page creation, comments, content retrieval, and search functionality."
     author: "makenotion"
     githubUrl: "https://github.com/makenotion/notion-mcp-server"
-    githubStars: 3630
+    githubStars: 3633
     command: "npx"
     args:
     - "-y"
@@ -1542,7 +1542,7 @@ mcps:
     description: "Manages Amazon EKS clusters and Kubernetes resources through natural language interactions, providing tools for cluster creation, application deployment, resource management, monitoring, and troubleshooting."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/eks-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.eks-mcp-server@latest"
@@ -1559,7 +1559,7 @@ mcps:
     description: "Analyzes AWS costs and usage data through the Cost Explorer API, providing natural language querying of spending patterns, cost breakdowns, and usage trends across services and regions."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/cost-explorer-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.cost-explorer-mcp-server@latest"
@@ -1576,7 +1576,7 @@ mcps:
     description: "Browser automation server that enables LLMs to interact with web pages, take screenshots, and execute JavaScript in a real browser environment using Playwright."
     author: "executeautomation"
     githubUrl: "https://github.com/executeautomation/mcp-playwright"
-    githubStars: 5091
+    githubStars: 5092
     command: "npx"
     args:
     - "-y"
@@ -1590,7 +1590,7 @@ mcps:
     description: "Enables AI agents to interact with Stripe APIs, supporting operations like customer management, payment processing, product creation, and invoice handling through function calling."
     author: "stripe"
     githubUrl: "https://github.com/stripe/agent-toolkit"
-    githubStars: 1171
+    githubStars: 1175
     command: "npx"
     args:
     - "-y"
@@ -1622,7 +1622,7 @@ mcps:
     description: "A semantic memory layer enabling storage and retrieval of vector-based memories using the Qdrant vector search engine, with support for both cloud and local deployments."
     author: "qdrant"
     githubUrl: "https://github.com/qdrant/mcp-server-qdrant"
-    githubStars: 1148
+    githubStars: 1149
     command: "uvx"
     args:
     - "mcp-server-qdrant"
@@ -1654,7 +1654,7 @@ mcps:
     description: "Enables direct interaction with Supabase PostgreSQL databases, providing database management tools including schema exploration, SQL query validation, and secure read-only access."
     author: "alexander-zuev"
     githubUrl: "https://github.com/alexander-zuev/supabase-mcp-server"
-    githubStars: 816
+    githubStars: 817
     command: "uv"
     args:
     - "pip"
@@ -1687,7 +1687,7 @@ mcps:
     description: "Enables natural language management of AWS resources through Cloud Control API and IaC Generator, supporting creation, modification, and templating of over 1,100 AWS services."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/cfn-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.cfn-mcp-server@latest"
@@ -1719,7 +1719,7 @@ mcps:
     description: "Provides Terraform best practices, security compliance scanning with Checkov, and AWS infrastructure management tools with focus on security and AWS Well-Architected guidance."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/terraform-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.terraform-mcp-server@latest"
@@ -1734,7 +1734,7 @@ mcps:
     description: "Advanced web scraping and crawling server with JavaScript rendering, batch processing, smart content filtering, and structured data extraction capabilities."
     author: "mendableai"
     githubUrl: "https://github.com/mendableai/firecrawl-mcp-server"
-    githubStars: 5136
+    githubStars: 5137
     command: "npx"
     args:
     - "-y"
@@ -1750,7 +1750,7 @@ mcps:
     description: "A browser monitoring and interaction toolkit that enables AI tools to capture screenshots, analyze console logs, track network activity, perform audits, and interact with DOM elements via Chrome extension."
     author: "AgentDeskAI"
     githubUrl: "https://github.com/AgentDeskAI/browser-tools-mcp"
-    githubStars: 6936
+    githubStars: 6938
     command: "npx"
     args:
     - "@agentdeskai/browser-tools-mcp@latest"
@@ -1763,7 +1763,7 @@ mcps:
     description: "Enables natural language querying of Amazon Bedrock Knowledge Bases with features for discovery, filtering, and result reranking."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/bedrock-kb-retrieval-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.bedrock-kb-retrieval-mcp-server@latest"
@@ -1816,7 +1816,7 @@ mcps:
     description: "Enables bi-directional integration with Model Context Protocol, allowing applications to both consume MCP tools/prompts as a client and expose Genkit tools/prompts as an MCP server."
     author: "firebase"
     githubUrl: "https://github.com/firebase/genkit/tree/HEAD/js/plugins/mcp"
-    githubStars: 5261
+    githubStars: 5266
     command: "npx"
     args:
     - "-y"
@@ -1831,7 +1831,7 @@ mcps:
     description: "Build and push container images through Finch CLI, with support for ECR repositories and automated VM management for macOS and Windows."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/finch-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.finch-mcp-server@latest"
@@ -1848,7 +1848,7 @@ mcps:
     description: "Enables management of RabbitMQ and ActiveMQ message brokers through Amazon MQ, providing secure broker creation, configuration, and administration capabilities."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/amazon-mq-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.amazon-mq-mcp-server@latest"
@@ -1880,7 +1880,7 @@ mcps:
     description: "Connects to and manages Kubernetes clusters, enabling pod, service, and deployment operations through kubectl integration."
     author: "Flux159"
     githubUrl: "https://github.com/Flux159/mcp-server-kubernetes"
-    githubStars: 1231
+    githubStars: 1232
     command: "npx"
     args:
     - "mcp-server-kubernetes"
@@ -1893,7 +1893,7 @@ mcps:
     description: "Interact with Amazon ElastiCache and MemoryDB Valkey datastores, supporting multiple data types like strings, lists, sets, hashes, streams, and JSON documents with advanced features like clustering and SSL/TLS security."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/valkey-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.valkey-mcp-server@latest"
@@ -1910,7 +1910,7 @@ mcps:
     description: "A structured problem-solving tool that enables step-by-step analysis, thought revision, and branching logic for complex reasoning tasks."
     author: "modelcontextprotocol"
     githubUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking"
-    githubStars: 75101
+    githubStars: 75148
     command: "npx"
     args:
     - "-y"
@@ -1924,7 +1924,7 @@ mcps:
     description: "Provides comprehensive documentation and tools for modern React application development with AWS integrations, including setup guides, authentication, routing, and troubleshooting."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/frontend-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.frontend-mcp-server@latest"
@@ -1939,7 +1939,7 @@ mcps:
     description: "Comprehensive suite of tools for managing AWS DynamoDB resources, including table operations, item management, querying, backups, TTL settings, and resource policies."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/dynamodb-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.dynamodb-mcp-server@latest"
@@ -1960,7 +1960,7 @@ mcps:
     description: "Enables natural language to SQL query conversion and execution against Aurora DSQL databases, with configurable read/write access and connection pooling."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/aurora-dsql-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.aurora-dsql-mcp-server@latest"
@@ -2015,7 +2015,7 @@ mcps:
     description: "Provides location-based services including place search, geocoding, route calculation, and nearby points of interest using Amazon Location Service."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/aws-location-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.aws-location-mcp-server@latest"
@@ -2032,7 +2032,7 @@ mcps:
     description: "Enables semantic search and exploration of Git repositories using FAISS and Amazon Bedrock, allowing natural language querying of code without local cloning."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/git-repo-research-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "awslabs.git-repo-research-mcp-server@latest"
@@ -2050,7 +2050,7 @@ mcps:
     description: "Provides time and timezone conversion capabilities using IANA timezone names, with automatic system timezone detection and support for current time queries."
     author: "modelcontextprotocol"
     githubUrl: "https://github.com/modelcontextprotocol/servers/tree/main/src/time"
-    githubStars: 75101
+    githubStars: 75148
     command: "uvx"
     args:
     - "mcp-server-time"
@@ -2063,7 +2063,7 @@ mcps:
     description: "GitHub's official MCP Server. Connects AI tools directly to GitHub's platform for repository management, issues, pull requests, code operations, and workflow automation."
     author: "github"
     githubUrl: "https://github.com/github/github-mcp-server"
-    githubStars: 25464
+    githubStars: 25485
     requiresApiKey: true
     command: "docker"
     args:
@@ -2087,7 +2087,7 @@ mcps:
     description: "Enables querying and monitoring with AWS Managed Prometheus, supporting PromQL queries, metric listing, and server information retrieval with AWS SigV4 authentication."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/prometheus-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uv"
     args:
     - "tool"
@@ -2123,7 +2123,7 @@ mcps:
     description: "Enables programmatic management of AWS support cases, including creation, communication, and resolution, with automatic determination of issue types and severity levels."
     author: "awslabs"
     githubUrl: "https://github.com/awslabs/mcp/tree/main/src/aws-support-mcp-server"
-    githubStars: 7730
+    githubStars: 7735
     command: "uvx"
     args:
     - "-m"
@@ -2142,7 +2142,7 @@ mcps:
     description: "MCP server to run Python code in a secure sandbox. Code is executed using Pyodide in Deno, isolated from the rest of the operating system."
     author: "pydantic"
     githubUrl: "https://github.com/pydantic/mcp-run-python"
-    githubStars: 160
+    githubStars: 161
     command: "uvx"
     args:
     - "mcp-run-python"
