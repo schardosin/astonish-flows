@@ -1403,6 +1403,22 @@ mcps:
     transport: "stdio"
     tags: [data-visualization, charts, graphs, antv, image-generation]
 
+  chroma:
+    id: "github.com/chroma-core/chroma-mcp"
+    name: "Chroma"
+    description: "AI-native open-source vector database for building AI applications with embeddings, enabling semantic search, document storage, and retrieval with support for persistent and in-memory storage modes."
+    author: "chroma-core"
+    githubUrl: "https://github.com/chroma-core/chroma-mcp"
+    githubStars: 0
+    command: "uvx"
+    args:
+    - "chroma-mcp"
+    env:
+      CHROMA_CLIENT_TYPE: "persistent"
+      CHROMA_DATA_DIR: ""
+    transport: "stdio"
+    tags: [vector-database, embeddings, semantic-search, document-storage, ai-applications]
+
   asana:
     id: "github.com/pashpashpash/mcp-server-asana"
     name: "Asana"
