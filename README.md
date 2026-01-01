@@ -7,6 +7,7 @@ Curated collection of AI automation flows for [Astonish](https://github.com/scha
 | Flow | Description |
 |------|-------------|
 | `github_pr_description_generator` | Lists open PRs, lets user pick one, and generates a formatted PR description using LLM analysis |
+| `technical_article_generator` | Transform topics into high-value technical articles through multi-stage research with style selection (Daily.dev/Medium), audience targeting, and revision feedback loop |
 | `translate_format_preserved_files` | Translates file content while preserving the original formatting and structure |
 | `vector_db_content_generator` | Processes files with flexible directory traversal and file type selection, storing content in ChromaDB vector database for semantic search |
 | `vector_db_content_search` | Search and query ChromaDB vector database collections with AI-powered answers using semantic similarity |

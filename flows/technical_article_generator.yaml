@@ -1,0 +1,632 @@
+name: technical_publisher
+description: Transform a simple topic into a high-value, concise technical article through multi-stage research and synthesis with style selection and strict section limits. Now includes interactive, context-aware audience selection (2-5 suggestions + "Other") and flow-wide persona alignment. Includes feedback loop for revisions.
+nodes:
+  - name: choose_style
+    type: input
+    prompt: |
+      Choose a publication style. Pick one:
+      - "Daily.dev (Fast, code-centric, 3-min read)"
+      - "Medium (Narrative, detailed trade-offs, 6-min read)"
+    options:
+      - Daily.dev (Fast, code-centric, 3-min read)
+      - Medium (Narrative, detailed trade-offs, 6-min read)
+    output_model:
+      style: str
+  - name: get_topic
+    type: input
+    prompt: What technical topic would you like me to research and write about?
+    output_model:
+      topic: str
+  - name: suggest_audiences
+    type: llm
+    system: |
+      You are an audience analyst. Given a topic, generate between 2 and 5 likely, diverse target audiences (different perspectives) and for each a concise "Job to be Done" (JTBD).
+      Output a JSON object with two keys:
+      - "suggestions_map": an array of objects, each {"audience": "...", "job_to_be_done": "..."} (2-5 entries).
+      - "audience_options": an array of strings containing the audience labels in the same order as suggestions_map, with the LAST element appended as the literal string "Other" (so total options = suggestions_map.length + 1).
+      Requirements:
+      - Audiences should be diverse (e.g., Clinical Doctor, Software Architect, Hospital Administrator, Patient).
+      - Audience labels should be short (3-4 words max).
+      - JTBD should be a short phrase (one line).
+      - Do NOT include any extra fields.
+    prompt: |
+      Topic: {topic}
+      Style: {style}
+
+      Generate 2-5 likely target audiences with JTBD and also produce audience_options that are the audience labels plus the literal "Other" option as the last item.
+    output_model:
+      audience_options: list
+      suggestions_map: list
+    user_message:
+      - '**Likely target audiences (pick one):**'
+      - audience_options
+  - name: select_audience
+    type: input
+    prompt: 'Select the most appropriate target audience from the list above:'
+    options:
+      - audience_options
+    output_model:
+      selected_audience: str
+  - name: manual_audience_name
+    type: input
+    prompt: |
+      You selected "Other".
+      Please enter the target audience label you want to use (e.g., "Clinical Trial Coordinator", "Startup CTO", "Patient Advocate").
+    output_model:
+      custom_audience: str
+  - name: manual_audience_jtbd
+    type: input
+    prompt: |
+      Please enter the specific Job to be Done (JTBD) for that audience (a short phrase, e.g., "Decide whether to adopt X", "Understand risks and benefits", "Implement a minimal prototype").
+    output_model:
+      custom_job_to_be_done: str
+  - name: finalize_audience
+    type: llm
+    system: |
+      Finalize the audience and JTBD for the flow. Use these rules:
+      - If {selected_audience} is not the literal "Other", find the matching entry in {suggestions_map} where "audience" equals {selected_audience} and set the final "audience" and "job_to_be_done" to that entry's values.
+      - If {selected_audience} is "Other", set "audience" to {custom_audience} and "job_to_be_done" to {custom_job_to_be_done}.
+      Output exactly a JSON object with keys: {"audience": "...", "job_to_be_done": "..."}.
+    prompt: |
+      Suggestions: {suggestions_map}
+      Selected option: {selected_audience}
+      Custom audience (if provided): {custom_audience}
+      Custom JTBD (if provided): {custom_job_to_be_done}
+
+      Produce the final audience and job_to_be_done as a JSON object.
+    output_model:
+      audience: str
+      job_to_be_done: str
+    user_message:
+      - '**Final audience & JTBD:**'
+      - audience
+      - job_to_be_done
+  - name: define_problem
+    type: llm
+    system: |
+      You are a technical problem analyst. Your job is to identify the CORE PROBLEM or CURRENT CHALLENGE 
+      associated with the given technology topic by researching current trends, pain points, and industry discussions.
+
+      Research and synthesize a compelling problem statement that explains why this topic matters to practitioners TODAY.
+      Use the finalized audience and job-to-be-done to bias framing: explain why the problem matters to the identified audience and how it relates to their JTBD.
+    prompt: |
+      Style: {style}
+      Topic: {topic}
+      Audience: {audience}
+      Job to be done: {job_to_be_done}
+
+      Research and define the core problem or challenge. Your output should be:
+      1. A concise problem statement (2-3 sentences)
+      2. Why this matters to the identified audience and practitioners
+      3. Current industry context
+    tools: true
+    tools_selection:
+      - tavily-search
+    output_model:
+      problem_statement: str
+    user_message:
+      - '**Problem Identified:**'
+      - problem_statement
+  - name: create_outline
+    type: llm
+    system: |
+      You are a technical writing architect. Create a structured outline for a high-value, concise technical article.
+
+      HARD CONSTRAINT: Output ONLY a JSON array of exactly 5 section titles (no more, no fewer). Do NOT suggest more than 5 sections under any circumstance.
+
+      STYLE-SPECIFIC TITLE CONVENTIONS:
+      - If {style} is 'Medium': Generate Thematic/Narrative titles that create a cohesive story arc. Use compelling phrases like 'The Digital Diagnostic Dilemma', 'Hidden Costs of Complexity', 'Reclaiming Our Cognitive Space'. Each title should be evocative and connect emotionally.
+      - If {style} is 'Daily.dev': Generate Functional/Step-based titles that are action-oriented and scannable. Use clear labels like 'Step 1: Data Normalization', 'Implementation: CRUD Operations', 'Testing Strategy', 'Deployment Checklist'. Include numbers or clear functional descriptors.
+
+      AUDIENCE & JTBD ADAPTATION:
+      - If the audience is non-technical, ensure titles use clear, empathetic language without engineering jargon.
+      - If the Job to be Done indicates a "how-to" (e.g., "Learn a skill", "Step-by-step"), structure the outline as a practical guide with sequential steps.
+      - If the audience is technical and JTBD is conceptual/evaluation, create titles that explore architectural patterns, trade-offs, and implementation considerations.
+
+      The outline should prioritize high-value content and concise sections appropriate to the chosen style and audience.
+      Example outputs:
+      Medium: ["The Problem We Can't Ignore", "Historical Context & Current Challenges", "A New Framework Emerges", "Implementation in Real-World Scenarios", "Lessons for the Future"]
+      Daily.dev: ["Step 1: Environment Setup", "Core Architecture Patterns", "Database Schema Design", "API Implementation", "Testing & Deployment"]
+      Output format: JSON array of exactly 5 strings.
+    prompt: |
+      Style: {style}
+      Topic: {topic}
+      Audience: {audience}
+      Job to be done: {job_to_be_done}
+      Problem Statement: {problem_statement}
+
+      Create an article outline: return a JSON array of exactly 5 section titles as strings.
+      Also return total_sections as 5.
+    output_model:
+      outline: list
+      total_sections: int
+    user_message:
+      - '**Article Outline Created ({style} style):**'
+      - outline
+  - name: init_research
+    type: update_state
+    updates:
+      current_section_index: '0'
+      knowledge_list: '[]'
+  - name: research_section
+    type: llm
+    system: |
+      You are a Section Drafter specializing in style-adaptive content creation.
+
+      1. RESEARCH FOCUS:
+      - Search queries MUST include style-specific phrases:
+        * Daily.dev: Add "quick implementation", "example code", "tutorial", "minimal setup"
+        * Medium: Add "best practices", "trade-offs", "long-form", "storytelling", "case study"
+      - Bias searches toward {job_to_be_done}: tutorials for how-to, analysis for evaluation
+
+      2. VISUAL FORMATTING CONDITIONAL EXECUTION:
+      IF {style} contains "Daily.dev":
+      - Content MUST be visually dense with at least ONE:
+        * Markdown Table (comparisons, feature lists, specifications)
+        * Task List/Checkbox (step-by-step instructions)
+        * Code/JSON snippet (actual code with comments)
+      - Replace one prose paragraph entirely with visual element
+      - Keep technical, scannable, action-oriented
+      - Maximum 150 words
+
+      IF {style} contains "Medium":
+      - STRICTLY PROHIBITED: Tables, checklists, code blocks
+      - Convert any technical data to descriptive paragraphs
+      - Use metaphors instead of code: "Imagine X as Y..."
+      - Replace specifications with storytelling: "Rather than hard parameters, think of it as..."
+      - Maintain narrative flow with transitions
+      - Maximum 250 words
+
+      3. AUDIENCE ADAPTATION:
+      - Non-technical {audience}: Empathetic language, no jargon, actionable advice
+      - Technical {audience}: Precise terminology, specific examples
+      - Align source selection to audience expertise level
+
+      Output JSON:
+      {
+        "section_title": "title from outline index {current_section_index}",
+        "section_draft": "polished draft with style-specific formatting",
+        "sources": ["url1", "url2"]
+      }
+    prompt: |
+      Style: {style}
+      Topic: {topic}
+      Audience: {audience}
+      Job to be done: {job_to_be_done}
+      Problem Statement: {problem_statement}
+      Outline (5 sections): {outline}
+      Current Section Index: {current_section_index}
+
+      Identify the section title at index {current_section_index} from the outline above. Research this section with style- and audience-specific searches, then create a polished draft following the strict visual formatting rules for the chosen style:
+
+      For Daily.dev style:
+      - Word limit: ≤150 words
+      - MUST include at least ONE of: Markdown Table, Task List (Checklist), or Code/JSON snippet
+      - Replace at least one paragraph with a visual element
+      - Keep content technical, concise, and scannable
+
+      For Medium style:
+      - Word limit: ≤250 words  
+      - STRICTLY NO tables, checklists, or code blocks
+      - Convert all technical elements to narrative prose
+      - Use metaphors, analogies, and descriptive paragraphs instead of code
+      - Maintain flowing, storytelling tone throughout
+
+      For all styles: Tailor content to {audience} and {job_to_be_done}, include up to 3 source URLs.
+    tools: true
+    tools_selection:
+      - tavily-search
+    output_model:
+      section_draft: str
+      section_sources: list
+      section_title: str
+    user_message:
+      - '**Research & Draft for Section {current_section_index + 1}/{total_sections}:**'
+      - section_title
+      - section_draft
+  - name: store_findings
+    type: update_state
+    action: append
+    source_variable: section_draft
+    output_model:
+      knowledge_list: list
+  - name: increment_counter
+    type: update_state
+    action: increment
+    source_variable: current_section_index
+    output_model:
+      current_section_index: int
+    value: 1
+  - name: check_progress
+    type: input
+    prompt: 'Continue researching next section? (Current: {current_section_index}/{total_sections})'
+    options:
+      - 'yes'
+      - 'no'
+    output_model:
+      continue_research: str
+  - name: technical_review
+    type: llm
+    system: |
+      Reviewer persona should pivot based on the finalized {audience} and subject matter.
+      Use these rules to choose a reviewer persona and tone:
+      - If audience contains words like "parent", "child", or is explicitly about parenting/children, act as a Child Psychologist.
+      - If audience contains "music" or "musician", act as a Professional Instructor.
+      - If audience contains "patient", "consumer", or "caregiver", act as a Patient Advocate / Plain-language Medical Communicator.
+      - If audience contains "admin", "administrator", "manager", "director", act as a Domain/Operations Manager persona (focus on decisions, costs, governance).
+      - If audience contains "engineer", "developer", "architect", "SRE", act as a Senior Staff Engineer.
+      - Otherwise, pick the persona that best matches the audience label (prioritize clarity and the audience's JTBD).
+
+      Your role: review the aggregated section drafts (knowledge_list) for:
+      1. TECHNICAL CORRECTNESS: Remove generic "fluff", replace vague guidance with concrete "Pro-Tips" or explicit warnings about common implementation pitfalls. Focus on safety, correctness, and actionable precision. If a section references libraries/APIs, verify recent stable releases as of late 2025 when applicable.
+
+      2. STYLE COMPLIANCE: Enforce {style} formatting requirements:
+         - MEDIUM STYLE GUARD: Flag any code blocks, complex tables, or technical visual elements that disrupt the narrative flow. Medium articles should maintain human-centered narrative with conceptual explanations. Suggest:
+           * Convert code blocks to descriptive blockquotes (>) with context
+           * Replace technical tables with comparative prose
+           * Simplify complex diagrams to conceptual descriptions
+           * Ensure the tone remains narrative and accessible
+         
+         - DAILY.DEV STYLE GUARD: Verify each section includes at least one Markdown Table, Task List (Checklist), or Code/JSON snippet as required by the style. If missing, add appropriate visual elements that align with the content.
+
+      3. AUDIENCE ADAPTATION: In all cases, adapt recommendations and language to the finalized {audience} and {job_to_be_done}:
+         - If the audience is non-technical, emphasize clarity, empathy, and actionable next steps rather than deep engineering jargon.
+         - If the JTBD is "how-to", verify step order, prerequisites, and safety considerations.
+
+      Apply persona-specific language to style corrections (e.g., a Child Psychologist would frame Medium style corrections as "making concepts more emotionally accessible" while a Senior Staff Engineer would frame them as "improving conceptual clarity for broader adoption").
+    prompt: |
+      Style: {style}
+      Topic: {topic}
+      Audience: {audience}
+      Job to be done: {job_to_be_done}
+      Problem Statement: {problem_statement}
+      Article Outline (5 sections): {outline}
+      Polished Section Drafts (knowledge_list): {knowledge_list}
+
+      Tasks (produce JSON output):
+      1) Identify any fluff, vague or generic advice in each section.
+      2) For each identified issue, provide a concise replacement: either a specific "Pro-Tip" (actionable, example-based) or an explicit warning about a common implementation pitfall.
+      3) Apply STYLE GUARD: Check for formatting mismatches with the chosen {style}:
+         - If style is "Medium": Identify code blocks, complex tables, or technical visual elements that disrupt narrative flow. Suggest removal, conversion to blockquotes with descriptive context, or integration as conceptual examples.
+         - If style is "Daily.dev": Ensure at least one Markdown Table, Task List, or Code/JSON snippet exists per section as required. If missing, add an appropriate visual element.
+      4) Produce a cleaned/revised set of section drafts where each replaced item is applied inline (preserve original drafts but replace fluff segments with the improved text and style corrections).
+      Ensure your reviewer persona is applied and that tone adjustments for the finalized audience are reflected in both technical and style improvements.
+      Output a JSON object:
+      {
+        "reviewed_knowledge_list": [ "revised section draft 1", ... ],
+        "review_summary": "short summary of changes including technical fixes and style compliance adjustments"
+      }
+      Do NOT invent new long sections — keep same number of drafts and overall brevity.
+    output_model:
+      review_summary: str
+      reviewed_knowledge_list: list
+    user_message:
+      - '**Technical Review (Persona-adjusted with Style Guard):**'
+      - review_summary
+  - name: apply_review
+    type: update_state
+    action: overwrite
+    source_variable: reviewed_knowledge_list
+    output_model:
+      knowledge_list: list
+  - name: synthesize_article
+    type: llm
+    system: |
+      You are a Final Polish & Formatting editor. DO NOT re-research or rewrite drafts from scratch.
+
+      STEP 1: Generate a single compelling, professional H1 title (one line beginning with "# ") based on the {topic} and finalized {audience}.
+      - For Daily.dev: title should be punchy and technical, but still audience-aligned.
+      - For Medium: title should be narrative and intriguing, reflecting audience concerns or goals.
+
+      STEP 2: Process the provided section drafts (knowledge_list) as follows:
+      - If style is "Medium": Create a 2-3 paragraph Narrative Lede after the H1 to set human context (who this affects, why it matters emotionally/practically).
+      - If style is "Medium": Strip ALL "TL;DR" headers, boxes, or summary sections entirely.
+      - If style is "Medium": Convert any inline `code backticks` into standard blockquotes (>) with descriptive context.
+      - For both styles: Ensure smooth transitions between assembled sections (add connecting sentences where needed).
+      - For both styles: Preserve technical accuracy while improving flow.
+
+      STEP 3: Assemble the final article with:
+      - H1 title at the very top (only once)
+      - If Medium: Narrative Lede (2-3 paragraphs)
+      - Then the processed section drafts with smooth transitions
+      - Apply formatting rules (## headings, --- dividers, > blockquotes, callouts)
+      - Enforce word limit: < 1,200 words total
+
+      FINAL OUTPUT: A single cohesive article that begins with your H1 title and flows naturally.
+    prompt: |
+      Style: {style}
+      Topic: {topic}
+      Audience: {audience}
+      Job to be done: {job_to_be_done}
+      Problem Statement: {problem_statement}
+      Article Outline (5 sections): {outline}
+      Polished Section Drafts (knowledge_list): {knowledge_list}
+
+      Generate the final article following these exact steps:
+      1. Create H1 title (starts with "# ")
+      2. If style is "Medium": Write 2-3 paragraph Narrative Lede after H1
+      3. Process all section drafts: remove TL;DR (if Medium), convert inline code to blockquotes (if Medium), add smooth transitions
+      4. Assemble everything into single article < 1,200 words
+      5. Apply appropriate formatting for the style and audience
+
+      Output JSON with: {"title": "Your H1 line", "final_article": "Full article starting with H1"}
+    output_model:
+      final_article: str
+      title: str
+    user_message:
+      - '---'
+      - '**THE TECHNICAL PUBLISHER (Final Polish)**'
+      - '---'
+      - title
+      - final_article
+      - '---'
+  - name: ask_feedback
+    type: input
+    prompt: |
+      Would you like to:
+      1. Request revisions (provide specific feedback)
+      2. Finish (article is ready)
+    options:
+      - Request revisions
+      - Finish
+    output_model:
+      feedback_choice: str
+  - name: get_revision_request
+    type: input
+    prompt: |
+      Please describe what you'd like changed in the article. Be specific about:
+      - Which sections need changes
+      - What improvements you want
+      - Any content to add or remove
+      - Style or tone adjustments
+    output_model:
+      revision_request: str
+  - name: apply_revisions
+    type: llm
+    system: |
+      You are a Revision Editor. Your job is to apply the user's requested changes to the article while maintaining:
+      - The original style constraints ({style})
+      - Audience appropriateness ({audience})
+      - Technical accuracy
+      - Word limit (< 1,200 words)
+
+      Process the user's feedback and make targeted changes. Do NOT rewrite the entire article unless explicitly requested.
+      If the user asks for section-specific changes, only modify those sections.
+      Maintain the H1 title unless the user specifically requests a title change.
+
+      Output the revised article in the same format as before.
+    prompt: |
+      Style: {style}
+      Topic: {topic}
+      Audience: {audience}
+      Job to be done: {job_to_be_done}
+      Current Article Title: {title}
+      Current Article: {final_article}
+
+      User's Revision Request: {revision_request}
+
+      Apply the requested changes and output JSON with: {"title": "H1 line (updated if requested)", "final_article": "Revised article"}
+    tools: true
+    tools_selection:
+      - tavily-search
+    output_model:
+      final_article: str
+      title: str
+    user_message:
+      - '---'
+      - '**REVISED ARTICLE**'
+      - '---'
+      - title
+      - final_article
+      - '---'
+  - name: complete
+    type: output
+    user_message:
+      - '**Article generation complete!** Your high-value, concise technical article is ready.'
+      - Would you like to refine any section, adjust style, or generate another article?
+flow:
+  - from: START
+    to: choose_style
+  - from: choose_style
+    to: get_topic
+  - from: get_topic
+    to: suggest_audiences
+  - from: suggest_audiences
+    to: select_audience
+  - from: select_audience
+    edges:
+      - to: manual_audience_name
+        condition: 'lambda x: x[''selected_audience''] == ''Other'''
+      - to: finalize_audience
+        condition: 'lambda x: x[''selected_audience''] != ''Other'''
+  - from: manual_audience_name
+    to: manual_audience_jtbd
+  - from: manual_audience_jtbd
+    to: finalize_audience
+  - from: finalize_audience
+    to: define_problem
+  - from: define_problem
+    to: create_outline
+  - from: create_outline
+    to: init_research
+  - from: init_research
+    to: research_section
+  - from: research_section
+    to: store_findings
+  - from: store_findings
+    to: increment_counter
+  - from: increment_counter
+    to: check_progress
+  - from: check_progress
+    edges:
+      - to: research_section
+        condition: 'lambda x: x[''continue_research''] == ''yes'' and x[''current_section_index''] < x[''total_sections'']'
+      - to: technical_review
+        condition: 'lambda x: x[''continue_research''] == ''no'' or x[''current_section_index''] >= x[''total_sections'']'
+  - from: technical_review
+    to: apply_review
+  - from: apply_review
+    to: synthesize_article
+  - from: synthesize_article
+    to: ask_feedback
+  - from: ask_feedback
+    edges:
+      - to: get_revision_request
+        condition: 'lambda x: x[''feedback_choice''] == ''Request revisions'''
+      - to: complete
+        condition: 'lambda x: x[''feedback_choice''] == ''Finish'''
+  - from: get_revision_request
+    to: apply_revisions
+  - from: apply_revisions
+    to: ask_feedback
+  - from: complete
+    to: END
+mcp_dependencies:
+  - server: tavily-websearch
+    tools:
+      - tavily-search
+    source: store
+    store_id: github.com/tavily-ai/tavily-mcp
+layout:
+  nodes:
+    START:
+      x: 393
+      'y': 12
+    choose_style:
+      x: 393
+      'y': 161
+    get_topic:
+      x: 393
+      'y': 312
+    suggest_audiences:
+      x: 393
+      'y': 462
+    select_audience:
+      x: 393
+      'y': 612
+    manual_audience_name:
+      x: 275
+      'y': 819
+    manual_audience_jtbd:
+      x: 275
+      'y': 971
+    finalize_audience:
+      x: 393
+      'y': 1182
+    define_problem:
+      x: 393
+      'y': 1332
+    create_outline:
+      x: 393
+      'y': 1482
+    init_research:
+      x: 393
+      'y': 1632
+    research_section:
+      x: 363
+      'y': 1872
+    store_findings:
+      x: 363
+      'y': 2022
+    increment_counter:
+      x: 312
+      'y': 2232
+    check_progress:
+      x: 112
+      'y': 1632
+    technical_review:
+      x: 12
+      'y': 1872
+    apply_review:
+      x: 12
+      'y': 2022
+    synthesize_article:
+      x: 12
+      'y': 2232
+    ask_feedback:
+      x: 592
+      'y': 2442
+    get_revision_request:
+      x: 643
+      'y': 2022
+    apply_revisions:
+      x: 693
+      'y': 2232
+    complete:
+      x: 592
+      'y': 2592
+    END:
+      x: 592
+      'y': 2742
+  edges:
+    select_audience->manual_audience_name:
+      - x: 483
+        'y': 669
+      - x: 451
+        'y': 669
+      - x: 453
+        'y': 749
+      - x: 365
+        'y': 749
+    manual_audience_jtbd->finalize_audience:
+      - x: 365
+        'y': 1110
+      - x: 440
+        'y': 1110
+      - x: 440
+        'y': 1199
+      - x: 483
+        'y': 1199
+    increment_counter->check_progress:
+      - x: 402
+        'y': 2320
+      - x: 269
+        'y': 2320
+      - x: 270
+        'y': 1977
+      - x: 324
+        'y': 1977
+      - x: 325
+        'y': 1586
+      - x: 202
+        'y': 1586
+    check_progress->research_section:
+      - x: 202
+        'y': 1786
+      - x: 433
+        'y': 1786
+      - x: 435
+        'y': 1885
+      - x: 453
+        'y': 1885
+    check_progress->technical_review:
+      - x: 202
+        'y': 1685
+      - x: 160
+        'y': 1685
+      - x: 160
+        'y': 1786
+      - x: 102
+        'y': 1786
+    synthesize_article->ask_feedback:
+      - x: 102
+        'y': 2370
+      - x: 649
+        'y': 2370
+      - x: 648
+        'y': 2462
+      - x: 682
+        'y': 2462
+    ask_feedback->get_revision_request:
+      - x: 682
+        'y': 2482
+      - x: 662
+        'y': 2482
+      - x: 664
+        'y': 2533
+      - x: 567
+        'y': 2533
+      - x: 567
+        'y': 1993
+      - x: 733
+        'y': 1993

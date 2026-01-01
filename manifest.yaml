@@ -5,6 +5,9 @@ flows:
   github_pr_description_generator:
     description: Lists open PRs, lets user pick one, and generates a formatted PR description using LLM analysis
     tags: [github, pull-request, documentation, ai]
+  technical_article_generator:
+    description: Transform topics into high-value technical articles through multi-stage research with style selection (Daily.dev/Medium), audience targeting, and revision feedback loop
+    tags: [content-creation, technical-writing, research, article-generation, ai]
   translate_format_preserved_files:
     description: Translates file content while preserving the original formatting and structure
     tags: [translation, file-processing, format-preservation, ai]
