@@ -2202,10 +2202,11 @@ mcps:
     - "--rm"
     - "-i"
     - "-v"
-    - "/path/to/surreal-data:/data"
+    - "${SURREALDB_DATA_PATH}:/data"
     - "surrealdb/surrealmcp:latest"
     - "start"
     env:
+      SURREALDB_DATA_PATH: "/path/to/surreal-data"
       SURREALDB_DB: "default"
       SURREALDB_ENDPOINT: "rocksdb:/data/db"
       SURREALDB_NS: "default"
