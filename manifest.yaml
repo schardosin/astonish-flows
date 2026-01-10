@@ -2188,3 +2188,26 @@ mcps:
     env: {}
     transport: "stdio"
     tags: [youtube, video-download, audio-download, yt-dlp, media]
+
+  surrealmcp:
+    id: "github.com/surrealdb/surrealmcp"
+    name: "SurrealMCP"
+    description: "The official MCP server for SurrealDB that enables AI assistants and agents to interact with SurrealDB databases and SurrealDB Cloud, supporting multiple transport modes, authentication, and comprehensive database operations."
+    author: "surrealdb"
+    githubUrl: "https://github.com/surrealdb/surrealmcp"
+    githubStars: 64
+    command: "docker"
+    args:
+    - "run"
+    - "--rm"
+    - "-i"
+    - "-v"
+    - "/path/to/surreal-data:/data"
+    - "surrealdb/surrealmcp:latest"
+    - "start"
+    env:
+      SURREALDB_DB: "default"
+      SURREALDB_ENDPOINT: "rocksdb:/data/db"
+      SURREALDB_NS: "default"
+    transport: "stdio"
+    tags: [database, surrealdb, graph-database, document-database, nosql]

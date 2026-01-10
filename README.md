@@ -152,6 +152,7 @@ This repository curates MCP servers listed in [manifest.yaml](manifest.yaml). Be
 | WolframAlpha | https://github.com/Garoth/wolframalpha-llm-mcp |
 | YouTube Download | https://github.com/kevinwatt/yt-dlp-mcp |
 | YouTube Transcript | https://github.com/jkawamoto/mcp-youtube-transcript |
+| SurrealMCP | https://github.com/surrealdb/surrealmcp |
 
 ## Usage
 
